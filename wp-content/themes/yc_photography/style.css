@@ -9,3 +9,100 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: yc_photography
 */
+
+:root {
+    /* COLORS */
+    --main-green: #487551;
+    --main-orange: #FFA800;
+    --second-green: #B5DFB8;
+    --second-orange: #F9C300;
+    --main-grey: #E7E7E7;
+    /* FONTS */
+    --title-font: 500 15px/1.4 'Imbue', serif; /* Titles fonts */
+    --body-font: 500 18px/1.4 'Raleway', sans-serif; /* Expositions fonts */
+    --photo-font: 500 15px/1.4 'Josefin Sans', sans-serif; /* Font on photos */
+    --contact-font: 500 15px/1.4 'Playfair Display', serif; /* Font on photos */
+}
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    text-align: center;
+}
+img {
+    width: 100%;
+    vertical-align: bottom;
+}
+html { 
+    font-size:100%;
+}
+body { 
+    font: var(--body-font);
+    color:#3b3b3b;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+main {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+section {
+    max-width: 980px;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    padding: 1rem;
+    text-align: center;
+    font-family: 'Imbue', serif;
+    font-weight: 100;
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+.site_max_width {
+    max-width: 1600px;
+    width: 100%;
+}
+/* Class inutile, déjà géré sur le style de <section> */
+/* .wrap_max_width {
+    max-width: 980px;
+    width: 100%;
+} */
+.contact_form_max_width {
+    max-width: 845px;
+    width: 100%;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 1800px) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+@media screen and (max-width: 900px) {
+    h1 {
+        font-size: 2.5rem;
+        padding: .5rem;
+    }
+    section {
+        padding: .5rem 1rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+}
