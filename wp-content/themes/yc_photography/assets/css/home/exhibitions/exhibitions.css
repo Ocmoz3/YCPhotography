@@ -1,0 +1,25 @@
+#exhibitions .exhibitions_container {
+    column-count: 3;
+}
+#exhibitions .exhibitions_container div {
+    padding: .5rem;
+    break-inside: avoid;
+}
+#exhibitions .exhibitions_container div p:first-child {
+    color: #8B0000;
+}
+#exhibitions p {
+    text-align: center;
+    font-size: 1rem;
+    overflow-wrap: break-word;
+}
+@media screen and (max-width: 650px) {
+    #exhibitions .exhibitions_container {
+        column-count: 2;
+    }
+}
+@media screen and (max-width: 480px) {
+    #exhibitions .exhibitions_container {
+        column-count: 1;
+    }
+}

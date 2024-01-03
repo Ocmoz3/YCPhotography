@@ -18,19 +18,23 @@
         <!-- Connexion Font Awesome, à faire dans assets avec wp_enqueue_style -->
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
         <!-- Connexion stylesheets, à faire dans assets avec wp_enqueue_style -->
-        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="style.css"> -->
         <!-- <link rel="stylesheet" href="<?php //echo get_template_directory_uri() ?>/assets/css/header/header.css">
         <link rel="stylesheet" href="<?php //echo get_template_directory_uri() ?>/assets/css/header/header_nav.css"> -->
-        <link rel="stylesheet" href="assets/css/home/presentation/presentation.css">
+        <!-- <link rel="stylesheet" href="assets/css/home/presentation/presentation.css">
         <link rel="stylesheet" href="assets/css/home/portfolio/portfolio.css">
         <link rel="stylesheet" href="assets/css/home/expositions/expositions.css">
-        <link rel="stylesheet" href="assets/css/home/contact/contact.css">
-        <link rel="stylesheet" href="assets/css/galleries/galleries.css">
+        <link rel="stylesheet" href="assets/css/home/contact/contact.css"> -->
+
+        <!--  -->
+        <!-- <link rel="stylesheet" href="assets/css/galleries/galleries.css">
         <link rel="stylesheet" href="assets/css/galleries/heart-share-buttons.css">
         <link rel="stylesheet" href="assets/css/galleries/minimize-maximize-buttons.css">
         <link rel="stylesheet" href="assets/css/galleries/next-previous-buttons.css">
         <link rel="stylesheet" href="assets/css/galleries/close-button.css">
-        <link rel="stylesheet" href="assets/css/footer/footer.css">
+        <link rel="stylesheet" href="assets/css/footer/footer.css"> -->
+
+
         <!-- <title>Yann Cielat - Photographie</title> -->
         <?php wp_head() ?>
     </head>

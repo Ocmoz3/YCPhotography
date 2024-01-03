@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="site_nav_li"><a class="a_nav js-curnav-switch" href="#expositions">expositions</a></li>
+                <li class="site_nav_li"><a class="a_nav js-curnav-switch" href="#exhibitions">expositions</a></li>
                 <li class="site_nav_li"><a class="a_nav js-curnav-switch" href="#contact">contact</a></li>
             </ul>
         </nav>

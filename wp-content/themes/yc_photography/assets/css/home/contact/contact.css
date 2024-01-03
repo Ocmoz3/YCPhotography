@@ -1,0 +1,169 @@
+
+form {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+.contact_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .5rem;
+}
+.contact_form input::placeholder,
+.contact_form textarea::placeholder {
+    font: var(--contact-font);
+    color: white;
+}
+.contact_form input,
+.contact_form textarea {
+    background: transparent;
+    font: var(--contact-font);
+    font-weight: 400;
+    color: white;
+    border: none;
+    border-bottom: 1px solid #787877;
+    padding: .3rem .3rem .5rem;
+    font-size: 1rem;
+}
+.form_top {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+}
+.div_form_top {
+    width: 50%;
+}
+.form_top input {
+    width: 100%;
+}
+.form_bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.div_form_bottom input,
+.div_form_bottom textarea {
+    width: 100%;
+}
+.form_bottom textarea {
+    resize: none;
+}
+.wpcf7 form .wpcf7-response-output {
+    margin: 0 !important;
+    width: 68%;
+}
+.form_bottom .submit {
+    width: 30%;
+    padding: 0.5rem 1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 500ms ease; 
+    overflow: hidden;
+    background-color: transparent;
+    font: var(--contact-font);
+}
+/* BUTTON */
+.btn_mess {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.contact_form input:focus,
+.form_bottom textarea:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+}
+/* RESPONSIVE */
+/* @media screen and (min-width: 1800px) {
+    .contact_form input::placeholder,
+    .contact_form textarea::placeholder,
+    .contact_form input,
+    .contact_form textarea,
+    .form_bottom button[type=submit] {
+        font-size: 1.3rem;
+    }
+}
+@media screen and (max-width: 1800px) {
+    .contact_form input::placeholder,
+    .contact_form textarea::placeholder,
+    .contact_form input,
+    .contact_form textarea,
+    .form_bottom button[type=submit] {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 1450px) {
+    .contact_form input::placeholder,
+    .contact_form textarea::placeholder,
+    .contact_form input,
+    .contact_form textarea {
+        font-size: 1rem;
+    }
+    .form_bottom button[type=submit] {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 1050px) {
+    .form_bottom button[type=submit] {
+        font-size: .9rem;  
+    }
+} */
+@media screen and (max-width: 900px) {
+    form {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 750px) {
+    form {
+        width: 90%;
+    }
+}
+@media screen and (max-width: 650px) {
+    form {
+        width: 95%;
+    }
+    .form_top {
+        flex-wrap: wrap;
+        gap: .5rem;
+    }
+    .div_form_top {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .contact_form input::placeholder,
+    .contact_form textarea::placeholder,
+    .contact_form input,
+    .contact_form textarea,
+    .form_bottom button[type=submit] {
+        font-size: .9rem;  
+    }
+    .form_bottom button[type=submit] {
+        width: 48%;
+    }
+    .wpcf7 form .wpcf7-response-output {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 360px) {
+    .btn_mess {
+        gap: .5rem;
+    }
+    .form_bottom button[type=submit] {
+        width: 100%;
+    }
+    .wpcf7 form .wpcf7-response-output {
+        width: 100%;
+    }
+    .form_top {
+        flex-direction: column;
+    }
+    .div_form_top,
+    .form_top input {
+        width: 100%;
+    }
+}
