@@ -1,4 +1,12 @@
 <?php
+/**
+ * YC Photography theme functions
+ */
+
+/**
+ * Required files
+ */
+require_once('inc/assets.php');
 
 // Must be removed when put into production.
 // Debugging function for development.
