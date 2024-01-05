@@ -7,6 +7,7 @@
  * Required files
  */
 require_once('inc/assets.php');
+require_once('inc/menus.php');
 
 /* Disable WordPress Admin Bar for all users */
 // add_filter( 'show_admin_bar', '__return_false' );

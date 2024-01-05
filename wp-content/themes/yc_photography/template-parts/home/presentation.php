@@ -1,3 +1,9 @@
+<?php
+/**
+ * Displays the presentation template part on front-page
+ */
+?>
+
 <section id="presentation">
     <h1>présentation</h1>
     <div class="div_presentation">

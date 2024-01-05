@@ -1,3 +1,9 @@
+<?php
+/**
+ * Displays the contact template part on front-page
+ */
+?>
+
 <section id="contact" style="background-color: black; width: 100%; max-width: unset; position: relative;">
     <h1 style="color: white;">contact</h1>
     <form action="">

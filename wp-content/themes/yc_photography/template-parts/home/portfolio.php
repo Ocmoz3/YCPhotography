@@ -1,3 +1,9 @@
+<?php
+/**
+ * Displays the portfolio template part on front-page
+ */
+?>
+
 <section id="portfolio">
     <h1>portfolio</h1>
     <div class="div_portfolio_nav">

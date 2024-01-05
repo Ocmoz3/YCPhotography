@@ -1,3 +1,7 @@
+/**
+ * Style of exhibitions template part displayed on front-page
+ */
+
 #exhibitions .exhibitions_container {
     column-count: 3;
 }

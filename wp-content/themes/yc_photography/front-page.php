@@ -1,4 +1,8 @@
 <?php
+/**
+ * Front-page template
+ */
+
 get_header();
 ?>
 <div id="home" class="site_max_width">

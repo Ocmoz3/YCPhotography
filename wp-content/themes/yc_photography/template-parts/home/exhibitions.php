@@ -1,4 +1,10 @@
-<section id="exhibitions">
+<?php
+/**
+ * Displays the exhibitions template part on front-page
+ */
+?>
+
+ <section id="exhibitions">
     <h1>expositions</h1>
     <div class="exhibitions_container">
         <div>

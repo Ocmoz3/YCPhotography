@@ -1,7 +1,7 @@
 console.log('Hello JS !');
 // NAV
 /**
- * Handles JavaScript for header navigation menu
+ * Handles JavaScript for header navigation menu.
  */
 
 /**
@@ -20,7 +20,6 @@ if(window.matchMedia("(pointer: coarse)").matches) {
         }
     }, true);
 } 
-
 /**
  * Displays dropdown menu on desktop devices on hover.
  * If click on title, go directly to the page.
@@ -48,8 +47,30 @@ else {
     }
 }
 
+// Menu burger
+let link_burger = document.getElementById("link_burger");
+let burger      = document.getElementById("burger");
+let ul          = document.getElementById("ul_burger");
+link_burger.addEventListener("click", function (e) {
+    e.preventDefault();
+    burger.classList.toggle("open");
+    ul.classList.toggle("open");
+});
+// Menu dropdown quand connecté
+// let link_dropdown = document.getElementById("link_menu_drop");
+// let dropdown      = document.getElementById("button_dropdown");
+// let ul_drop       = document.getElementById("ul_dropdown");
+
+// if (link_dropdown != null) {
+//     link_dropdown.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     dropdown.classList.toggle("open_drop");
+//     ul_drop.classList.toggle("open_drop");
+//     });
+// }
+
 /**
- * Closes dropdown menu
+ * Closes dropdown menu.
  */
 // ul dropdown-content
 let ul_drops_close = document.querySelectorAll('ul.dropdown-content');
@@ -62,7 +83,6 @@ for(let ul_drop_close of ul_drops_close) {
 let lis_close = document.querySelectorAll('li.menu-item');
 for(let li_close of lis_close) {
     li_close.addEventListener('mouseleave', function(e) {
-        // console.log('ok remove');
         this.classList.remove('color_nav_hover');
     });
 }
@@ -80,10 +100,11 @@ for(let li_drop_close of lis_drop_close) {
 // Menu anchor
 // jquery
 (function($) {
+    // $( window ).on( "load", function(){
     $(document).ready(function () {
         // permet d'ajuster l'ancre par rapport à la hauteur du header (-70px)
         // topMenuHeight = -70;
-        if($('a.a_nav[href^="#"]').length) {
+        if($('a.a_nav[href*="#"]').length) {
             $('a.a_nav[href*="#"]').click(function() {
                 substractHeight = 70;
                 // Menu burger 
@@ -108,21 +129,27 @@ for(let li_drop_close of lis_drop_close) {
         // js
         // Highlight nav tab when scroll on home page
         function onePageNav(switchName) {
-            console.log(switchName);
             const navSwitch = $(switchName);
+            console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
             const deductHeight = 72;
             let navArr = [];
-            navSwitch.each(function(i) {
-                let navSwitchHref = $(this).attr('href');
-                let tgtOff = $(navSwitchHref).offset().top - deductHeight;
-                navArr.push([]);
-                navArr[i].switch = $(this);
-                navArr[i].tgtOff = tgtOff;
-            });
+            // Triggers function only if user is on home page
+            // Else, js errors
+            if($('body.home').length) {
+                navSwitch.each(function(i) {
+                    let navSwitchHref = $(this).attr('href');
+                    let tgtOff = $(navSwitchHref).offset().top - deductHeight;
+                    navArr.push([]);
+                    navArr[i].switch = $(this);
+                    navArr[i].tgtOff = tgtOff;
+                    console.log(tgtOff);
+                });
+            }
             $(window).scroll(function() {
                 for( let i = 0; i < navArr.length; i++ ) {
                     let scroll = $(window).scrollTop();
+                    console.log(scroll);
                     let tgtKey = navArr[i];
                     let tgtSwitch = tgtKey.switch;
                     let tgtOff = tgtKey.tgtOff;
@@ -136,7 +163,23 @@ for(let li_drop_close of lis_drop_close) {
             });
         }
         $(window).on('load resize', function() {
-            onePageNav('a.a_nav.js-curnav-switch');
+            // Triggers the dynamic nav menu item color 
+            onePageNav('.js-curnav-switch');
+            // Adds the "is-current" class to the right menu item when the page loads.
+            // Otherwise, no element is colored, as this is triggered by scrolling.
+            // Gets the url
+            url = $(location).attr('href');
+            // Explodes the url
+            splitUrl = url.split('/');
+            // Loop into each part of url
+            for( let i = 0; i < splitUrl.length; i++ ) {
+                // If finds the part which starts with the anchor
+                if(splitUrl[i].match('^#')) {
+                    // Adds the "is-current" class to the right menu item
+                    // The class is then removed as soon as scrolling is activated.
+                    $('a[href^="' + splitUrl[i] + '"]').addClass('is-current');
+                }
+            }
         });
     });
 }) (jQuery);

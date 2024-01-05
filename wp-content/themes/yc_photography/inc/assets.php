@@ -1,6 +1,6 @@
 <?php
 /**
- * Enqueue styles and scripts
+ * Enqueues styles and scripts
  */
 
 // USER SECTION
