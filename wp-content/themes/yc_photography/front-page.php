@@ -5,9 +5,10 @@
 
 get_header();
 ?>
-<div id="home" class="site_max_width">
-    <img src="<?php echo get_template_directory_uri() ?>/assets/img/Photo_Yann_par_Mickaël_Liblin_edited.jpg" alt="">
-</div>
+<!-- <div id="home" class="site_max_width">
+    <img src="<?php //echo get_template_directory_uri() ?>/assets/img/Photo_Yann_par_Mickaël_Liblin_edited.jpg" alt="">
+</div> -->
+<?php get_template_part('template-parts/home/image_banner'); ?>
 <?php
 // include('template-parts/home/presentation.php');
 get_template_part('template-parts/home/presentation');

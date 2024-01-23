@@ -8,6 +8,7 @@
  */
 require_once('inc/assets.php');
 require_once('inc/menus.php');
+require_once('inc/metaboxes/metabox.php');
 
 /* Disable WordPress Admin Bar for all users */
 // add_filter( 'show_admin_bar', '__return_false' );
@@ -51,6 +52,43 @@ function move_admin_bar() {
     }
 }
 add_action( 'wp_head', 'move_admin_bar' );
+
+
+/**
+ * Prints scripts or data before the default footer scripts.
+ * 
+ * This hook is for admin only and can’t be used to add anything on the front end.
+ * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
+ */
+function yc_photography_admin_footer_function() {
+    // Retrieves all pages
+    $query = get_posts([
+        'post_type' => 'page'
+    ]);
+    $everyPosts = $query;
+    // global $pagenow;
+    // Retrieves current page id
+    $pageId = $_GET['post'];
+    foreach($everyPosts as $onePost):
+        // Only for home page
+        if($onePost->post_name === 'home'):
+            // Get Home page ID
+            $pageHomeId = $onePost->ID;
+            // Undisplays the base WYSIWYG 
+            // if($pagenow == 'post.php' && $_GET['post'] == $pageId) {
+            if($pageHomeId == $pageId):
+                echo 
+                '<style>
+                    #postdivrich {
+                        display: none;
+                    }
+                </style>';
+            // }
+            endif;
+        endif;
+    endforeach;
+}
+add_action('admin_footer', 'yc_photography_admin_footer_function');
 
 // Must be removed when put into production.
 // Debugging function for development.

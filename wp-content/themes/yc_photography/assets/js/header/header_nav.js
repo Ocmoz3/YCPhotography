@@ -100,7 +100,6 @@ for(let li_drop_close of lis_drop_close) {
 // Menu anchor
 // jquery
 (function($) {
-    // $( window ).on( "load", function(){
     $(document).ready(function () {
         // permet d'ajuster l'ancre par rapport à la hauteur du header (-70px)
         // topMenuHeight = -70;
@@ -122,7 +121,7 @@ for(let li_drop_close of lis_drop_close) {
                 $('#ul_burger').removeClass('open');
                 $('#burger').removeClass('open');
                 // Adjusts anchor height.
-                $('html,body').animate({ scrollTop: $($(this).attr('href')).offset().top - substractHeight }, 'slow','swing');
+                $('html,body').animate({ scrollTop: $($(this).attr('href')).offset().top - substractHeight }, 'slow', 'swing');
                 return false;
             });
         }
