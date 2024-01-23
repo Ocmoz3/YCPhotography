@@ -8,7 +8,7 @@
  */
 require_once('inc/assets.php');
 require_once('inc/menus.php');
-require_once('inc/metaboxes/metabox.php');
+require_once('inc/metaboxes/frontpage_metabox.php');
 
 /* Disable WordPress Admin Bar for all users */
 // add_filter( 'show_admin_bar', '__return_false' );

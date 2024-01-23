@@ -39,7 +39,6 @@ class YC_FrontPage_Metabox {
         // Il croit d'office que le champ yc_surface existe
         // Donc, doit absolument être filtré
         // Fait dans la fonction 
-        // add_action('save_post', array(&$this, 'save'));
         add_action('save_post', array(&$this, 'save'));
 
         $this->id = $id;
@@ -126,7 +125,7 @@ class YC_FrontPage_Metabox {
     // param 1 l'id du post courant
     public function save($post_id) 
     {
-
+        
         // die; // fonctionne
         // var_dump($_POST); // fonctionne pas
         // debug($_POST); // fonctionne pas
@@ -141,7 +140,6 @@ class YC_FrontPage_Metabox {
         // Exemple : quand on modifie un article, WP sauvegarde les choses en ajax
         // Pour sauvegarder QUE quand on met le post à jour, on doit mettre des conditions ici
         // Permet d'anticiper s'il y a des changements dans WP, permet d'éviter de faire complètement planter le site si jamais
-        // if(!isset($_POST[$meta]) || (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (defined('DOING_AJAX') && DOING_AJAX)) {
         if((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (defined('DOING_AJAX') && DOING_AJAX)) {
             // Dans ce cas là, ne fais rien
             return false;
@@ -156,7 +154,6 @@ class YC_FrontPage_Metabox {
         // param 1 le nonce
         // parma 2 action
         // Si le champ non n'est pas valable, return false
-        // if(!wp_verify_nonce($_POST('immobilier_none', 'immobilier'))) {
         if(!wp_verify_nonce($_POST[$this->id . '_nonce'], $this->id)) {
             return false;
         }
@@ -164,14 +161,11 @@ class YC_FrontPage_Metabox {
         // Avec le mécanise de class, je dois récupérer une seule valeur parmi plusieurs donc boucle
         foreach($this->fields as $field) {
             $meta = $field['id'];
-            // debug($meta);
             // On doit vérifier si la meta existe
             if(isset($_POST[$meta])) {
-                // die;
                 $value = $_POST[$meta];
                 // Si la valeur existe
                 if(get_post_meta($post_id, $meta)) {
-                // if(get_post_meta($post_id, $meta, true)) {
                     // Mets la à jour
                     // die;
                     update_post_meta($post_id, $meta, $value);
@@ -195,33 +189,23 @@ YC_FrontPage_Metabox::addJS();
 // Pour initialiser mon système, ma metabox, il me suffit de faire :
 // $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
 
-// Ajoute la metabox seulement sur la page souhaitée (côté admin)
-$query = get_posts([
-    'post_type' => 'page'
-]);
-$everyPosts = $query;
-// Retrieves current page id
-$pageId = '';
-if(isset($_GET['post'])):
-    $pageId = $_GET['post'];
-// else:
-//     $pageId = '';
-endif;
-// debug($pageId);
-$pageHomeId = 'no';
-foreach($everyPosts as $onePost):
-    if($onePost->post_name == 'home'):
-        // Get the page ID
-        $pageHomeId = $onePost->ID;
+$boxHome = new YC_FrontPage_Metabox('frontpage_metabox', 'Image page d\'accueil', 'page');
+// Pour créer des champs supplémentaires
+$boxHome->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
+
+
+// Cancels metabox display on pages other than the home page
+add_action('admin_head', function() {
+    if(isset($_GET['post']) && $_GET['post'] != 6):
+    ?>
+        <style>
+            #frontpage_metabox {
+                display: none;
+            }
+        </style>
+    <?php
     endif;
-    if($pageHomeId !== 'no' && $pageHomeId == $pageId):
-        $boxHome = new YC_FrontPage_Metabox('frontpage_metabox', 'Image page d\'accueil', 'page');
-        // Pour créer des champs supplémentaires
-        $boxHome->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
-    endif;
-endforeach;
-// }
-// $box
+});
 
 
 //     ->add('yc_surface', 'Surface', 'text')
