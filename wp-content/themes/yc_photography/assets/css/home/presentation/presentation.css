@@ -6,7 +6,8 @@
     padding: 1rem 0;
     max-width: 845px;
 }
-.p_presentation {
+/* .p_presentation { */
+.div_presentation p {
     text-align: justify;
     hyphens: auto;
     font: var(--body-font);
@@ -17,7 +18,8 @@
     }
 }
 @media screen and (max-width: 480px) {
-    .p_presentation {
+    /* .p_presentation { */
+    .div_presentation p {
         font-size: 1rem;
     }
 }

@@ -7,14 +7,14 @@ class YC_FrontPage_Metabox {
     private $title;
     private $post_type;
 
-    // propriété privée pour povuoir enregistrer les champs supplémentaires créés
+    // propriété privée pour pouvoir enregistrer les champs supplémentaires créés
     private $fields = [];
 
     // On crée un fonction statique pour enqueue le js nécessaire au uploader
     public static function addJS() {
         add_action('admin_enqueue_scripts', function() {
             // wp_register_script('uploaderjs', get_template_directory_uri() . '/assets/js/uploader.js');
-            wp_register_script('uploaderjs', get_template_directory_uri() . '/assets/js/metaboxes/uploader.js', ['jquery'], '', true);
+            wp_register_script('uploaderjs', get_template_directory_uri() . '/assets/admin/js/metaboxes/uploader.js', ['jquery'], '', true);
             wp_enqueue_script('uploaderjs');
         });
     }
@@ -60,9 +60,9 @@ class YC_FrontPage_Metabox {
     }
 
     
-    public function render() 
+    public function render($post) 
     {
-    
+        // debug($post);
         // J'utilise global $post pour accéder à l'ID du post surlequel je me trouve
         // J'en ai besoin pour accéder à la valeur de la metabox de cette page sépcifiquement
         global $post;
@@ -72,15 +72,17 @@ class YC_FrontPage_Metabox {
             // Afin de pouvoir utiliser les données de chaque $field ($id, $title, etc.), j'extraie les données avec extract. Attention, à utliser avec beaucoup de précautions. Ici, on a le contrôle sur les données passées et récupérées donc ne craint rien. Ne va pas générer de variables qui pourraient gêner le reste de mon script.
             extract($field);
             // Il nous manque tjs la value
+            // echo '<div style="border: 1px solid green;">';
             $value = get_post_meta($post->ID, $id, true);
+            // echo '</div>';
             // Si la valeur est vide, je prends la valeur par défaut
             if($value == '') {
                 $value = $default;
             }
+            // Affiche le champ appelé
             // __DIR__ = dossier courant
-            require __DIR__ . '/' . $field['type'] . '.php';
+            require __DIR__ . '/field_types/' . $field['type'] . '.php';
         }
-
         // ???????
         // $value = get_post_meta( $post->ID, 'yc_surface', true);
         // debug($value);
@@ -92,7 +94,6 @@ class YC_FrontPage_Metabox {
         
         // Quand j'ai récupéré le bon template, je gère le nonce
         // <input type="hidden" name="immobilier_nonce" value=" echo wp_create_nonce('immobilier') ">
-        // echo '<input type="hidden" name="' . $this->id . '" value="' . wp_create_nonce($this->id) . '">';
         echo '<input type="hidden" name="' . $this->id . '_nonce" value="' . wp_create_nonce($this->id) . '">';
         
         // Quand on sort l'inspecteur, on peut voir qu'une clé a été gnérérée dans l'attribut value
@@ -105,8 +106,12 @@ class YC_FrontPage_Metabox {
     // param 4 valeur par défaut du champ, vide par défaut
     // rq: cette fonction ne fait rien si ce n'est qu'elle doit sauvegarder dans notre class metabox le champ
     // Si on veut, on peut adapter à n'importe quel type de champ. Par exemple, si on voulait créer un select, on pourrait ajouter un dernier paramètres $options qui serait un tableau et qui permettrait de lister des options
-    public function add($id, $label, $type = 'text', $default = '') 
+    public function add($id, $label, $type = 'text', $default = '', $options = []) 
     {
+        // $options = wp_list_pages();
+        // $options = [
+        //     'value' => 'Text'
+        // ];
         // donc quand je veux rajouter un nouveau champ, je reprends le tableau vide créé en rpopriété privée au départ et je push mon champ dedans
         // sous forme de tableau associatif dans lequel je peux lui renseigner tous les paramètres nécessaires
         $this->fields[] = [
@@ -114,18 +119,17 @@ class YC_FrontPage_Metabox {
             'name' => $label,
             // 'type' => $type,
             'type' => $type,
-            'default' => $default
+            'default' => $default,
+            'options' => $options 
         ];
         // Ensuite, je mets un return de $this, comme àa si je le souhaite je peux enchaîner les choses, c'est-à-dire que je peux générer plusieurs champs d'affilée
         // Cette manière de faire permet de générer autant de types de champs que souhaité
-        // Exemple : $box->add('surface', 'Surface:', 'text')->add('short', 'Description courte', 'textarea');
         return $this;
     }
 
     // param 1 l'id du post courant
     public function save($post_id) 
     {
-        
         // die; // fonctionne
         // var_dump($_POST); // fonctionne pas
         // debug($_POST); // fonctionne pas
@@ -140,6 +144,9 @@ class YC_FrontPage_Metabox {
         // Exemple : quand on modifie un article, WP sauvegarde les choses en ajax
         // Pour sauvegarder QUE quand on met le post à jour, on doit mettre des conditions ici
         // Permet d'anticiper s'il y a des changements dans WP, permet d'éviter de faire complètement planter le site si jamais
+
+
+
         if((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || (defined('DOING_AJAX') && DOING_AJAX)) {
             // Dans ce cas là, ne fais rien
             return false;
@@ -157,13 +164,14 @@ class YC_FrontPage_Metabox {
         if(!wp_verify_nonce($_POST[$this->id . '_nonce'], $this->id)) {
             return false;
         }
-
         // Avec le mécanise de class, je dois récupérer une seule valeur parmi plusieurs donc boucle
         foreach($this->fields as $field) {
+            
             $meta = $field['id'];
             // On doit vérifier si la meta existe
             if(isset($_POST[$meta])) {
                 $value = $_POST[$meta];
+                	
                 // Si la valeur existe
                 if(get_post_meta($post_id, $meta)) {
                     // Mets la à jour
@@ -189,9 +197,26 @@ YC_FrontPage_Metabox::addJS();
 // Pour initialiser mon système, ma metabox, il me suffit de faire :
 // $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
 
-$boxHome = new YC_FrontPage_Metabox('frontpage_metabox', 'Image page d\'accueil', 'page');
+// Ajoute la metabox Image page d'accueil
+$boxHomeImage = new YC_FrontPage_Metabox('frontpage_metabox_image', 'Image page d\'accueil', 'page');
+// Ajoute la metabox Présentation
+$boxHomePresentation = new YC_FrontPage_Metabox('frontpage_metabox_presentation', 'Présentation', 'page');
+// Ajoute la metabox Portfolio
+$boxHomePortfolio = new YC_FrontPage_Metabox('frontpage_metabox_portfolio0', 'Menu portfolio', 'page');
+$boxHomeTest2 = new YC_FrontPage_Metabox('frontpage_metabox_portfolio', 'Menu portfolioTest', 'page');
+$boxHomeTest2->add('custom_repeater_item', 'test', 'portfolio_type');
+
 // Pour créer des champs supplémentaires
-$boxHome->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
+$boxHomeImage->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
+
+$boxHomePresentation->add('yc_presentation_title', 'Titre de la présentation', 'text')
+->add('yc_presentation_text', 'Texte de la présentation', 'wysiwyg');
+
+// PORTFOLIO
+$boxHomePortfolio->add('yc_portfolio_title', 'Titre portfolio', 'text');
+$boxHomePortfolio->add('yc_portfolio_image', 'Image de l\'item', 'uploader')
+->add('yc_portfolio_select', 'Select', 'select');
+// echo '</div>';
 
 
 // Cancels metabox display on pages other than the home page

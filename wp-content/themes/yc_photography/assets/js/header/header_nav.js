@@ -148,7 +148,7 @@ for(let li_drop_close of lis_drop_close) {
             $(window).scroll(function() {
                 for( let i = 0; i < navArr.length; i++ ) {
                     let scroll = $(window).scrollTop();
-                    console.log(scroll);
+                    // console.log(scroll);
                     let tgtKey = navArr[i];
                     let tgtSwitch = tgtKey.switch;
                     let tgtOff = tgtKey.tgtOff;

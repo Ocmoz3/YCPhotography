@@ -5,5 +5,5 @@
 ?>
 
 <div id="home" class="site_max_width">
-    <img src="<?php echo  get_post_meta(get_the_ID(), 'yc_frontpage_image', true); ?>" alt="">
+    <img src="<?php echo get_post_meta(get_the_ID(), 'yc_frontpage_image', true); ?>" alt="">
 </div>

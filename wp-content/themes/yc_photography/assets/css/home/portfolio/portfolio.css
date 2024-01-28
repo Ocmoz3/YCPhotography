@@ -2,20 +2,20 @@
  * Style of portfolio template part displayed on front-page
  */
 
-.div_portfolio_nav {
+.ul_portfolio_nav {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     gap: 1rem;
     width: 100%;
 }
-.portfolio_nav {
+.li_portfolio_nav {
     height: 485px;
     width: 48%;
     position: relative;
     z-index: 0;
 }
-.portfolio_nav .span_portfolio {
+.li_portfolio_nav .span_portfolio {
     position: absolute;
     width: 100%;
     left: 0;
@@ -31,46 +31,46 @@
     text-align: left;
     letter-spacing: -.2rem;
 }
-.portfolio_nav .a_portfolio {
+.li_portfolio_nav .a_portfolio {
     height: 485px;
 }
-.portfolio_nav .img_portfolio {
+.li_portfolio_nav .img_portfolio {
     height: 100%;
     object-fit: cover;
 }
-.portfolio_nav .a_portfolio:hover .img_portfolio,
-.portfolio_nav .a_portfolio:hover .span_portfolio {
+.li_portfolio_nav .a_portfolio:hover .img_portfolio,
+.li_portfolio_nav .a_portfolio:hover .span_portfolio {
     display: none;
 }
-.portfolio_nav .p_portfolio_hover {
+.li_portfolio_nav .p_portfolio_hover {
     display: none;
 }
-.portfolio_nav .a_portfolio:hover .p_portfolio_hover {
+.li_portfolio_nav .a_portfolio:hover .p_portfolio_hover {
     display: block;
     font-size: 1.5rem;
 }
-.portfolio_nav .a_portfolio:hover {
+.li_portfolio_nav .a_portfolio:hover {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 @media screen and (max-width: 1050px) {
-    .portfolio_nav .span_portfolio {
+    .li_portfolio_nav .span_portfolio {
         font-size: 4.8rem;
     }
 }
 @media screen and (max-width: 900px) {
-    .portfolio_nav {
+    .li_portfolio_nav {
         padding: 1rem 0;
     }
 }
 @media screen and (max-width: 480px) {
-    .portfolio_nav .span_portfolio {
+    .li_portfolio_nav .span_portfolio {
         font-size: 4.2rem;
     }
 }
 @media screen and (max-width: 350px) {
-    .portfolio_nav .span_portfolio {
+    .li_portfolio_nav .span_portfolio {
         font-size: 3.2rem;
     }
 }
