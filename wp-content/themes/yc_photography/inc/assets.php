@@ -26,9 +26,9 @@ function yc_photography_register_styles() {
 
     // Charge mécanique Ajax uniquement
     // if(!is_admin()) {
-        wp_enqueue_script('myTheme', get_template_directory_uri() . '/assets/admin/js/metaboxes/ajax-handle.js', ['jquery'], null, true);
-        // including ajax script in the plugin Myajax.ajaxurl
-        wp_localize_script( 'myTheme', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php')));
+        // wp_enqueue_script('myTheme', get_template_directory_uri() . '/assets/admin/js/metaboxes/ajax-handle.js', ['jquery'], null, true);
+        // // including ajax script in the plugin Myajax.ajaxurl
+        // wp_localize_script( 'myTheme', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php')));
     // }
 }
 add_action('wp_enqueue_scripts', 'yc_photography_register_styles');
@@ -38,14 +38,22 @@ add_action('wp_enqueue_scripts', 'yc_photography_register_styles');
 /**
  * Registers an editor stylesheet for the WYSIWYG theme.
  */
-// function adaptdog_theme_add_editor_styles() {
-    // add_editor_style( 'custom-editor-style.css' );
+function yc_photography_theme_add_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
     // Adds Google font
-    // add_editor_style( 'https://fonts.googleapis.com/css?family=Cabin' );
-// }
-// add_action( 'admin_init', 'adaptdog_theme_add_editor_styles' );
-
-function yc_photography_register_admin_assets() {
-    wp_enqueue_style('admin_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/uploader.css');
+    add_editor_style( 'https://fonts.googleapis.com/css?family=Raleway' );
 }
+add_action( 'admin_init', 'yc_photography_theme_add_editor_styles' );
+
+/**
+ * Enqueues admin section stylesheets.
+ */
+function yc_photography_register_admin_assets() {
+    // METABOXES
+    wp_enqueue_style('admin_uploader_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/uploader.css');
+    wp_enqueue_style('admin_text_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/text.css');
+    wp_enqueue_style('admin_custom_repeater_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/custom_repeater.css');
+    // GOOGLE FONTS
+    wp_enqueue_style('add_google_fonts','https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,100&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null);
+}   
 add_action('admin_enqueue_scripts', 'yc_photography_register_admin_assets');

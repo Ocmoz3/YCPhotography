@@ -8,6 +8,7 @@
  */
 require_once('inc/assets.php');
 require_once('inc/menus.php');
+require_once('inc/supports.php');
 require_once('inc/metaboxes/frontpage_metabox.php');
 // require_once('inc/metaboxes/repeater_metabox.php');
 
@@ -61,36 +62,71 @@ add_action( 'wp_head', 'move_admin_bar' );
  * This hook is for admin only and can’t be used to add anything on the front end.
  * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
  */
-function yc_photography_admin_footer_function() {
+function yc_photography_admin_head_style() {
     // Retrieves all pages
     $query = get_posts([
         'post_type' => 'page'
     ]);
+    $pageId = '';
     $everyPosts = $query;
     // global $pagenow;
     // Retrieves current page id
-    $pageId = $_GET['post'];
-    foreach($everyPosts as $onePost):
-        // Only for home page
-        if($onePost->post_name === 'home'):
-            // Get Home page ID
-            $pageHomeId = $onePost->ID;
-            // Undisplays the base WYSIWYG 
-            // if($pagenow == 'post.php' && $_GET['post'] == $pageId) {
-            if($pageHomeId == $pageId):
-                echo 
-                '<style>
-                    #postdivrich {
-                        display: none;
-                    }
-                </style>';
-            // }
+    if(isset($_GET['post'])):
+        $pageId = $_GET['post'];
+        foreach($everyPosts as $onePost):
+            // Only for home page
+            if($onePost->post_name === 'home'):
+                // Get Home page ID
+                $pageHomeId = $onePost->ID;
+                // Undisplays the base WYSIWYG 
+                // if($pagenow == 'post.php' && $_GET['post'] == $pageId) {
+                if($pageHomeId == $pageId):
+                    echo 
+                    '<style>
+                        #postdivrich {
+                            display: none;
+                        }
+                    </style>';
+                // }
+                endif;
             endif;
-        endif;
-    endforeach;
+        endforeach;
+    endif;
+    if(isset($_GET['post']) && $_GET['post'] != 6):
+        ?>
+        <!-- Cancels metabox display on pages other than the home page -->
+        <style>
+            #frontpage_metabox_image,
+            #frontpage_metabox_presentation,
+            #frontpage_metabox_portfolio {
+                display: none;
+            }
+        </style>
+    <?php
+    endif;
 }
-add_action('admin_footer', 'yc_photography_admin_footer_function');
+add_action('admin_head', 'yc_photography_admin_head_style');
 
+function yc_photography_admin_footer_script() {
+    ?>
+    <script>
+    function myFunction(e) {
+        // console.log('okk');
+        // document.getElementById("myText").value = e.target.value
+        // Je sélectionne le select qui a changé
+        thisVal = jQuery(e.target);
+        // Je sélectionne l'élément d'après (<p>)
+        thisValNext = thisVal.next();
+        // console.log(thisValNext);
+        // Pour pouvoir sélectionner l'élément suivant (<input>) pour lui attribuer la valeur du select
+        thisValNextNext = thisValNext.next().val(thisVal.val());
+        // console.log(thisValNextNext);
+        // console.log(thisVal.val());
+    }
+    </script>
+<?php
+}
+add_action('admin_footer', 'yc_photography_admin_footer_script');
 // Must be removed when put into production.
 // Debugging function for development.
 function debug($value) {

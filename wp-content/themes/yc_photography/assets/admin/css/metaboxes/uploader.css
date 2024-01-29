@@ -26,6 +26,7 @@
 a.thickbox {
     margin-bottom: 1rem;
 }
+a.thickbox,
 a.thickbox img {
     width: -webkit-fill-available;
 }

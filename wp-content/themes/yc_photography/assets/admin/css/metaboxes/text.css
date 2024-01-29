@@ -1,0 +1,11 @@
+/**
+ * Style of text field in front page metabox
+  */
+
+/* METABOXES TITLE */
+.metabox_title {
+    font-family: 'Imbue', serif;
+    font-size: 2.5rem;
+    letter-spacing: 2.5px;
+    line-height: 1.5 !important;
+}

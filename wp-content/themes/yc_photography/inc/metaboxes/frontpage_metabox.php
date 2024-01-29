@@ -85,8 +85,6 @@ class YC_FrontPage_Metabox {
         }
         // ???????
         // $value = get_post_meta( $post->ID, 'yc_surface', true);
-        // debug($value);
-        // $value = get_post_meta( $post->ID, 'yc_photo', true);
        
         
         // En plus des conditions déclarées dans la render, autre fonctionnalité de sécurité: permet de vérifier que le formulaire a boen été soumis depuis cette page là, permet d'éviter les failles 
@@ -194,46 +192,46 @@ class YC_FrontPage_Metabox {
 
 // Dès le début, j'appelle le JS pour l'uploader
 YC_FrontPage_Metabox::addJS();
-// Pour initialiser mon système, ma metabox, il me suffit de faire :
-// $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
+    // Pour initialiser mon système, ma metabox, il me suffit de faire :
+    // $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
+    if(isset($_GET['post']) && $_GET['post'] == 6):
+    // Ajoute la metabox Image page d'accueil
+    $boxHomeImage = new YC_FrontPage_Metabox('frontpage_metabox_image', 'Image page d\'accueil', 'page');
+    $boxHomeImage->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
+    // Ajoute la metabox Présentation
+    $boxHomePresentation = new YC_FrontPage_Metabox('frontpage_metabox_presentation', 'Présentation', 'page');
+    $boxHomePresentation->add('yc_presentation_title', 'Titre de la présentation', 'text')
+    ->add('yc_presentation_text', 'Texte de la présentation', 'wysiwyg');
+    // Ajoute la metabox Portfolio
+    $boxHomePortfolio = new YC_FrontPage_Metabox('frontpage_metabox_portfolio', 'Menu portfolio', 'page');
+    $boxHomePortfolio->add('yc_portfolio_title', 'Titre partie Portfolio', 'text')
+    ->add('custom_repeater_item', 'Menu portfolio', 'portfolio_type');
+    // Ajoute la metabox Expositions
+    $boxHomeExhibitions = new YC_FrontPage_Metabox('frontpage_metabox_exhibitions', 'Expositions', 'page');
+    $boxHomeExhibitions->add('yc_exhibitions_title', 'Titre partie Expositions', 'text')
+    ->add('yc_exhibitions_list', 'Liste des expositions', 'wysiwyg');
+    // Ajoute la metabox Contact
+    $boxHomeExhibitions = new YC_FrontPage_Metabox('frontpage_metabox_contact', 'Formulaire de contact', 'page');
+    $boxHomeExhibitions->add('yc_contact_title', 'Titre partie', 'text');
+    $boxHomeExhibitions->add('yc_contact_form', 'Shortcode', 'text');
+endif;
 
-// Ajoute la metabox Image page d'accueil
-$boxHomeImage = new YC_FrontPage_Metabox('frontpage_metabox_image', 'Image page d\'accueil', 'page');
-// Ajoute la metabox Présentation
-$boxHomePresentation = new YC_FrontPage_Metabox('frontpage_metabox_presentation', 'Présentation', 'page');
-// Ajoute la metabox Portfolio
-$boxHomePortfolio = new YC_FrontPage_Metabox('frontpage_metabox_portfolio0', 'Menu portfolio', 'page');
-$boxHomeTest2 = new YC_FrontPage_Metabox('frontpage_metabox_portfolio', 'Menu portfolioTest', 'page');
-$boxHomeTest2->add('custom_repeater_item', 'test', 'portfolio_type');
-
-// Pour créer des champs supplémentaires
-$boxHomeImage->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
-
-$boxHomePresentation->add('yc_presentation_title', 'Titre de la présentation', 'text')
-->add('yc_presentation_text', 'Texte de la présentation', 'wysiwyg');
-
-// PORTFOLIO
-$boxHomePortfolio->add('yc_portfolio_title', 'Titre portfolio', 'text');
-$boxHomePortfolio->add('yc_portfolio_image', 'Image de l\'item', 'uploader')
-->add('yc_portfolio_select', 'Select', 'select');
-// echo '</div>';
-
-
-// Cancels metabox display on pages other than the home page
-add_action('admin_head', function() {
-    if(isset($_GET['post']) && $_GET['post'] != 6):
-    ?>
-        <style>
-            #frontpage_metabox {
-                display: none;
-            }
-        </style>
-    <?php
-    endif;
-});
-
-
-//     ->add('yc_surface', 'Surface', 'text')
-//     ->add('yc_short', 'Description courte', 'textarea')
-//     ->add('yc_long', 'Description longue', 'wysiwyg', 'Salut')
-//     ->add('yc_image', 'Image', 'uploader', 'image');
+add_action( 'admin_footer', 'cxc_single_repeatable_meta_box_footer' );
+function cxc_single_repeatable_meta_box_footer(){
+	?>
+	<script type="text/javascript">	
+		jQuery(document).ready(function($){
+			jQuery(document).on('click', '.cxc-remove-item', function() {
+				jQuery(this).parents('tr.cxc-sub-row').remove();
+			}); 				
+			jQuery(document).on('click', '.cxc-add-item', function() {
+				var p_this = jQuery(this);    
+				var row_no = parseFloat( jQuery('.cxc-item-table tr.cxc-sub-row').length );
+				console.log(row_no);
+				var row_html = jQuery('.cxc-item-table .cxc-hide-tr').html().replace(/rand_no/g, row_no).replace(/hide_custom_repeater_item/g, 'custom_repeater_item');
+				jQuery('.cxc-item-table tbody').append('<tr class="cxc-sub-row">' + row_html + '</tr>');    
+			});
+		});
+	</script>
+	<?php
+}

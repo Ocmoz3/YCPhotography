@@ -7,7 +7,7 @@
 }
 #exhibitions .exhibitions_container div {
     padding: .5rem;
-    break-inside: avoid;
+    /* break-inside: avoid; */
 }
 #exhibitions .exhibitions_container div p:first-child {
     color: #8B0000;

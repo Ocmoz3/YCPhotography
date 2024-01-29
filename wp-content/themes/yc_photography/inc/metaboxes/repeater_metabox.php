@@ -6,8 +6,6 @@ function cxc_single_repeter_meta_boxess() {
 // $pages = get_pages();
 function cxc_single_repeatable_meta_box_callbackk( $post ) {
 	$custom_repeater_itemm = get_post_meta( $post->ID, 'custom_repeater_itemm', true );
-	// $custom_repeater_itemm = delete_post_meta($post->ID, 'custom_repeater_itemm');
-	// $custom_repeater_itemm = '';
 	wp_nonce_field( 'repeterBox', 'formType' );
 	$pages = get_pages();
 	?>
@@ -20,7 +18,6 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 					$item1  = isset( $item_value['item1'] ) ? $item_value['item1'] : '';
 					$item2  = isset( $item_value['item2'] ) ? $item_value['item2'] : '';
 					$item3  = isset( $item_value['item3'] ) ? $item_value['item3'] : '';
-					// $item3  = '';
 					?>
 					<tr class="cxc-sub-row">				
 						<td>
@@ -31,7 +28,6 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 
 							<select name="<?php echo 'custom_repeater_itemm['.$item_key.'][item3]'; ?>" id="<?php echo 'custom_repeater_itemm['.$item_key.'][item3]'; ?>" onchange="myFunctionn(event)" style="border: 10px solid green;">
 								<?php 
-								// debug($custom_repeater_itemm);
 								?>
 								<option <?php if(empty($custom_repeater_itemm)): echo 'selected'; endif; ?>>Choisissez la page</option>
 								<?php 
@@ -44,12 +40,8 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 								?>
 							</select>
                     
-							<!-- <div style="border: 2px solid green;"> -->
 								<p>Page actuellement sélectionnée</p>
-								<?php //echo $id.'['.$item_key.'][item2]'; ?>
 								<input type="text" name="<?php echo 'custom_repeater_itemm['.$item_key.'][item3]'; ?>" id="test" value="<?php echo $item3; ?>" style="width: 85%;" data-changejs="changeJs" class="test">
-								<!--  -->
-							<!-- </div>	 -->
 						</td>
 						<td>
 							<button class="cxc-remove-item button" type="button"><?php esc_html_e( 'Remove', 'cxc-codexcoach' ); ?></button>
@@ -72,22 +64,16 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 							<option selected>Choisissez la page</option>
 							<?php 
 							foreach($pages as $page): 
-								// $url = $page->post_name . '.php';
 								?>
 								<option value="<?php echo $page->post_name ?>"><?php echo $page->post_title ?></option>
 								
-								<!-- <option value="<?php //echo $page->post_name ?>"><?php //echo $page->post_title ?></option> -->
 								<?php 
 							endforeach; 
 							?>
 						</select>
                     
-						<!-- <div style="border: 2px solid green;"> -->
 							<p>Page actuellement sélectionnée</p>
-							<?php //echo $id.'['.$item_key.'][item2]'; ?>
 							<input type="text" name="<?php echo 'custom_repeater_itemm[0][item3]' ?>" id="test" value="<?php if(isset($item3)): echo $item3; endif;?>" style="width: 85%;" data-changejs="changeJs" class="test">
-							<!--  -->
-						<!-- </div>	 -->
 					</td>
 					<td>
 						<button class="cxc-remove-item button" type="button"><?php esc_html_e( 'Remove', 'cxc-codexcoach' ); ?></button>
@@ -102,29 +88,20 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 				</td>
 				<td>
 					<input type="text" name="hide_custom_repeater_itemm[rand_no][item2]" placeholder="Item 2"/>
-					<?php 
-						// debug($pages);
-						?>
 					<select name="hide_custom_repeater_itemm[rand_no][item3]" onchange="myFunctionn(event)" style="border: 2px solid red;">
 						<option <?php if(empty($custom_repeater_itemm)): echo 'selected'; endif; ?>>Choisissez la page</option>
 						<?php 
 						foreach($pages as $page): 
-							// $url = $page->post_name . '.php';
 							?>
 							<option value="<?php echo $page->post_name ?>" <?php if(!empty($custom_repeater_itemm) && $custom_repeater_itemm == $page->post_name): echo 'selected'; endif; ?>><?php echo $page->post_title ?></option>
 							
-							<!-- <option value="<?php echo $page->post_name ?>"><?php echo $page->post_title ?></option> -->
 							<?php 
 						endforeach; 
 						?>
 					</select>
 			
-					<!-- <div style="border: 2px solid green;"> -->
 						<p>Page actuellement sélectionnée</p>
-						<?php //echo $id.'['.$item_key.'][item2]'; ?>
 						<input type="text" name="<?php echo 'hide_custom_repeater_itemm[rand_no][item3]' ?>" id="test" value="" style="width: 85%;" data-changejs="changeJs" class="test">
-						<!--  -->
-					<!-- </div> -->
 				</td>
 				<td>
 					<button class="cxc-remove-item button" type="button"><?php esc_html_e( 'Remove', 'cxc-codexcoach' ); ?></button>
@@ -141,8 +118,6 @@ function cxc_single_repeatable_meta_box_callbackk( $post ) {
 	</table>	
 	<script>
     function myFunctionn(e) {
-        console.log('okk');
-        // document.getElementById("myText").value = e.target.value
         // Je sélectionne le select qui a changé
         thisVal = jQuery(e.target);
         // Je sélectionne l'élément d'après (<p>)

@@ -5,7 +5,7 @@
 ?>
 
 <section id="contact" style="background-color: black; width: 100%; max-width: unset; position: relative;">
-    <h1 style="color: white;">contact</h1>
+    <h1 style="color: white;"><?php echo get_post_meta(get_the_ID(), 'yc_contact_title', true); ?></h1>
     <form action="">
         <div class="contact_form contact_form_max_width">
             <div id="formTop" class="form_top">

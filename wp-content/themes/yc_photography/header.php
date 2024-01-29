@@ -11,17 +11,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-        <!--  -->
-        <!-- <link rel="stylesheet" href="assets/css/galleries/galleries.css">
-        <link rel="stylesheet" href="assets/css/galleries/heart-share-buttons.css">
-        <link rel="stylesheet" href="assets/css/galleries/minimize-maximize-buttons.css">
-        <link rel="stylesheet" href="assets/css/galleries/next-previous-buttons.css">
-        <link rel="stylesheet" href="assets/css/galleries/close-button.css">
-        <link rel="stylesheet" href="assets/css/footer/footer.css"> -->
-
-
-        <!-- <title>Yann Cielat - Photographie</title> -->
         <?php wp_head() ?>
     </head>
     <!-- BODY -->
