@@ -1,7 +1,17 @@
 /**
  * Style of contact template part displayed on front-page
  */
-
+input:-internal-autofill-selected {
+    /* appearance: menulist-button; */
+    background-image: none !important;
+    /* background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important; */
+    background-color: transparent !important;
+    color: fieldtext !important;
+}
+input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 50px transparent inset;
+}
 form {
     /* width: 60%; */
     display: flex;

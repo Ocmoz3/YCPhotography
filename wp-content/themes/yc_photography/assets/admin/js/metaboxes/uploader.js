@@ -1,12 +1,5 @@
-// (function($) {
-    // Si click sur bouton upload image
-    // Par défaut, WP charge les scripts dans le head donc le HTML n'est pas chargé quand le script se lancxe.
-    // Deux solutions : soit on lui indique ici d'attendre que le HTML soit chargé, soit on lui indique de charger le fichier dnas le footer lors du enqueue
-    // $(document).ready(function() {
-    //     $('.js-uploader').click(function(e) {
+(function($) {
         function getThisBtn(e, elem) {
-            // Empêche le click par défaut, au cas où il y aurait un href particulier
-            // Empêche rechargement de page
             e.preventDefault()
             // Déclare variable qui est l'élément qur lequel on a cliqué
             var $this = jQuery(elem);
@@ -67,4 +60,4 @@
         }
 //         )
 //     })
-// })(jQuery)
+})(jQuery)

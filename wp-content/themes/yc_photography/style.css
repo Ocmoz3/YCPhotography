@@ -77,15 +77,20 @@ h1 {
     max-width: 1600px;
     width: 100%;
 }
+.contact_form_max_width {
+    max-width: 845px;
+    width: 100%;
+}
+/* Avoids "--internal-autofill-selected" style to be applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+}
 /* Class inutile, déjà géré sur le style de <section> */
 /* .wrap_max_width {
     max-width: 980px;
     width: 100%;
 } */
-.contact_form_max_width {
-    max-width: 845px;
-    width: 100%;
-}
 /* RESPONSIVE */
 @media screen and (max-width: 1800px) {
     h1 {
