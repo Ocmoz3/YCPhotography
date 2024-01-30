@@ -1,0 +1,10 @@
+.div_site_credits {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding: 1rem;
+}
+.site_credits {
+    color: grey;
+    font: var(--contact-font);
+}

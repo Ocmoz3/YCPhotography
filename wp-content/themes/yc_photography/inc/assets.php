@@ -15,6 +15,8 @@ function yc_photography_register_styles() {
         // HEADER
         wp_enqueue_style('header_stylesheet', get_template_directory_uri() . '/assets/css/header/header.css');
         wp_enqueue_style('header_nav_stylesheet', get_template_directory_uri() . '/assets/css/header/header_nav.css');
+        // FOOTER
+        wp_enqueue_style('footer_stylesheet', get_template_directory_uri() . '/assets/css/footer/footer.css');
         // HOME
         wp_enqueue_style('home_presentation_stylesheet', get_template_directory_uri() . '/assets/css/home/presentation/presentation.css');
         wp_enqueue_style('home_portfolio_stylesheet', get_template_directory_uri() . '/assets/css/home/portfolio/portfolio.css');
@@ -50,9 +52,11 @@ add_action( 'admin_init', 'yc_photography_theme_add_editor_styles' );
  */
 function yc_photography_register_admin_assets() {
     // METABOXES
-    wp_enqueue_style('admin_uploader_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/uploader.css');
-    wp_enqueue_style('admin_text_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/text.css');
-    wp_enqueue_style('admin_custom_repeater_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/custom_repeater.css');
+    if(isset($_GET['post']) && $_GET['post'] == 6):
+        wp_enqueue_style('admin_uploader_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/uploader.css');
+        wp_enqueue_style('admin_text_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/text.css');
+        wp_enqueue_style('admin_custom_repeater_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/custom_repeater.css');
+    endif;
     // GOOGLE FONTS
     wp_enqueue_style('add_google_fonts','https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,100&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap', array(), null);
 }   
