@@ -127,6 +127,19 @@ function yc_photography_admin_footer_script() {
 <?php
 }
 add_action('admin_footer', 'yc_photography_admin_footer_script');
+
+// CONTACT FORM 7
+// Remove <br/>, <p> and <span> from user form contact
+add_filter('wpcf7_form_elements', function($content) {
+    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+    // $content = str_replace('<br />', '', $content);
+    $content = str_replace('<p>', '', $content);
+    $content = str_replace('</p>', '', $content);
+    // $content = str_replace('<span>', '', $content);
+    // $content = str_replace('</span>', '', $content);
+    return $content;
+});
+
 // Must be removed when put into production.
 // Debugging function for development.
 function debug($value) {

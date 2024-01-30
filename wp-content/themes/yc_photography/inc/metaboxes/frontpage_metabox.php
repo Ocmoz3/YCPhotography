@@ -192,9 +192,9 @@ class YC_FrontPage_Metabox {
 
 // Dès le début, j'appelle le JS pour l'uploader
 YC_FrontPage_Metabox::addJS();
-    // Pour initialiser mon système, ma metabox, il me suffit de faire :
-    // $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
-    if(isset($_GET['post']) && $_GET['post'] == 6):
+// Pour initialiser mon système, ma metabox, il me suffit de faire :
+// $box = new YC_FrontPage_Metabox('immo', 'Informations immobilières', 'page');
+// if(isset($_GET['post']) && $_GET['post'] == 6):
     // Ajoute la metabox Image page d'accueil
     $boxHomeImage = new YC_FrontPage_Metabox('frontpage_metabox_image', 'Image page d\'accueil', 'page');
     $boxHomeImage->add('yc_frontpage_image', 'Choisissez l\'image de la page d\'accueil', 'uploader');
@@ -212,9 +212,9 @@ YC_FrontPage_Metabox::addJS();
     ->add('yc_exhibitions_list', 'Liste des expositions', 'wysiwyg');
     // Ajoute la metabox Contact
     $boxHomeExhibitions = new YC_FrontPage_Metabox('frontpage_metabox_contact', 'Formulaire de contact', 'page');
-    $boxHomeExhibitions->add('yc_contact_title', 'Titre partie', 'text');
-    $boxHomeExhibitions->add('yc_contact_form', 'Shortcode', 'text');
-endif;
+    $boxHomeExhibitions->add('yc_contact_title', 'Titre partie Contact', 'text')
+    ->add('yc_contact_form', 'Shortcode', 'text');
+// endif;
 
 add_action( 'admin_footer', 'cxc_single_repeatable_meta_box_footer' );
 function cxc_single_repeatable_meta_box_footer(){
