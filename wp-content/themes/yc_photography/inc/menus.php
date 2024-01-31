@@ -45,18 +45,18 @@ add_action('nav_menu_submenu_css_class', 'yc_photography_submenu_classes', 10, 3
  * @return string|array
  */
 function yc_photography_menu_item_classes($classes, $menu_item, $args) {
-    if($args->theme_location === 'header') {
+    if($args->theme_location === 'header'):
         // Adds class 'dropdown' to all first-level <li>
-        if($menu_item->menu_item_parent == 0) {
+        if($menu_item->menu_item_parent == 0):
             $classes[] = 'site_nav_li';
-        }
-    foreach ($classes as $class) {
-        // Adds class 'dropdown' to <li> which have sub-menu
-        if($class === 'menu-item-has-children') {
-            $classes[] = 'dropdown';
-        }
-    }
-    }
+        endif;
+        foreach ($classes as $class):
+            // Adds class 'dropdown' to <li> which have sub-menu
+            if($class === 'menu-item-has-children'):
+                $classes[] = 'dropdown';
+            endif;
+        endforeach;
+    endif;
     // Adds class 'foot_hover' to footer menus in order to manage color hover
     if($args->theme_location === 'footer_legals'):
         $classes[] = 'foot_hover';
@@ -87,24 +87,24 @@ function yc_photography_menu_link_class($atts, $menu_item, $args) {
         // Adds class 'a_nav' to all links menu
         $atts['class'] = 'a_nav';
         // Adds class 'js-curnav-switch' to all first-level links menu
-        if($menu_item->menu_item_parent == 0) {
+        if($menu_item->menu_item_parent == 0):
             $atts['class'] .= ' js-curnav-switch';
-        }
+        endif;
         // Adds class 'second_level' to links in submenu
-        if($menu_item->menu_item_parent != 0) {
+        if($menu_item->menu_item_parent != 0):
             $atts['class'] .= ' second_level';
-        }
-        foreach ($classes as $class) {
+        endif;
+        foreach ($classes as $class):
             // Adds class 'is-current' according to the current page
             // 'current-menu-parent' class is defined to submenu items which parent menu item is this of the current page
-            if($class === 'current-menu-parent') {
+            if($class === 'current-menu-parent'):
                 $atts['class'] .= ' is-current';
-            }
+            endif;
             // Adds class 'dropbtn' to link with a submenu
-            if($class === 'menu-item-has-children') {
+            if($class === 'menu-item-has-children'):
                 $atts['class'] .= ' dropbtn';
-            }
-        }
+            endif;
+        endforeach;
     endif;
     return $atts;
 }

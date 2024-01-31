@@ -18,10 +18,12 @@ function yc_photography_register_styles() {
         // FOOTER
         wp_enqueue_style('footer_stylesheet', get_template_directory_uri() . '/assets/css/footer/footer.css');
         // HOME
-        wp_enqueue_style('home_presentation_stylesheet', get_template_directory_uri() . '/assets/css/home/presentation/presentation.css');
-        wp_enqueue_style('home_portfolio_stylesheet', get_template_directory_uri() . '/assets/css/home/portfolio/portfolio.css');
-        wp_enqueue_style('home_exhibitions_stylesheet', get_template_directory_uri() . '/assets/css/home/exhibitions/exhibitions.css');
-        wp_enqueue_style('home_contact_stylesheet', get_template_directory_uri() . '/assets/css/home/contact/contact.css');
+        if(is_front_page()):
+            wp_enqueue_style('home_presentation_stylesheet', get_template_directory_uri() . '/assets/css/home/presentation/presentation.css');
+            wp_enqueue_style('home_portfolio_stylesheet', get_template_directory_uri() . '/assets/css/home/portfolio/portfolio.css');
+            wp_enqueue_style('home_exhibitions_stylesheet', get_template_directory_uri() . '/assets/css/home/exhibitions/exhibitions.css');
+            wp_enqueue_style('home_contact_stylesheet', get_template_directory_uri() . '/assets/css/home/contact/contact.css');
+        endif;
         // SCRIPTS
         wp_enqueue_script('header_nav_script', get_template_directory_uri() . '/assets/js/header/header_nav.js', ['jquery'], false, true);
     endif;

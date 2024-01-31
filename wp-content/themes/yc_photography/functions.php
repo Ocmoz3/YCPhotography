@@ -9,24 +9,23 @@
 require_once('inc/assets.php');
 require_once('inc/menus.php');
 require_once('inc/supports.php');
-require_once('inc/metaboxes/frontpage_metabox.php');
-// require_once('inc/metaboxes/repeater_metabox.php');
+require_once('inc/metaboxes/FrontPageMetabox.php');
 
-/* Disable WordPress Admin Bar for all users */
-// add_filter( 'show_admin_bar', '__return_false' );
-
-/* Important function due to header fixed position */
-/* Move WordPress Admin Bar to the bottom */
+/**
+ * Moves WordPress Admin Bar to the bottom.
+ * 
+ * Important function due to header fixed position.
+ */
 function move_admin_bar() {
-    if (is_admin_bar_showing()) {
+    if (is_admin_bar_showing()):
         echo '<style type="text/css">';
-        if (wp_is_mobile()) {
-        // show_admin_bar(false);
-        echo '#wpadminbar {
-            position: fixed !important;
-        }';
-        // echo 'body{margin-top: -46px; padding-bottom: 0}';
-        } 
+        if (wp_is_mobile()):
+            // show_admin_bar(false);
+            echo '#wpadminbar {
+                position: fixed !important;
+            }';
+            // echo 'body{margin-top: -46px; padding-bottom: 0}';
+        endif;
         //   else {
         echo 'body {
             margin-top: -46px;
@@ -50,12 +49,28 @@ function move_admin_bar() {
         .admin-bar .header-inner.is-sticky {
             top: 0;
         }';
-          echo '</style>';
-    }
+        echo '</style>';
+    endif;
 }
 add_action( 'wp_head', 'move_admin_bar' );
 
 
+// CONTACT FORM 7
+/**
+ * Removes <br/>, <p> and <span> from user form contact.
+ */
+add_filter('wpcf7_form_elements', function($content) {
+    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+    // $content = str_replace('<br />', '', $content);
+    $content = str_replace('<p>', '', $content);
+    $content = str_replace('</p>', '', $content);
+    // $content = str_replace('<span>', '', $content);
+    // $content = str_replace('</span>', '', $content);
+    return $content;
+});
+
+
+// ADMIN SECTION
 /**
  * Prints scripts or data before the default footer scripts.
  * 
@@ -79,7 +94,6 @@ function yc_photography_admin_head_style() {
                 // Get Home page ID
                 $pageHomeId = $onePost->ID;
                 // Undisplays the base WYSIWYG 
-                // if($pagenow == 'post.php' && $_GET['post'] == $pageId) {
                 if($pageHomeId == $pageId):
                     echo 
                     '<style>
@@ -107,38 +121,49 @@ function yc_photography_admin_head_style() {
 }
 add_action('admin_head', 'yc_photography_admin_head_style');
 
+// META BOXES
+/**
+ * Prints scripts or data before the default admin footer scripts.
+ * 
+ */
 function yc_photography_admin_footer_script() {
     ?>
-    <script>
-    function myFunction(e) {
-        // console.log('okk');
-        // document.getElementById("myText").value = e.target.value
-        // Je sélectionne le select qui a changé
-        thisVal = jQuery(e.target);
-        // Je sélectionne l'élément d'après (<p>)
-        thisValNext = thisVal.next();
-        // console.log(thisValNext);
-        // Pour pouvoir sélectionner l'élément suivant (<input>) pour lui attribuer la valeur du select
-        thisValNextNext = thisValNext.next().val(thisVal.val());
-        // console.log(thisValNextNext);
-        // console.log(thisVal.val());
-    }
+    <script type="text/javascript">
+        // Retrieves the value of the select field and assigns it to the hidden field.
+        function myFunction(e) {
+            thisVal = jQuery(e.target);
+            thisValNext = thisVal.next();
+            thisValNext.val(thisVal.val());
+        }
+        <?php
+        if(isset($_GET['post']) && $_GET['post'] == 6):
+        ?>
+            // Script that deletes or adds a metabox ('repeater', portfolio type)
+            // Loads only on edit post for front page.
+            jQuery(document).ready(function($){
+                jQuery(document).on('click', '.cxc-remove-item', function() {
+                    jQuery(this).parents('tr.cxc-sub-row').remove();
+                }); 				
+                jQuery(document).on('click', '.cxc-add-item', function() {
+                    var p_this = jQuery(this);    
+                    var row_no = parseFloat( jQuery('.cxc-item-table tr.cxc-sub-row').length );
+                    console.log(row_no);
+                    var row_html = jQuery('.cxc-item-table .cxc-hide-tr').html().replace(/rand_no/g, row_no).replace(/hide_custom_repeater_item/g, 'custom_repeater_item');
+                    jQuery('.cxc-item-table tbody').append('<tr class="cxc-sub-row">' + row_html + '</tr>');    
+                });
+            });
+            // Adds class 'metabox_title' to inputs which id attribute ends with 'title'.
+            inputNotTitle = jQuery('input[id$="title"]');
+            console.log(inputNotTitle);
+            inputNotTitle.addClass('metabox_title');
+        <?php
+        endif;
+        ?>
     </script>
 <?php
 }
 add_action('admin_footer', 'yc_photography_admin_footer_script');
 
-// CONTACT FORM 7
-// Remove <br/>, <p> and <span> from user form contact
-add_filter('wpcf7_form_elements', function($content) {
-    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
-    // $content = str_replace('<br />', '', $content);
-    $content = str_replace('<p>', '', $content);
-    $content = str_replace('</p>', '', $content);
-    // $content = str_replace('<span>', '', $content);
-    // $content = str_replace('</span>', '', $content);
-    return $content;
-});
 
 // Must be removed when put into production.
 // Debugging function for development.

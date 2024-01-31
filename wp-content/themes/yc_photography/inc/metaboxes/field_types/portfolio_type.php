@@ -1,7 +1,8 @@
 <?php
 /**
- * Template de la metabox YC_Metabox
- * Render des champs type select
+ * YC_FrontPage_Metabox template
+ * 
+ * Render du groupe de champs type portfolio
  */
 
 $pages = get_pages();
@@ -12,9 +13,9 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
     <table class="cxc-item-table">
         <tbody>
             <?php 
-            if($custom_repeater_item) {
-                if( 'array' == gettype($value) ) {
-                    foreach( $custom_repeater_item as $item_key => $item_value ) {
+            if($custom_repeater_item):
+                if('array' == gettype($value)):
+                    foreach($custom_repeater_item as $item_key => $item_value):
                         $item1  = isset( $item_value['item1'] ) ? $item_value['item1'] : '';
                         $item2  = isset( $item_value['item2'] ) ? $item_value['item2'] : '';
                         ?>
@@ -46,7 +47,7 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                                     endforeach; 
                                     ?>
                                 </select>
-                                <input type="hidden" name="<?php echo 'custom_repeater_item['.$item_key.'][item2]'; ?>" id="test" value="<?php echo $item2; ?>" style="width: 85%;" data-changejs="changeJs">
+                                <input type="text" name="<?php echo 'custom_repeater_item['.$item_key.'][item2]'; ?>" value="<?php echo $item2; ?>" style="width: 85%;" data-changejs="changeJs">
                                 <hr>
                             </td>
                             <td>
@@ -54,15 +55,15 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                             </td>
                         </tr>
                     <?php
-                    }
-                }
-            } else {
+                    endforeach;
+                endif;
+            else:
                 ?>
                 <tr class="cxc-sub-row without">
                     <td>
                         <div class="meta-box-item-content">
                             <?php ?>
-                            <a href="<?php echo 'custom_repeater_item[0][item1]' ?>" class="thickbox custom_repeater_item_a selectJS" style="display: block;">
+                            <a href="<?php echo 'custom_repeater_item[0][item1]' ?>" class="thickbox custom_repeater_item_a selectJS">
                                 <img id="meta-box-image_<?php echo $id; ?>" src="<?php echo 'custom_repeater_item[0][item1]' ?>" alt="" style="vertical-align: middle;" class="img_js custom_repeater_item">
                             </a>
                             <input type="hidden" name="<?php echo 'custom_repeater_item[0][item1]' ?>" id="<?php echo $id; ?>" value="" style="width: 95%;" data-changejs="changeJs" class="input_js">
@@ -70,13 +71,9 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                         </div>
                         <hr>
                     </td>
-                        <?php
-                        ?>
                     <td>
                         <label>Choisir une page galerie :</label>
                         <select name="<?php echo 'custom_repeater_item[0][item2]'; ?>" id="<?php echo 'custom_repeater_item[0][item2]'; ?>" onchange="myFunction(event)">
-                        <?php 
-                            ?>
                             <option selected style="font-weight: bold;">Galeries</option>
                             <?php 
                             foreach($pages as $page): 
@@ -94,7 +91,7 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                     </td>
                 </tr>
             <?php
-            }
+            endif;
             ?>			
             <tr class="cxc-hide-tr">
                 <td>
@@ -102,7 +99,7 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                         <?php
                         ?>
                         <a href="hide_custom_repeater_item[rand_no][item1]" class="thickbox custom_repeater_item_a selectJS">
-                            <img id="meta-box-image_<?php echo $id; ?>" src="hide_custom_repeater_item[rand_no][item1]" alt="" style="vertical-align: middle;" class="img_js custom_repeater_item">
+                            <img id="meta-box-image_<?php echo $id; ?>" src="" alt="" style="vertical-align: middle;" class="img_js custom_repeater_item">
                         </a>
                         <input type="hidden" name="hide_custom_repeater_item[rand_no][item1]" id="<?php echo $id; ?>" value="hide_custom_repeater_item[rand_no][item1]" style="width: 95%;" data-changejs="changeJs" class="input_js">
                         <a href="#" class="button btn_uploader" onclick="getThisBtn(event, this)" data-id="<?php echo $id; ?>" data-multiple="true">Sélectionner une image</a>
