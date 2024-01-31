@@ -144,6 +144,13 @@ class YC_FrontPage_Metabox {
 
         foreach($this->fields as $field):
             $meta = $field['id'];
+            // Special treatment for the repeater.
+            if ( isset( $_POST['custom_repeater_item'] ) ){
+                update_post_meta( $post_id, 'custom_repeater_item', $_POST['custom_repeater_item'] );
+            } else {
+                update_post_meta( $post_id, 'custom_repeater_item', '' );
+            }
+            // processing of all meta boxes
             if(isset($_POST[$meta])):
                 $value = $_POST[$meta];
                 if(get_post_meta($post_id, $meta)):

@@ -112,7 +112,9 @@ function yc_photography_admin_head_style() {
         <style>
             #frontpage_metabox_image,
             #frontpage_metabox_presentation,
-            #frontpage_metabox_portfolio {
+            #frontpage_metabox_portfolio,
+            #frontpage_metabox_exhibitions,
+            #frontpage_metabox_contact {
                 display: none;
             }
         </style>
@@ -133,7 +135,7 @@ function yc_photography_admin_footer_script() {
         function myFunction(e) {
             thisVal = jQuery(e.target);
             thisValNext = thisVal.next();
-            thisValNext.val(thisVal.val());
+            getValue = thisValNext.val(thisVal.val());
         }
         <?php
         if(isset($_GET['post']) && $_GET['post'] == 6):
@@ -153,9 +155,8 @@ function yc_photography_admin_footer_script() {
                 });
             });
             // Adds class 'metabox_title' to inputs which id attribute ends with 'title'.
-            inputNotTitle = jQuery('input[id$="title"]');
-            console.log(inputNotTitle);
-            inputNotTitle.addClass('metabox_title');
+            inputTitle = jQuery('input[id$="_title"]');
+            inputTitle.addClass('metabox_title');
         <?php
         endif;
         ?>
