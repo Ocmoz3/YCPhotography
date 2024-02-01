@@ -136,11 +136,12 @@ class YC_FrontPage_Metabox {
 
         // Checks the nonce.
         // Meta boxes are loaded on all posts of type page so must check if this nonce exists otherwise returns an error.
-        if($_POST[$this->id . '_nonce']):
+        // if(key_exists($_POST[$this->id . '_nonce'], $_POST)):
+        // if($_POST[$this->id . '_nonce']):
             if(!wp_verify_nonce($_POST[$this->id . '_nonce'], $this->id)):
                 return false;
             endif;
-        endif;
+        // endif;
 
         foreach($this->fields as $field):
             $meta = $field['id'];

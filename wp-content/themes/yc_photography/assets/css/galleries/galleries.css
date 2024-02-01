@@ -1,0 +1,134 @@
+/* On hover, add a black background color with a little bit see-through */
+.div_gallery {
+    display: grid;
+    /* grid-template-columns: auto auto auto; */
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 5px;
+    padding: 5px;
+}
+.img-container img {
+    vertical-align: middle;
+    height: 600px;
+    object-fit: cover;
+}
+.img-hover-opacity:hover {
+    filter: brightness(.5);
+}
+/* modal */
+.img-modal {
+    z-index: 3;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.img-modal-content {
+    /* margin: 50px auto; */
+    margin: auto;
+    background-color: #fff;
+    /* position: relative; */
+    padding: 0;
+    outline: 0;
+    width: 600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.img-modal img {
+    /* width: unset; */
+    /* height: 400px; */
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    z-index: 10;
+}
+/* fullpage */
+.img-modal-content.fullpage_img {
+    height: 100%;
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+}
+.mySlides.fullpage_img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+.img-animate-zoom {
+    animation: animatezoom 0.6s
+}
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1)
+    }
+}
+@media screen and (max-width: 1100px) {
+    .img-container img {
+        height: 500px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .img-container img {
+        height: 450px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .div_gallery {
+        grid-template-columns: 50% 50%;
+    }
+}
+@media screen and (max-width: 680px) {
+    .img-container img {
+        height: 400px;
+    }
+    .img-modal-content {
+        width: 300px;
+    }
+}
+@media screen and (max-width: 580px) {
+    .div_gallery {
+        grid-template-columns: 100%;
+    }
+    .img-container img {
+        height: 650px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .img-modal-content {
+        /* margin: 30px auto;
+        width: 200px; */
+        margin: 0;
+        width: 100%;
+    }
+    .img-modal img {
+        /* height: 320px; */
+        height: auto;
+        width: inherit;
+    }
+}
+@media screen and (max-width: 450px) {
+    .img-container img {
+        height: 600px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .img-container img {
+        height: 550px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .img-container img {
+        height: 500px;
+    }
+}
+
+/* 
+Reste : icônes réseaux sociaux footer
++ modale de partage 
+*/

@@ -1,0 +1,71 @@
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    /* padding: 16px; */
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+
+    background-color: white;
+    opacity: .9;
+    display: flex;
+    padding: 10px;
+    
+    border-radius: 50%;
+    z-index: 999999;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: center;
+}
+/* Position the "next button" to the right */
+.prev {
+    left: 30px;
+    padding-right: 12px;
+    /* border-radius: 3px 0 0 3px; */
+}
+.next {
+    right: 30px;
+    padding-left: 12px;
+    /* border-radius: 3px 0 0 3px; */
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    .prev svg,
+    .next svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .prev svg,
+    .next svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .prev {
+        left: 10px;
+    }
+    .next {
+        right: 10px;
+    }
+    .prev svg,
+    .next svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .prev svg,
+    .next svg {
+        width: 10px;
+        height: 10px;
+    }
+}

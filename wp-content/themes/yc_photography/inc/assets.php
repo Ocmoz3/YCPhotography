@@ -24,8 +24,17 @@ function yc_photography_register_styles() {
             wp_enqueue_style('home_exhibitions_stylesheet', get_template_directory_uri() . '/assets/css/home/exhibitions/exhibitions.css');
             wp_enqueue_style('home_contact_stylesheet', get_template_directory_uri() . '/assets/css/home/contact/contact.css');
         endif;
+        // GALLERIES
+        wp_enqueue_style('galleries_main_stylesheet', get_template_directory_uri() . '/assets/css/galleries/galleries.css');
+        // MODAL
+        wp_enqueue_style('modal_close_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/close-button.css');
+        wp_enqueue_style('modal_likes_share_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/heart-share-buttons.css');
+        wp_enqueue_style('modal_minmax_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/minimize-maximize-buttons.css');
+        wp_enqueue_style('modal_nextprev_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/next-previous-buttons.css');
         // SCRIPTS
         wp_enqueue_script('header_nav_script', get_template_directory_uri() . '/assets/js/header/header_nav.js', ['jquery'], false, true);
+        // GALLERIES
+        wp_enqueue_script('gallery_modal_script', get_template_directory_uri() . '/assets/js/galleries/galleries.js', ['jquery'], false, true);
     endif;
 
     // Charge mécanique Ajax uniquement

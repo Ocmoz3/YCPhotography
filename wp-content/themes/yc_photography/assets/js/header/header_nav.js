@@ -1,5 +1,4 @@
-console.log('Hello JS !');
-// NAV
+console.log('Hello nav JS !');
 /**
  * Handles JavaScript for header navigation menu.
  */
@@ -129,7 +128,7 @@ for(let li_drop_close of lis_drop_close) {
         // Highlight nav tab when scroll on home page
         function onePageNav(switchName) {
             const navSwitch = $(switchName);
-            console.log(navSwitch);
+            // console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
             const deductHeight = 72;
             let navArr = [];
@@ -142,7 +141,7 @@ for(let li_drop_close of lis_drop_close) {
                     navArr.push([]);
                     navArr[i].switch = $(this);
                     navArr[i].tgtOff = tgtOff;
-                    console.log(tgtOff);
+                    // console.log(tgtOff);
                 });
             }
             $(window).scroll(function() {

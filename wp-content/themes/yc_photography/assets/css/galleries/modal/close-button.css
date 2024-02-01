@@ -1,0 +1,56 @@
+
+/* close modal button */
+.img-close-button {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    display: flex;
+    cursor: pointer;
+
+    background-color: white;
+    opacity: .9;
+    padding: 10px;
+    display: flex;
+    border-radius: 50%;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+}
+.img-close-button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    .img-close-button svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .img-close-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .img-close-button {
+        /* top: 10px; */
+        right: 10px;
+        padding: 12px;
+    }
+    .img-close-button svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+@media screen and (max-width: 380px) {
+    .img-close-button svg {
+        width: 10px;
+        height: 10px;
+    }
+}

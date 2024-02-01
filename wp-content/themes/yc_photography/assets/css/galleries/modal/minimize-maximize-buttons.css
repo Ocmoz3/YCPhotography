@@ -1,0 +1,59 @@
+
+/* ICONS */
+.maximize_icon,
+.minimize_icon {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    cursor: pointer;
+    /* background: rgba(255,255,255,1) !important; */
+
+    background-color: white;
+    opacity: .9;
+    padding: 10px;
+    display: flex;
+    border-radius: 50%;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+}
+.minimize_icon {
+    display: none;
+    /* background: rgba(255,255,255,.1) !important; */
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    .maximize_icon svg,
+    .minimize_icon svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+@media screen and (max-width: 750px) {
+    .maximize_icon svg,
+    .minimize_icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .maximize_icon,
+    .minimize_icon {
+        left: 10px;
+        padding: 12px;
+    }
+    /* .maximize_icon svg,
+    .minimize_icon svg {
+        width: 15px;
+        height: 15px;
+    } */
+}
+@media screen and (max-width: 380px) {
+    .maximize_icon svg,
+    .minimize_icon svg {
+        /* width: 10px;
+        height: 10px; */
+        width: 15px;
+        height: 15px;
+    }
+}
