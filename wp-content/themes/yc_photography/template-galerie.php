@@ -8,9 +8,7 @@
 get_header();
 
 
-// $output = apply_filters('post_gallery', '', $attr);
-// if ( $output != '' )
-//     return $output;
+
 /**
  * @param WP_Query $query
  */
@@ -39,10 +37,10 @@ function montheme_query_vars($params) {
     $params[] = 'photoname';
     $params[] = 'n_slider';
     // }
-    echo '<pre>';
-    var_dump($params);
-    debug($params);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($params);
+    // debug($params);
+    // echo '</pre>';
     // die;
     return $params;
 }
@@ -90,6 +88,8 @@ function not_empty_var() {
     }
     return $numb;
 }
+
+
 
 // Fonction qui permet d'afficher le nombre de likes pour chaque image 
 function setInputValue($id) {
@@ -331,7 +331,7 @@ function custom_gallery_html($output, $attr, $instance) {
             // Ajouter la modale 'share' ici
             $output .= 
             '<!-- ouverture grand div sharing -->
-            <div id="modal_social_sharing" class="modal_social_sharing" style="z-index: 999999999; display: inline-flex; padding-top: 100px; position: fixed; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+            <div id="modal_social_sharing" class="modal_social_sharing" style="z-index: 999999999; display: none; padding-top: 100px; position: fixed; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
 
                 <!-- ouverture div sharing content -->
                 <div class="modal_content_social_sharing' . $id . '" style="height: 250px; width: 500px; background-color: white; margin: auto;display: flex; align-items: center; justify-content: center; position: relative;">
@@ -433,7 +433,7 @@ function custom_gallery_html($output, $attr, $instance) {
 echo get_the_title(get_the_ID());
 add_theme_support( 'html5', [ 'gallery' ] );
 if ( $gallery = get_post_gallery( get_the_ID(), false ) ) :
-    debug($gallery);
+    // debug($gallery);
     // the_content();
     echo do_shortcode(get_the_content(get_the_ID()));
 endif;

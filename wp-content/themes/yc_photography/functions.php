@@ -11,6 +11,61 @@ require_once('inc/menus.php');
 require_once('inc/supports.php');
 require_once('inc/metaboxes/FrontPageMetabox.php');
 
+
+// rq: doit être dans functions.php pour fonctionner, peut-être une question de priorité
+// permet d'injecter le nombre de likes pour chaque image en bdd
+// si l'image a déjà un ou plusieurs likes, la valeur n'est pas ajoutée, seule la ligne est mise à jour
+// système qui permet de ne pas avoir une ligne à caque mais seulement une ligne par image, la bdd de données n'est pas alourdie et le fonctionnement allégé puisque qu'il n'y a pas besoin de sélectionner plusieurs lignes pour une image et ensuite sélectionner la dernière donnée misa à jour, aucun doublon de ligne pour une image
+function actionFunction() {
+    $att_id = $_POST['att_id'];
+    $value = $_POST['dname'];
+    // Pour vérification, s'affiche dans alert (if ajax success dans ajax-handle.js)
+    // echo $value;
+    // echo $att_id;
+    // Connexion bdd
+    global $wpdb;
+    // Je vérifie si cette image a déjà une ligne dans cette table
+    // Je sélectionne le nombre de 
+    $number_of_likes = $wpdb->get_var("SELECT COUNT(likes) FROM wp_likes WHERE att_id = $att_id");
+    echo $number_of_likes;
+    // Si aucune ligne de la base de données correspond à cette image -> l'insérer
+    if($number_of_likes == 0) {
+    $wpdb->insert(
+        'wp_likes',
+        array(
+        'att_id' => $att_id,
+        'likes' => $value
+        ),
+        array(
+        '%d',
+        '%d'
+        )
+    );
+    } 
+    // Sinon, si une ligne existe déjà à cette image, mettre à jour cette ligne
+    else {
+    $wpdb->update(
+    'wp_likes',
+    array(
+    'likes' => $value
+    ),
+    array(
+        'att_id' => $att_id,
+    ),
+    array(
+    '%d',
+    // '%d'
+    )
+    );
+}
+    die();
+    return true;
+}
+// Résultat = aucun doublon ! Une seule ligne par image !
+add_action('wp_ajax_actionFunction', 'actionFunction'); // Call when user logged in
+add_action('wp_ajax_nopriv_actionFunction', 'actionFunction'); // Call when user in not logged in
+
+
 /**
  * Moves WordPress Admin Bar to the bottom.
  * 

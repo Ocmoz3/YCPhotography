@@ -37,12 +37,12 @@ function yc_photography_register_styles() {
         wp_enqueue_script('gallery_modal_script', get_template_directory_uri() . '/assets/js/galleries/galleries.js', ['jquery'], false, true);
     endif;
 
-    // Charge mécanique Ajax uniquement
-    // if(!is_admin()) {
-        // wp_enqueue_script('myTheme', get_template_directory_uri() . '/assets/admin/js/metaboxes/ajax-handle.js', ['jquery'], null, true);
-        // // including ajax script in the plugin Myajax.ajaxurl
-        // wp_localize_script( 'myTheme', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php')));
-    // }
+    // Charge mécanique Ajax uniquement pour le front
+    if(!is_admin()) {
+        wp_enqueue_script('myTheme', get_template_directory_uri() . '/assets/js/galleries/ajax-handle.js', ['jquery'], null, true);
+        // including ajax script in the plugin Myajax.ajaxurl
+        wp_localize_script( 'myTheme', 'MyAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php')));
+    }
 }
 add_action('wp_enqueue_scripts', 'yc_photography_register_styles');
 
