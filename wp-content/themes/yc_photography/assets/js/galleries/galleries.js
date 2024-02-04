@@ -3,12 +3,21 @@ console.log('Hello galleries JS !');
  * Handles JavaScript galleries template.
  */
 
+
 // Must be at the beginning, else doesn't work for some
 function rewriteUrl() {
     // Creates a new url obj that captures the current url.
     const url = new URL(location);
+    // Explodes the url and creates an array and keeps the first five occurences.
+    // Here, it's important to use this method to keep the first occurrences rather than remove the last. Indeed, with this method, we'll always keep the requested occurrences, whereas removing them is always possible as long as there are some left, so it reduces the url at each click...
+    var pathName = url.href.split('/', 5);
+    console.log(pathName);
+    // Rebuilds the url into a string.
+    pathName = pathName.join('/');
+    console.log(pathName);
     // Rebuilds the base url.
-    closeUrl = url.origin + '/yc_photography/chroniques/';
+    // Please note that the slash at the end is essential for the slider to function correctly when the modal opens on page load.
+    closeUrl = pathName + '/';
     // The url is updated with the page's base url when the modal is closed.
     history.pushState({}, "", closeUrl);
 }
