@@ -1,3 +1,6 @@
+
+
+
 /* On hover, add a black background color with a little bit see-through */
 .div_gallery {
     display: grid;
@@ -10,10 +13,12 @@
     vertical-align: middle;
     height: 600px;
     object-fit: cover;
+    cursor: pointer;
 }
 .img-hover-opacity:hover {
     filter: brightness(.5);
 }
+/* .gallery_photo */
 /* modal */
 .img-modal {
     z-index: 3;
@@ -127,8 +132,3 @@
         height: 500px;
     }
 }
-
-/* 
-Reste : icônes réseaux sociaux footer
-+ modale de partage 
-*/
