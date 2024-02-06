@@ -224,12 +224,14 @@ function showSlides(n) {
 function onClick(element) {
     jQuery('#modal01').css('display', 'block');
 }
+
 // Closes modal button.
 function closeModal() {
     document.getElementById('modal01').style.display = 'none';
     // Rewrites url.
     rewriteUrl();
 }
+
 // SHARE MODAL
 function displayModalShare(element) {
     // Displays the sharing modal.

@@ -1,3 +1,7 @@
+/**
+ * Style of modal share
+ */
+
 #modal_social_sharing {
     z-index: 999999999;
     display: none;

@@ -1,3 +1,6 @@
+/**
+ * Style of minimize and maximize buttons
+ */
 
 /* ICONS */
 .maximize_icon,
@@ -6,8 +9,6 @@
     left: 30px;
     top: 30px;
     cursor: pointer;
-    /* background: rgba(255,255,255,1) !important; */
-
     background-color: white;
     opacity: .9;
     padding: 10px;
@@ -19,7 +20,6 @@
 }
 .minimize_icon {
     display: none;
-    /* background: rgba(255,255,255,.1) !important; */
 }
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {
@@ -42,17 +42,10 @@
         left: 10px;
         padding: 12px;
     }
-    /* .maximize_icon svg,
-    .minimize_icon svg {
-        width: 15px;
-        height: 15px;
-    } */
 }
 @media screen and (max-width: 380px) {
     .maximize_icon svg,
     .minimize_icon svg {
-        /* width: 10px;
-        height: 10px; */
         width: 15px;
         height: 15px;
     }

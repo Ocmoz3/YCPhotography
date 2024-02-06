@@ -27,11 +27,12 @@ function yc_photography_register_styles() {
         // GALLERIES
         wp_enqueue_style('galleries_main_stylesheet', get_template_directory_uri() . '/assets/css/galleries/galleries.css');
         // MODAL
+        wp_enqueue_style('modal_main_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/modal.css');
         wp_enqueue_style('modal_close_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/close-button.css');
         wp_enqueue_style('modal_likes_share_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/heart-share-buttons.css');
         wp_enqueue_style('modal_minmax_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/minimize-maximize-buttons.css');
         wp_enqueue_style('modal_nextprev_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/next-previous-buttons.css');
-        wp_enqueue_style('share_modal_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/share.css');
+        wp_enqueue_style('share_modal_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/share_modal.css');
         // SCRIPTS
         wp_enqueue_script('header_nav_script', get_template_directory_uri() . '/assets/js/header/header_nav.js', ['jquery'], false, true);
         // GALLERIES

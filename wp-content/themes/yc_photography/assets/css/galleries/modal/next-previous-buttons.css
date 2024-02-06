@@ -1,38 +1,33 @@
+/**
+ * Style of next and previous buttons
+ */
 
-/* Next & previous buttons */
 .prev,
 .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
     width: auto;
-    /* padding: 16px; */
     font-size: 20px;
     border-radius: 0 3px 3px 0;
     user-select: none;
     -webkit-user-select: none;
-
     background-color: white;
     opacity: .9;
     display: flex;
     padding: 10px;
-    
     border-radius: 50%;
     z-index: 999999;
-    /* width: 100%; */
     align-items: center;
     justify-content: center;
 }
-/* Position the "next button" to the right */
 .prev {
     left: 30px;
     padding-right: 12px;
-    /* border-radius: 3px 0 0 3px; */
 }
 .next {
     right: 30px;
     padding-left: 12px;
-    /* border-radius: 3px 0 0 3px; */
 }
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {

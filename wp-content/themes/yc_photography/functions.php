@@ -12,7 +12,6 @@ require_once('inc/supports.php');
 require_once('inc/metaboxes/FrontPageMetabox.php');
 require_once('inc/galleries.php');
 
-
 // /**
 //  * Nettoie les règles d'écriture à chaque changement de thème
 //  */
@@ -90,33 +89,33 @@ add_filter('wpcf7_form_elements', function($content) {
  */
 function yc_photography_admin_head_style() {
     // Retrieves all pages
-    $query = get_posts([
-        'post_type' => 'page'
-    ]);
-    $pageId = '';
-    $everyPosts = $query;
-    // global $pagenow;
-    // Retrieves current page id
-    if(isset($_GET['post'])):
-        $pageId = $_GET['post'];
-        foreach($everyPosts as $onePost):
-            // Only for home page
-            if($onePost->post_name === 'home'):
-                // Get Home page ID
-                $pageHomeId = $onePost->ID;
-                // Undisplays the base WYSIWYG 
-                if($pageHomeId == $pageId):
-                    echo 
-                    '<style>
-                        #postdivrich {
-                            display: none;
-                        }
-                    </style>';
-                // }
-                endif;
-            endif;
-        endforeach;
-    endif;
+    // $query = get_posts([
+    //     'post_type' => 'page'
+    // ]);
+    // $pageId = '';
+    // $everyPosts = $query;
+    // // global $pagenow;
+    // // Retrieves current page id
+    // if(isset($_GET['post'])):
+    //     $pageId = $_GET['post'];
+    //     foreach($everyPosts as $onePost):
+    //         // Only for home page
+    //         if($onePost->post_name === 'home'):
+    //             // Get Home page ID
+    //             $pageHomeId = $onePost->ID;
+    //             // Undisplays the base WYSIWYG 
+    //             if($pageHomeId == $pageId):
+    //                 echo 
+    //                 '<style>
+    //                     #postdivrich {
+    //                         display: none !important;
+    //                     }
+    //                 </style>';
+    //             // }
+    //             endif;
+    //         endif;
+    //     endforeach;
+    // endif;
     if(isset($_GET['post']) && $_GET['post'] != 6):
         ?>
         <!-- Cancels metabox display on pages other than the home page -->
@@ -127,6 +126,21 @@ function yc_photography_admin_head_style() {
             #frontpage_metabox_exhibitions,
             #frontpage_metabox_contact {
                 display: none;
+            }
+        </style>
+    <?php
+    else:
+    ?>
+        <style>
+            #frontpage_metabox_image,
+            #frontpage_metabox_presentation,
+            #frontpage_metabox_portfolio,
+            #frontpage_metabox_exhibitions,
+            #frontpage_metabox_contact {
+                display: block;
+            }
+            #postdivrich {
+                display: none !important;
             }
         </style>
     <?php
