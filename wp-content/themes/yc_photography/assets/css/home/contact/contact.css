@@ -5,6 +5,7 @@
 form {
     display: flex;
     justify-content: center;
+    margin: 0 auto;
 }
 .contact_form {
     display: flex;
@@ -79,7 +80,6 @@ form {
     outline: none;
     border-bottom: 1px solid white;
 }
-
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {
     form {

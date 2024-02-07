@@ -2,11 +2,14 @@
  * Style of TinyMCE body
  */
 
+ /* GENERAL */
+body#tinymce.wp-editor img {
+width: 100%;
+}
 body#tinymce.wp-editor { 
     font-family: 'Raleway', sans-serif; 
     margin: 10px; 
 }
-
 /* EXHIBITIONS PART */
 body#tinymce.wp-editor.yc_exhibitions_list {
     column-count: 3;
@@ -25,7 +28,6 @@ body#tinymce.wp-editor.yc_exhibitions_list p {
     margin-block-start: 0;
     margin-block-end: 0;
 }
-
 /* GALLERIES PART */
 body#tinymce.wp-editor.content .gallery {
     display: grid;

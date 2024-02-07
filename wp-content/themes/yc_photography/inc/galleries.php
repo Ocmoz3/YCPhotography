@@ -1,23 +1,27 @@
 <?php
-// add_theme_support( 'html5', [ 'gallery' ] );
-// debug(get_page_template_slug( get_the_ID() ));
-// debug(get_post_gallery_images());
-// Tout fonctionne bien !
-// !!! Par contre, il ne doit y avoir qu'une seule galerie sinon, modal bug
-// PB currentSlide() parce que récupère chaque image de chaque galerie ? donc slideIndex généré x2
-// debug(get_post());
+/**
+ * The functions of the "Gallery" page template
+ * 
+ * Please note that the slide system only works if only one gallery is registered...
+ * Problem: when the user clicks on the image and the currentSlide() function is triggered, it retrieves the image from the first gallery...
+ */
+
+/**
+ * Filters the default gallery shortcode output.
+ */
 add_filter('post_gallery', 'custom_gallery_html', 10, 3);
 function custom_gallery_html($output, $attr, $instance) { 
     // Retrieves the images from the gallery.
     $ids = explode(',', $attr['ids']);
-    // $size = $attr['size'];
 
+    // Assigns the original default size if none is initially defined.
     if(array_key_exists('size', $attr)):
         $size = $attr['size'];
     else: 
         $size = 'full';
     endif;
 
+    // Start of HTML output.
     // DIV GALLERY
     $output = '<div class="div_gallery">';
     $i = 0;
@@ -129,20 +133,19 @@ function custom_gallery_html($output, $attr, $instance) {
             <!-- Ici, générer automatiquement la balise img -->';
 
             foreach($ids as $id) {
-                // $i++;
                 $photo_get_name = explode('/', wp_get_attachment_metadata($id)['file'])[2];
                 $photo_ext = explode('.', $photo_get_name);
                 $photo_name = $photo_ext[0];
                 $photo_ext = '.' . $photo_ext[1];
 
-                // Sans JS, récupère bien query var pour chaque image MAIS possible grâce au set_query_var
+                // Without JS, retrieves query var for each image BUT possible thanks to set_query_var.
                 // debug(get_query_var('photoname'));
-                // permet de changer url dynamiquement quand slide les photos GRÂCE et SI url dynamiques avc JS.
+                // Allows to change url dynamically when sliding photos THANKS and IF dynamic url with JS.
 
-                // donne la valeur de base !!!! dans template à l'ouverture du doc récupérée en JS
+                // Gives base value in template when doc is opened, retrieved in JS.
                 set_query_var('photoname', $photo_get_name);
                 
-                // permet de récupérer la valeur de param photoname et de l'attribuer à data-sharingurl (fait le lien avec JS)
+                // Retrieves param photoname value and assigns it to data-sharingurl (links to JS).
                 $photoname = get_query_var('photoname');
 
                 $setInputValue = setInputValue($id);
@@ -156,7 +159,7 @@ function custom_gallery_html($output, $attr, $instance) {
                 // DIV IMG
                 $output .= 
                 '<!-- 1 -->
-                <div id="div' . $id . '">  <!-- ouverture div image -->';
+                <div id="div' . $id . '" class="div_modal_img">  <!-- ouverture div image -->';
 
                     // IMG
                     $output .= 
@@ -197,7 +200,6 @@ function custom_gallery_html($output, $attr, $instance) {
                 </div> <!-- fermeture div image -->';
                 // END DIV IMG
             }
-            // Tjs dans modal content
 
             // DIV SHARE
             $output .= 
@@ -280,136 +282,109 @@ function custom_gallery_html($output, $attr, $instance) {
 
         $output .= '</div>';
     
-    $output .= '</div>'; // fermeture grande modale
+    $output .= '</div>'; // large modal window closure
     // END MODAL #modal01 .img-modal
 
     return $output;
 }
 
 /**
- * @param WP_Query $query
+ * Allows this form of url to be rewritten, prevents 404.
  */
-// Works, if go on http://localhost/elfee/galerie/hound-gcff0e760a_1280.jpg/ -> not 404 but on galerie page
-// autorise la réécriture de cette forme d'url, empêche la 404
-// Attention, ne pas oublier de recharger les permalinks !!!
-function capitaine_rewrite_url() {
-    // $page_name = '';
+function yc_photography_rewrite_url() {
+    // Gets current page name.
     $page_name = get_query_var('pagename');
-    // if(is_page('chroniques')):
-    //     $page_name = 'chroniques';
-    // elseif(is_page('chaos')):
-    //     $page_name = 'chaos';
-    // endif;
     add_rewrite_tag( '%' . $page_name . '%' ,'([^&]+)' );
     add_rewrite_tag( '%photoname%' ,'([^&]+)' );
     add_rewrite_tag( '%n_slider%' ,'([^&]+)' );
     add_rewrite_rule(
       '([^/]+)/([^/]+)/([^/]+)',
       'index.php?pagename=$matches[1]&photoname=$matches[2]&n_slider=$matches[3]',
-    //   'index.php?pagename=galerie&photoname=$matches[1]',
       'top'
     );
 }
-add_action( 'init', 'capitaine_rewrite_url' );
+add_action( 'init', 'yc_photography_rewrite_url' );
 
-// Adds 'photoname' and 'n_slider' to query vars
-// pour chaque image
-// pour pouvoir les récupérer ensuite dans l'url et afficher le bon slide
-function montheme_query_vars($params) {
-    // si je n'ajoute photoname, pre_get_post -> get_query_var renvoie vide
+/**
+ * Filters the query variables allowed before processing.
+ * 
+ * Add "photoname" and "n_slider" to the query variables for each image so that they can then be retrieved from the url and display the correct slide.
+ */
+function yc_photography_query_vars($params) {
     $params[] = 'photoname';
     $params[] = 'n_slider';
-    // }
-    // echo '<pre>';
-    // var_dump($params);
-    // debug($params);
-    // echo '</pre>';
-    // die;
     return $params;
 }
-add_action('query_vars', 'montheme_query_vars');
+add_action('query_vars', 'yc_photography_query_vars');
 
-// renvoie un nombre positif ou 0 selon si la query var 'n_slider' est renseignée ou vide
-// permet d'afficher le bon chiffre dans le current slide, donc de récupérer la bonne valeur dans currentSlide afin d'afficher la bonne image quand lien pointe vers une image spécifiquement et que la fenêtre s'ouvre sur sur cette image mais dans le slider
-function not_empty_var() {
-    // si la query var 'n_slider' n'est pas vide
-    if(!empty(get_query_var('n_slider'))) {
-        // récupère-moi cette query var
-        $numb = get_query_var('n_slider');
-    } else {
-        // sinon, renvoie-moi 0
-        $numb = 0;
-    }
-    return $numb;
-}
-
-// Fonction qui permet d'afficher le nombre de likes pour chaque image 
+/**
+ * Retrieves the number of likes from the database and displays it in the page template.
+ * 
+ * @param int $id The "att_id" attribute in the database corresponds to the image id.
+ * 
+ * @return int
+ */
 function setInputValue($id) {
     global $wpdb;
-    // Fonction SQL si on était sûr de n'avoir qu'une seule valeur par image dans bdd
+    // Search for the number of likes in the database.
     $number_of_likes = $wpdb->get_var("SELECT likes FROM wp_likes WHERE att_id = $id");
-    // Select last key 
-    // $number_of_likes = $wpdb->get_var("SELECT likes FROM wp_likes WHERE att_id = $id ORDER BY ID DESC LIMIT 1");
+    // Assigns value 0 if database search returns empty.
     if(empty($number_of_likes)) {
         $number_of_likes = 0;
     }
     return $number_of_likes;
 }
 
-// rq: doit être dans functions.php pour fonctionner, peut-être une question de priorité
-// permet d'injecter le nombre de likes pour chaque image en bdd
-// si l'image a déjà un ou plusieurs likes, la valeur n'est pas ajoutée, seule la ligne est mise à jour
-// système qui permet de ne pas avoir une ligne à caque mais seulement une ligne par image, la bdd de données n'est pas alourdie et le fonctionnement allégé puisque qu'il n'y a pas besoin de sélectionner plusieurs lignes pour une image et ensuite sélectionner la dernière donnée misa à jour, aucun doublon de ligne pour une image
+/**
+ * Inserts or updates the number of likes for each image in the database.
+ */
 function actionFunction() {
     $att_id = $_POST['att_id'];
     $value = $_POST['dname'];
-    // Pour vérification, s'affiche dans alert (if ajax success dans ajax-handle.js)
+    // For verification, the following is displayed in alert (if ajax success in ajax-handle.js).
     // echo $value;
     // echo $att_id;
-    // Connexion bdd
+    // Database connection.
     global $wpdb;
-    // Je vérifie si cette image a déjà une ligne dans cette table
-    // Je sélectionne le nombre de 
+    // Checks if this image already has a row in this table.
     $number_of_likes = $wpdb->get_var("SELECT COUNT(likes) FROM wp_likes WHERE att_id = $att_id");
     
     echo $number_of_likes;
     
-    // Si aucune ligne de la base de données correspond à cette image -> l'insérer
+    // If it returns 0, a row is created for the first like.
     if($number_of_likes == 0) {
-    $wpdb->insert(
+        $wpdb->insert(
+            'wp_likes',
+            array(
+            'att_id' => $att_id,
+            'likes' => $value
+            ),
+            array(
+            '%d',
+            '%d'
+            )
+        );
+        } 
+        // Otherwise, the row exists and is updated with the new number of likes.
+        else {
+        $wpdb->update(
         'wp_likes',
         array(
-        'att_id' => $att_id,
         'likes' => $value
         ),
         array(
-        '%d',
+            'att_id' => $att_id,
+        ),
+        array(
         '%d'
         )
-    );
-    } 
-    // Sinon, si une ligne existe déjà à cette image, mettre à jour cette ligne
-    else {
-    $wpdb->update(
-    'wp_likes',
-    array(
-    'likes' => $value
-    ),
-    array(
-        'att_id' => $att_id,
-    ),
-    array(
-    '%d',
-    // '%d'
-    )
-    );
-}
+        );
+    }
 
     echo $number_of_likes;
 
     die();
     return true;
 }
-// Résultat = aucun doublon ! Une seule ligne par image !
 add_action('wp_ajax_actionFunction', 'actionFunction'); // Call when user logged in
 add_action('wp_ajax_nopriv_actionFunction', 'actionFunction'); // Call when user in not logged in

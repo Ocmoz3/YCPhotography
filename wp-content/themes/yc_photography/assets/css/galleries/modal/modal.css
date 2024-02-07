@@ -2,15 +2,8 @@
  * Style of modal slider
  */
 
-.img-modal {
-    z-index: 3;
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
+.div_modal_img {
+    margin: auto;
 }
 .img-modal-content {
     margin: auto;
@@ -21,6 +14,16 @@
     height: 100%;
     display: flex;
     align-items: center;
+}
+.img-modal {
+    z-index: 3;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
 }
 .img-modal img {
     object-fit: cover;
@@ -37,6 +40,20 @@
 }
 .img-animate-zoom {
     animation: animatezoom 0.6s
+}
+/* FULLSCREEN */
+.fullscreen_div_img {
+    max-height: unset;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+.fullscreen_img {
+    height: 100%;
+    width: auto;
 }
 @keyframes animatezoom {
     from {

@@ -151,7 +151,7 @@ class YC_FrontPage_Metabox {
             } else {
                 update_post_meta( $post_id, 'custom_repeater_item', '' );
             }
-            // processing of all meta boxes
+            // Processing of all meta boxes.
             if(isset($_POST[$meta])):
                 $value = $_POST[$meta];
                 if(get_post_meta($post_id, $meta)):

@@ -59,6 +59,13 @@ function move_admin_bar() {
         .admin-bar .header-inner.is-sticky {
             top: 0;
         }';
+        echo '/* RESPONSIVE */
+        @media screen and (max-width: 600px) {
+            #wpadminbar {
+                position: fixed;
+            }
+        }
+        ';
         echo '</style>';
     endif;
 }
@@ -88,34 +95,6 @@ add_filter('wpcf7_form_elements', function($content) {
  * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
  */
 function yc_photography_admin_head_style() {
-    // Retrieves all pages
-    // $query = get_posts([
-    //     'post_type' => 'page'
-    // ]);
-    // $pageId = '';
-    // $everyPosts = $query;
-    // // global $pagenow;
-    // // Retrieves current page id
-    // if(isset($_GET['post'])):
-    //     $pageId = $_GET['post'];
-    //     foreach($everyPosts as $onePost):
-    //         // Only for home page
-    //         if($onePost->post_name === 'home'):
-    //             // Get Home page ID
-    //             $pageHomeId = $onePost->ID;
-    //             // Undisplays the base WYSIWYG 
-    //             if($pageHomeId == $pageId):
-    //                 echo 
-    //                 '<style>
-    //                     #postdivrich {
-    //                         display: none !important;
-    //                     }
-    //                 </style>';
-    //             // }
-    //             endif;
-    //         endif;
-    //     endforeach;
-    // endif;
     if(isset($_GET['post']) && $_GET['post'] != 6):
         ?>
         <!-- Cancels metabox display on pages other than the home page -->
@@ -131,6 +110,8 @@ function yc_photography_admin_head_style() {
     <?php
     else:
     ?>
+    
+        <!-- Cancels base WYSIWYG display on front page and displays front page meta boxes -->
         <style>
             #frontpage_metabox_image,
             #frontpage_metabox_presentation,
@@ -151,7 +132,6 @@ add_action('admin_head', 'yc_photography_admin_head_style');
 // META BOXES
 /**
  * Prints scripts or data before the default admin footer scripts.
- * 
  */
 function yc_photography_admin_footer_script() {
     ?>

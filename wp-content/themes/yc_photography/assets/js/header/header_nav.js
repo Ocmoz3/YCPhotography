@@ -36,7 +36,7 @@ else {
     for(let dropdown of drops) {
         dropdown.addEventListener('mouseover', function(e) {
             // ul dropdown-content
-            // Selects all if there are several drop-down menus
+            // Selects all if there are several drop-down menus.
             let ul_drops = dropdown.querySelectorAll('ul.dropdown-content');
             // let ul_drop = dropdown.querySelector('ul.dropdown-content');
             for(let ul_drop of ul_drops) {
@@ -45,29 +45,6 @@ else {
         });
     }
 }
-
-// Menu burger
-let link_burger = document.getElementById("link_burger");
-let burger      = document.getElementById("burger");
-let ul          = document.getElementById("ul_burger");
-link_burger.addEventListener("click", function (e) {
-    e.preventDefault();
-    burger.classList.toggle("open");
-    ul.classList.toggle("open");
-});
-// Menu dropdown quand connecté
-// let link_dropdown = document.getElementById("link_menu_drop");
-// let dropdown      = document.getElementById("button_dropdown");
-// let ul_drop       = document.getElementById("ul_dropdown");
-
-// if (link_dropdown != null) {
-//     link_dropdown.addEventListener("click", function (e) {
-//     e.preventDefault();
-//     dropdown.classList.toggle("open_drop");
-//     ul_drop.classList.toggle("open_drop");
-//     });
-// }
-
 /**
  * Closes dropdown menu.
  */
@@ -95,18 +72,35 @@ for(let li_drop_close of lis_drop_close) {
         }
     });
 }
+/**
+ * Handles "burger" menu for medium and small screens.
+ */
+// Menu burger
+let link_burger = document.getElementById('link_burger');
+let burger      = document.getElementById('burger');
+let ul          = document.getElementById('ul_burger');
+let div_link_burger  = document.getElementById('div_link_burger')
+link_burger.addEventListener('click', function(e) {
+    e.preventDefault();
+    burger.classList.toggle('open');
+    ul.classList.toggle('open');
+    div_link_burger.classList.toggle('open');
+});
 
 // Menu anchor
+/**
+ * Manages main menu anchors.
+ */
 // jquery
 (function($) {
     $(document).ready(function () {
-        // permet d'ajuster l'ancre par rapport à la hauteur du header (-70px)
+        // Adjusts anchor to header height (-70px).
         // topMenuHeight = -70;
         if($('a.a_nav[href*="#"]').length) {
             $('a.a_nav[href*="#"]').click(function() {
                 substractHeight = 70;
                 // Menu burger 
-                // detects whether user is on a touch screen
+                // Detects whether user is on a touch screen.
                 if(window.matchMedia("(pointer: coarse)").matches) {
                     // Changes the height of the anchor point according to screen size.
                     if (window.matchMedia('(min-width: 900px)').matches) {
@@ -125,15 +119,14 @@ for(let li_drop_close of lis_drop_close) {
             });
         }
         // js
-        // Highlight nav tab when scroll on home page
+        // Highlights nav tab when scroll on home page.
         function onePageNav(switchName) {
             const navSwitch = $(switchName);
             // console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
             const deductHeight = 72;
             let navArr = [];
-            // Triggers function only if user is on home page
-            // Else, js errors
+            // Triggers function only if user is on home page.
             if($('body.home').length) {
                 navSwitch.each(function(i) {
                     let navSwitchHref = $(this).attr('href');
@@ -161,19 +154,19 @@ for(let li_drop_close of lis_drop_close) {
             });
         }
         $(window).on('load resize', function() {
-            // Triggers the dynamic nav menu item color 
+            // Triggers the dynamic nav menu item color.
             onePageNav('.js-curnav-switch');
             // Adds the "is-current" class to the right menu item when the page loads.
             // Otherwise, no element is colored, as this is triggered by scrolling.
-            // Gets the url
+            // Gets the url.
             url = $(location).attr('href');
-            // Explodes the url
+            // Explodes the url.
             splitUrl = url.split('/');
-            // Loop into each part of url
+            // Loop into each part of url.
             for( let i = 0; i < splitUrl.length; i++ ) {
-                // If finds the part which starts with the anchor
+                // If finds the part which starts with the anchor.
                 if(splitUrl[i].match('^#')) {
-                    // Adds the "is-current" class to the right menu item
+                    // Adds the "is-current" class to the right menu item.
                     // The class is then removed as soon as scrolling is activated.
                     $('a[href^="' + splitUrl[i] + '"]').addClass('is-current');
                 }

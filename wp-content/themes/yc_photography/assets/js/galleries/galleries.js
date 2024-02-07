@@ -95,7 +95,7 @@ function showSlides(n) {
     }
     // share button
     // Displays only the current share button.
-    shareButton[slideIndex-1].style.display = 'block';
+    shareButton[slideIndex-1].style.display = 'inline-flex';
 
     // sharesIcons
     // Displays only the current share icons.
@@ -120,7 +120,7 @@ function showSlides(n) {
             // Gets the nslider into the url.
             // Please note that the value must be transformed into a number for the showSlides function to work correctly.
             var result = result[result.length - 2];
-            // result = parseInt(result);
+            result = parseInt(result);
             console.log(result);
             // Triggers the showSlide function with the value of the slideIndex which corresponds to the data retrieved from the url.
             showSlides(slideIndex = result);
@@ -277,15 +277,19 @@ function openFullscreen() {
         elem.msRequestFullscreen();
     }
     // Modal
-    // let elementContainer = document.querySelector('.img-modal-content');
+    let elementContainer = document.querySelector('.img-modal-content');
     // let elementContainerDiv = document.querySelector('.img-modal-content').children;
     // console.log(elementContainerDiv);
-    // // elementContainer.classList.add('fullpage_img');
-    // let elementsImage = document.querySelectorAll('.mySlides');
-    // // console.log(elementsImage);
-    // for(elementImage of elementsImage) {
-    //     elementImage.classList.add('fullpage_img');
-    // }
+    elementContainer.classList.add('fullscreen_modal');
+    let elementsDivImage = document.querySelectorAll('.div_modal_img');
+    let elementsImage = document.querySelectorAll('.mySlides');
+    // console.log(elementsImage);
+    for(elementDivImage of elementsDivImage) {
+        elementDivImage.classList.add('fullscreen_div_img');
+    }
+    for(elementImage of elementsImage) {
+        elementImage.classList.add('fullscreen_img');
+    }
     // Min max icons
     let elementOpen = document.querySelector('.maximize_icon');
     elementOpen.style.display = 'none';
@@ -303,12 +307,16 @@ function closeFullscreen() {
         document.msExitFullscreen();
     }
     // Modal
-    // let elementContainer = document.querySelector('.img-modal-content');
-    // elementContainer.classList.remove('fullpage_img');
-    // let elementsImage = document.querySelectorAll('.mySlides');
-    // for(elementImage of elementsImage) {
-    //     elementImage.classList.remove('fullpage_img');
-    // }
+    let elementContainer = document.querySelector('.img-modal-content');
+    elementContainer.classList.remove('fullscreen_modal');
+    let elementsDivImage = document.querySelectorAll('.div_modal_img');
+    let elementsImage = document.querySelectorAll('.mySlides');
+    for(elementDivImage of elementsDivImage) {
+        elementDivImage.classList.remove('fullscreen_div_img');
+    }
+    for(elementImage of elementsImage) {
+        elementImage.classList.remove('fullscreen_img');
+    }
     // Min max icons
     let elementOpen = document.querySelector('.maximize_icon');
     elementOpen.style.display = 'flex';

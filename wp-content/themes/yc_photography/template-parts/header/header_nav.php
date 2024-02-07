@@ -15,7 +15,9 @@
         'container'       => 'nav',
     ]);
     ?>
-    <a id="link_burger" href="#" title="Menu">
-        <span id="burger"></span>
-    </a>
+    <div id="div_link_burger" class="div_link_burger">
+        <a id="link_burger" href="#" title="Menu">
+            <span id="burger"></span>
+        </a>
+    </div>
 </div>
