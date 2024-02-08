@@ -82,17 +82,17 @@ form {
 }
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {
-    form {
+    .div_around_contact {
         width: 80%;
     }
 }
 @media screen and (max-width: 750px) {
-    form {
+    .div_around_contact {
         width: 90%;
     }
 }
 @media screen and (max-width: 650px) {
-    form {
+    .div_around_contact {
         width: 95%;
     }
     .form_top {

@@ -9,6 +9,7 @@
 require_once('inc/assets.php');
 require_once('inc/menus.php');
 require_once('inc/supports.php');
+require_once('inc/sidebars.php');
 require_once('inc/metaboxes/FrontPageMetabox.php');
 require_once('inc/metaboxes/LikesMetabox.php');
 require_once('inc/galleries.php');
@@ -132,10 +133,7 @@ function yc_photography_admin_head_style() {
 add_action('admin_head', 'yc_photography_admin_head_style');
 
 // META BOXES
-/**
- * Initializes the likes display meta box in the media editing page.
- */
-LikesMetaBox::register();
+
 /**
  * Prints scripts or data before the default admin footer scripts.
  */

@@ -1,4 +1,4 @@
-console.log('Hello galleries JS !');
+// console.log('Hello galleries JS !');
 /**
  * Handles JavaScript galleries template.
  */
@@ -11,10 +11,10 @@ function rewriteUrl() {
     // Explodes the url and creates an array and keeps the first five occurences.
     // Here, it's important to use this method to keep the first occurrences rather than remove the last. Indeed, with this method, we'll always keep the requested occurrences, whereas removing them is always possible as long as there are some left, so it reduces the url at each click...
     var pathName = url.href.split('/', 5);
-    console.log(pathName);
+    // console.log(pathName);
     // Rebuilds the url into a string.
     pathName = pathName.join('/');
-    console.log(pathName);
+    // console.log(pathName);
     // Rebuilds the base url.
     // Please note that the slash at the end is essential for the slider to function correctly when the modal opens on page load.
     closeUrl = pathName + '/';
@@ -121,7 +121,7 @@ function showSlides(n) {
             // Please note that the value must be transformed into a number for the showSlides function to work correctly.
             var result = result[result.length - 2];
             result = parseInt(result);
-            console.log(result);
+            // console.log(result);
             // Triggers the showSlide function with the value of the slideIndex which corresponds to the data retrieved from the url.
             showSlides(slideIndex = result);
             // Rewrites base url if click on previous or next button.

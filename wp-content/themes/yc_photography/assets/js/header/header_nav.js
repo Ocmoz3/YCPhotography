@@ -1,4 +1,4 @@
-console.log('Hello nav JS !');
+// console.log('Hello nav JS !');
 /**
  * Handles JavaScript for header navigation menu.
  */

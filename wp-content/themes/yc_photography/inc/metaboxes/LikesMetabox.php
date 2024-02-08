@@ -10,7 +10,7 @@ class LikeSMetaBox
         add_action('add_meta_boxes', [self::class, 'add'], 10, 2);
     }
 
-    public static function add($postType, $post) 
+    public static function add() 
     {
         add_meta_box(self::META_KEY, 'Photo likes', [self::class, 'render'], 'attachment','side', 'high');
     }
@@ -50,3 +50,8 @@ class LikeSMetaBox
         <?php
     }
 }
+
+/**
+ * Initializes the likes display meta box in the media editing page.
+ */
+LikesMetaBox::register();

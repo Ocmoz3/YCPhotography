@@ -1,0 +1,44 @@
+/**
+ * Style of header widget Infos Contact
+ */
+
+.div_around_social_network {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    display: flex;
+    gap: .2rem;
+}
+.social_link i {
+    color: rgba(255, 255, 255, .5);
+    font-size: 2rem;
+    transition: .5s;
+}
+.social_link:hover i {
+    filter: blur(.5px);
+    color: white;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    .div_around_social_network {
+        top: 8%;
+    }
+    .div_element_social i {
+        font-size: 1.7rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    .div_element_social i {
+        font-size: 1.5rem;
+    }
+}
+@media screen and (max-width: 380px) {
+    .div_element_social i {
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 280px) {
+    .div_element_social i {
+        font-size: 1rem;
+    }
+}
