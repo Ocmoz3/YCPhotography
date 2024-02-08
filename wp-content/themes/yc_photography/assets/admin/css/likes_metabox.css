@@ -1,0 +1,37 @@
+/**
+ * Style of Likes metabox
+ */
+
+#photo_like.postbox {
+    border: none;
+    background: none;
+    margin-top: 70px;
+}
+#photo_like .postbox-header {
+    border-bottom: none;
+}
+#photo_like .handle-actions.hide-if-no-js {
+    display: none;
+}
+#photo_like .hndle.ui-sortable-handle {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.div_around_nb_likes {
+    position: relative;
+    padding: 1rem;
+}
+.div_svg_nb_likes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: self-end;
+    gap: .3rem;
+}
+.span_nb_of_likes {
+    font-size: 1.1rem;
+}

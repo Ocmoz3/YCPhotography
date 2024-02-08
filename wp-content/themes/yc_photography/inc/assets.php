@@ -64,7 +64,9 @@ add_action( 'admin_init', 'yc_photography_theme_add_editor_styles' );
  * Enqueues admin section stylesheets.
  */
 function yc_photography_register_admin_assets() {
-    // METABOXES
+    // LIKES META BOX
+        wp_enqueue_style('admin_likes_metabox_css', get_template_directory_uri() . '/assets/admin/css/likes_metabox.css');
+    // FRONTPAGE META BOX
     if(isset($_GET['post']) && $_GET['post'] == 6):
         wp_enqueue_style('admin_uploader_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/uploader.css');
         wp_enqueue_style('admin_text_css', get_template_directory_uri() . '/assets/admin/css/metaboxes/text.css');

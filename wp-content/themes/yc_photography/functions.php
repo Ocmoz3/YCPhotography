@@ -10,7 +10,9 @@ require_once('inc/assets.php');
 require_once('inc/menus.php');
 require_once('inc/supports.php');
 require_once('inc/metaboxes/FrontPageMetabox.php');
+require_once('inc/metaboxes/LikesMetabox.php');
 require_once('inc/galleries.php');
+
 
 // /**
 //  * Nettoie les règles d'écriture à chaque changement de thème
@@ -19,7 +21,6 @@ require_once('inc/galleries.php');
 add_action('after_switch_theme', 'flush_rewrite_rules');
 // À chaque changement de thème
 add_action('switch_theme', 'flush_rewrite_rules');
-
 
 /**
  * Moves WordPress Admin Bar to the bottom.
@@ -88,6 +89,7 @@ add_filter('wpcf7_form_elements', function($content) {
 
 
 // ADMIN SECTION
+
 /**
  * Prints scripts or data before the default footer scripts.
  * 
@@ -130,6 +132,10 @@ function yc_photography_admin_head_style() {
 add_action('admin_head', 'yc_photography_admin_head_style');
 
 // META BOXES
+/**
+ * Initializes the likes display meta box in the media editing page.
+ */
+LikesMetaBox::register();
 /**
  * Prints scripts or data before the default admin footer scripts.
  */
