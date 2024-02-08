@@ -43,9 +43,12 @@ $custom_repeater_item = get_post_meta( $post->ID, 'custom_repeater_item', true )
                                     <option <?php if(empty($custom_repeater_item)): echo 'selected'; endif; ?> style="font-weight: bold;">Galeries...</option>
                                     <?php 
                                     foreach($pages as $page):
+                                        // Checks if the page content starts with a gallery shortcode.
+                                        if(str_starts_with($page->post_content, '[gallery')):
                                         ?>
-                                        <option value="<?php echo $page->post_name ?>" <?php if(!empty($item2) && $item2 == $page->post_name): echo 'selected'; endif; ?>><?php echo $page->post_title ?></option>
+                                            <option value="<?php echo $page->post_name ?>" <?php if(!empty($item2) && $item2 == $page->post_name): echo 'selected'; endif; ?>><?php echo $page->post_title ?></option>
                                         <?php 
+                                        endif;
                                     endforeach; 
                                     ?>
                                 </select>
