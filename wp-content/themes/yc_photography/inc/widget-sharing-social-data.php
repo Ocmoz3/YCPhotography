@@ -4,8 +4,9 @@
 // Gets the current rawurl.
 $raw_url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 // Sanitizing.
-$url = htmlspecialchars( $raw_url, ENT_QUOTES, 'UTF-8' );
-// ⚠️ This code has security implications because the client and the server can set HTTP_HOST and REQUEST_URI to arbitrary values. It is absolutely necessary to sanitize both values and do proper input validation (CWE-20). They must not be used in any security context.
+$encodedUrl = htmlspecialchars( $raw_url, ENT_QUOTES, 'UTF-8' );
+$url = (empty($_SERVER['HTTPS']) ? 'http:' : 'https:') . $encodedUrl;
+// !!! This code has security implications because the client and the server can set HTTP_HOST and REQUEST_URI to arbitrary values. It is absolutely necessary to sanitize both values and do proper input validation (CWE-20). They must not be used in any security context.
 // $url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 // $url = 'https://google.com'; // for test, works !
 // debug($url);
@@ -75,6 +76,17 @@ $site_name = get_option('blogname');
 // pinterest
 // https://www.pinterest.fr/pin/create/button/?description=02%20-%20chroniques.jpg&media=https%3A%2F%2Fstatic.wixstatic.com%2Fmedia%2F710cc4_b3a6931bed9046178d69435efdbae5c2~mv2.jpg%2Fv1%2Ffit%2Fw_500%2Ch_500%2Cq_90%2F710cc4_b3a6931bed9046178d69435efdbae5c2~mv2.jpg&url=https%3A%2F%2Fyanncielat.wixsite.com%2Fphotographie%2Fpresence%3Fpgid%3Diqggm38l-2c99fc5a-fb68-4e59-9e0e-c43b8e98cf63
 
+// ORBIT FOX
+// https://www.facebook.com/sharer.php?u=http://localhost/elfee/galerie/
+// https://twitter.com/intent/tweet?url=http://localhost/elfee/galerie/&text=Galerie&hashtags=
+// https://pinterest.com/pin/create/bookmarklet/?media=&url=http://localhost/elfee/galerie/&description=Galerie
+// https://www.linkedin.com/shareArticle?url=http://localhost/elfee/galerie/&title=Galerie
+// https://www.tumblr.com/widgets/share/tool?canonicalUrl=http://localhost/elfee/galerie/&title=Galerie
+// https://reddit.com/submit?url=http://localhost/elfee/galerie/&title=Galerie
+// whatsapp://send?text=http://localhost/elfee/galerie/
+// mailto:?&subject=Galerie&body=http://localhost/elfee/galerie/
+// sms://?&body=Galerie%20-%20http://localhost/elfee/galerie/
+
 $networks = [
     'facebook' => [
         'name' => 'facebook',
@@ -96,27 +108,71 @@ $networks = [
         'icon' => '<i class="fa-brands fa-linkedin"></i>',
         'unicode' => 'f08c',
         'sharing_url' => 'https://www.linkedin.com/shareArticle?url=' . $url . '&title=' . $title
+        // 'sharing_url' => 'https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%2Felfee%2Fgalerie%2F'
     ],
     'pinterest' => [
         'name' => 'pinterest',
         'label' => 'Pinterest',
         'icon' => '<i class="fa-brands fa-pinterest"></i>',
         'unicode' => 'f0d3',
-        'sharing_url' => 'https://pinterest.com/pin/create/button/?url=' . $url . '&description=' . $title
+        // 'sharing_url' => 'https://pinterest.com/pin/create/button/?url=' . $url . '&description=' . $title
+        'sharing_url' => 'https://pinterest.com/pin/create/bookmarklet/?media=&url=' . $url . '&description=' . $title
     ],
     'twitter' => [
         'name' => 'twitter',
         'label' => 'Twitter',
         'icon' => '<i class="fa-brands fa-twitter"></i>',
         'unicode' => 'f081',
-        'sharing_url' => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title
+        'sharing_url' => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title . '&hashtags=gallery%2Cphotos%2Cphotographer%2Cprofessional'
+    ],
+    'tumblr' => [
+        'name' => 'tumblr',
+        'label' => 'Tumblr',
+        'icon' => '<i class="fa-brands fa-tumblr"></i>',
+        'unicode' => 'f173',
+        'sharing_url' => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=' . $url . '&title=' . $title
+    ],
+    'telegram' => [
+        'name' => 'telegram',
+        'label' => 'Telegram',
+        'icon' => '<i class="fa-brands fa-telegram"></i>',
+        'unicode' => 'f2c6',
+        'sharing_url' => 'https://t.me/share/url?url=' . $url . '&text=' . $title
+    ],
+    'reddit' => [
+        'name' => 'reddit',
+        'label' => 'Reddit',
+        'icon' => '<i class="fa-brands fa-reddit"></i>',
+        'unicode' => 'f1a1',
+        'sharing_url' => 'https://reddit.com/submit?url=' . $url . '&title=' . $title
+    ],
+    'viadeo' => [
+        'name' => 'viadeo',
+        'label' => 'Viadeo',
+        'icon' => '<i class="fa-brands fa-viadeo"></i>',
+        'unicode' => 'f2a9',
+        'sharing_url' => '//www.viadeo.com/shareit/share/?url=' . $url . '&title=' . $title
+    ],
+    'skype' => [
+        'name' => 'skype',
+        'label' => 'Skype',
+        'icon' => '<i class="fa-brands fa-skype"></i>',
+        'unicode' => 'f17e',
+        'sharing_url' => 'https://web.skype.com/share?url=' . $url
     ],
     'email' => [
         'name' => 'email',
         'label' => 'Email',
         'icon' => '<i class="fa-solid fa-envelope"></i>',
         'unicode' => 'f0e0',
-        'sharing_url' => 'mailto:type%20email%20address%20here?subject=I%20wanted%20to%20share%20this%20post%20with%20you%20from%20' . $site_name . '&body=' . $title .' - '. $url . '" title="Email to a friend/colleague" target="_blank'
+        'sharing_url' => 'mailto:type%20email%20address%20here?subject=I%20wanted%20to%20share%20this%20post%20with%20you%20from%20' . $site_name . '&body=' . $title .'   -   '. $url . '" title="Partager par email" target="_blank'
+    ],
+    'sms' => [
+        'name' => 'sms',
+        'label' => 'SMS',
+        'icon' => '<i class="fa-solid fa-comment-sms"></i>',
+        'unicode' => 'f7cd',
+        'sharing_url' => 'sms:?&body=' . $title . ' ' . $url
     ],
     // 'instagram' => [
     //     'name' => 'instagram',
@@ -132,13 +188,6 @@ $networks = [
     //     'unicode' => 'f2ad',
     //     'sharing_url' => 'test'
     // ],
-    // 'viadeo' => [
-    //     'name' => 'viadeo',
-    //     'label' => 'Viadeo',
-    //     'icon' => '<i class="fa-brands fa-square-viadeo"></i>',
-    //     'unicode' => 'f2aa',
-    //     'sharing_url' => 'test'
-    // ],
     // 'flickr' => [
     //     'name' => 'flickr',
     //     'label' => 'Flickr',
@@ -146,67 +195,11 @@ $networks = [
     //     'unicode' => 'f16e',
     //     'sharing_url' => 'test'
     // ],
-    // 'medium' => [
-    //     'name' => 'medium',
-    //     'label' => 'Medium',
-    //     'icon' => '<i class="fa-brands fa-medium"></i>',
-    //     'unicode' => 'f23a',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'youtube' => [
-    //     'name' => 'youtube',
-    //     'label' => 'Youtube',
-    //     'icon' => '<i class="fa-brands fa-square-youtube"></i>',
-    //     'unicode' => 'f431',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'tiktok' => [
-    //     'name' => 'tiktok',
-    //     'label' => 'Tiktok',
-    //     'icon' => '<i class="fa-brands fa-tiktok"></i>',
-    //     'unicode' => 'e07b',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'dailymotion' => [
-    //     'name' => 'dailymotion',
-    //     'label' => 'Dailymotion',
-    //     'icon' => '<i class="fa-brands fa-dailymotion"></i>',
-    //     'unicode' => 'e052',
-    //     'sharing_url' => 'test'
-    // ],
     // 'periscope' => [
     //     'name' => 'periscope',
     //     'label' => 'Periscope',
     //     'icon' => '<i class="fa-brands fa-periscope"></i>',
     //     'unicode' => 'f3da',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'reddit' => [
-    //     'name' => 'reddit',
-    //     'label' => 'Reddit',
-    //     'icon' => '<i class="fa-brands fa-square-reddit"></i>',
-    //     'unicode' => 'f1a2',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'spotify' => [
-    //     'name' => 'spotify',
-    //     'label' => 'Spotify',
-    //     'icon' => '<i class="fa-brands fa-spotify"></i>',
-    //     'unicode' => 'f1bc',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'deezer' => [
-    //     'name' => 'deezer',
-    //     'label' => 'Deezer',
-    //     'icon' => '<i class="fa-brands fa-deezer"></i>',
-    //     'unicode' => 'e077',
-    //     'sharing_url' => 'test'
-    // ],
-    // 'soundcloud' => [
-    //     'name' => 'soundcloud',
-    //     'label' => 'Soundcloud',
-    //     'icon' => '<i class="fa-brands fa-soundcloud"></i>',
-    //     'unicode' => 'f1be',
     //     'sharing_url' => 'test'
     // ],
 ];

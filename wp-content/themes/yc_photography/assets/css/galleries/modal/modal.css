@@ -4,6 +4,8 @@
 
 .div_modal_img {
     margin: auto;
+    max-height: 500px;
+    overflow: hidden;
 }
 .img-modal-content {
     margin: auto;
@@ -37,7 +39,7 @@
 }
 /* FULLSCREEN */
 .div_modal_img.fullscreen_div_img {
-    /* max-height: unset; */
+    max-height: unset;
     height: 100%;
     position: absolute;
     top: 50%;

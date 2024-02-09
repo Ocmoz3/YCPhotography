@@ -43,8 +43,7 @@
 }
 .social_icons_container {
     display: flex;
-    justify-content:
-    space-between;
+    justify-content: center;
     padding: .5rem;
     flex-wrap: wrap;
     gap: .5rem;
