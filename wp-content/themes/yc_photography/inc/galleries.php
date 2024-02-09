@@ -232,7 +232,7 @@ function custom_gallery_html($output, $attr, $instance) {
                                     // SOCIAL ICONS
                                     $output .= 
                                     '<div class="div_social ' . $name . '">
-                                        <a href="' . $networkItem['sharing_url'] . '" target="_blank" title="Partager sur ' . $networkItem['label'] . '" rel="noopener"><i class="fa-brands fa-' . $name . '"></i></a>
+                                        <a href="' . $networkItem['sharing_url'] . '" target="_blank" title="Partager sur ' . $networkItem['label'] . '" rel="noopener">' . $networkItem['icon'] . '</a>
                                     </div>';
                                 }
                                 $output .= 
@@ -247,7 +247,7 @@ function custom_gallery_html($output, $attr, $instance) {
                             set_query_var('photoname', $photo_get_name);
                             $photoname = get_query_var('photoname');
 
-                            $share_link = get_template_directory_uri() . '/' . $photoname;
+                            $share_link = get_template_directory_uri() . '/' . $photoname . '/' . $n_slider . '/';
 
                             // DIV SHARE LINK
                             $output .= 

@@ -7,13 +7,13 @@ $networks = [
     'facebook' => [
         'name' => 'facebook',
         'label' => 'Facebook',
-        'icon' => '<i class="fa-brands fa-square-facebook"></i>',
+        'icon' => '<i id="facebook" class="fa-brands fa-square-facebook"></i>',
         'unicode' => 'f082'
     ],
     'instagram' => [
         'name' => 'instagram',
         'label' => 'Instagram',
-        'icon' => '<i class="fa-brands fa-square-instagram"></i>',
+        'icon' => '<i id="instagram" class="fa-brands fa-square-instagram"></i>',
         'unicode' => 'e055'
     ],
     'twitter' => [

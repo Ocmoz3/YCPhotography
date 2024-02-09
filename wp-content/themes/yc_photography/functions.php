@@ -14,13 +14,12 @@ require_once('inc/metaboxes/FrontPageMetabox.php');
 require_once('inc/metaboxes/LikesMetabox.php');
 require_once('inc/galleries.php');
 
-
-// /**
-//  * Nettoie les règles d'écriture à chaque changement de thème
-//  */
-// Au chargement de notre thème
+/**
+ * Cleans up writing rules every time you change theme
+ */
+// When loading the theme.
 add_action('after_switch_theme', 'flush_rewrite_rules');
-// À chaque changement de thème
+// Each time you change theme.
 add_action('switch_theme', 'flush_rewrite_rules');
 
 /**
