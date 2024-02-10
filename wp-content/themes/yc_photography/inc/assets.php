@@ -33,6 +33,8 @@ function yc_photography_register_styles() {
         wp_enqueue_style('modal_minmax_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/minimize-maximize-buttons.css');
         wp_enqueue_style('modal_nextprev_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/next-previous-buttons.css');
         wp_enqueue_style('share_modal_stylesheet', get_template_directory_uri() . '/assets/css/galleries/modal/share_modal.css');
+        // ERROR (404, page under contruction)
+        wp_enqueue_style('error_stylesheet', get_template_directory_uri() . '/assets/css/error.css');
         // SCRIPTS
         wp_enqueue_script('header_nav_script', get_template_directory_uri() . '/assets/js/header/header_nav.js', ['jquery'], false, true);
         // GALLERIES

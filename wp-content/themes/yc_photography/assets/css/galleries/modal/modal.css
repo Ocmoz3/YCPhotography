@@ -50,7 +50,7 @@
 .img-modal img.fullscreen_img {
     height: 100%;
     width: auto;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
 }
 @keyframes animatezoom {
     from {
