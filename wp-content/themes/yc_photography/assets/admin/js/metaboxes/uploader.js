@@ -7,7 +7,7 @@
         e.preventDefault()
         // Declares variable corresponding to the element clicked on.
         var $this = jQuery(elem);
-        console.log($this);
+        // console.log($this);
         // Déclare variable qui récupère l'attribut data-multiple dans le champ
         var multiple = $this.data('multiple')
         // console.log(multiple);
@@ -45,6 +45,8 @@
             // Attributes new image source
             jQuery(imgTag).attr('src', changedSrc);
             jQuery(imgTagPrev).attr('value', changedSrc);
+
+            imgTagAround.css('display', 'block');
         })
         uploader.open()
     }

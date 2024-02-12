@@ -2,13 +2,15 @@
 /**
  * Displays the portfolio template part on front-page
  */
+
+$get_custom_repeater_metas = get_post_meta(get_the_ID(), 'custom_repeater_item', true);
+// debug($get_custom_repeater_metas);
+if(!empty($get_custom_repeater_metas)):
 ?>
 
 <section id="portfolio">
     <h1><?php echo get_post_meta(get_the_ID(), 'yc_portfolio_title', true); ?></h1>
     <?php
-    $get_custom_repeater_metas = get_post_meta(get_the_ID(), 'custom_repeater_item', true);
-   
     ?>
     <nav style="width: 100%;">
         <ul class="ul_portfolio_nav">
@@ -28,3 +30,6 @@
         </ul>
     </nav>
 </section>
+
+<?php
+endif;

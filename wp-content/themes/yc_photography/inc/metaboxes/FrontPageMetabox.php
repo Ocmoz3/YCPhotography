@@ -137,7 +137,6 @@ class YC_FrontPage_Metabox {
         // Checks the nonce.
         // Meta boxes are loaded on all posts of type page so must check if this nonce exists otherwise returns an error.
         if(key_exists($this->id . '_nonce', $_POST)):
-        // if($_POST[$this->id . '_nonce']):
             if(!wp_verify_nonce($_POST[$this->id . '_nonce'], $this->id)):
                 return false;
             endif;
@@ -148,7 +147,8 @@ class YC_FrontPage_Metabox {
             // Special treatment for the repeater.
             if ( isset( $_POST['custom_repeater_item'] ) ){
                 update_post_meta( $post_id, 'custom_repeater_item', $_POST['custom_repeater_item'] );
-            } else {
+            } 
+            else {
                 update_post_meta( $post_id, 'custom_repeater_item', '' );
             }
             // Processing of all meta boxes.
