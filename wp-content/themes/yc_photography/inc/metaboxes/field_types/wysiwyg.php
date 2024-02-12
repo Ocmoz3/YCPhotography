@@ -12,7 +12,7 @@ $settings = [
 
 ?>
 <div class="meta-box-item-title">
-    <h4><?php echo $name; ?></h4>
+    <h4><?php echo esc_html($name); ?></h4>
 </div>
 <div class="meta-box-item-content">
     <?php 

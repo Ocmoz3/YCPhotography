@@ -20,7 +20,7 @@ class LikeSMetaBox
         $this_att_id = $post->ID;
         global $wpdb;
         // TO KEEP !!!!
-        // Selects the last number of likes recorded for this attachment
+        // Selects the last number of likes recorded for this attachment.
         // $number_of_likes = $wpdb->get_var("SELECT likes FROM wp_likes WHERE att_id = $this_att_id ORDER BY ID DESC LIMIT 1");
         $number_of_likes = $wpdb->get_var("SELECT likes FROM wp_likes WHERE att_id = $this_att_id");
         // echo $number_of_likes; 
@@ -44,7 +44,7 @@ class LikeSMetaBox
                 <?php
                 }
                 ?>
-                <span class="span_nb_of_likes"><?php echo $number_of_likes; ?></span>
+                <span class="span_nb_of_likes"><?php echo esc_html($number_of_likes); ?></span>
             </div>
         </div>
         <?php

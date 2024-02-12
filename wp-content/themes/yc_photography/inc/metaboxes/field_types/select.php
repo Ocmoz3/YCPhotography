@@ -4,7 +4,7 @@
  * Render des champs type select
  */
 
-//  To use select field type, an array must de defined
+// To use select field type, an array must de defined
 $array = [
     'value 1' => 'value 1',
     'value 2' => 'value 2',
@@ -12,18 +12,17 @@ $array = [
 ];
 ?>
 <div class="meta-box-item-title">
-    <h4><?php echo $name; ?></h4>
+    <h4><?php echo esc_html($name); ?></h4>
 </div>
 <div class="meta-box-item-content">
-    <select name="<?php echo $id; ?>" id="<?php echo $id; ?>" onchange="myFunction(event)">
-        <!-- <option <?php if(empty($value)): echo 'selected'; endif; ?>>Choisissez la page</option> -->
+    <select name="<?php echo esc_attr($id); ?>" id="<?php echo esc_attr($id); ?>" onchange="myFunction(event)">
         <?php 
         foreach($array as $array_item): 
             ?>
-            <option value="<?php echo $array_item ?>"><?php echo $array_item ?></option>
+            <option value="<?php echo esc_attr($array_item); ?>"><?php echo esc_html($array_item); ?></option>
             <?php 
         endforeach; 
         ?>
     </select>
-    <input type="hidden" name="<?php echo $id; ?>" value="<?php echo $array_item; ?>">
+    <input type="hidden" name="<?php echo esc_attr($id); ?>" value="<?php echo esc_attr($array_item); ?>">
 </div>

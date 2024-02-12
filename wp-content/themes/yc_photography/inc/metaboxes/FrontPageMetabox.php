@@ -84,7 +84,7 @@ class YC_FrontPage_Metabox {
         endforeach;
         // In addition to the conditions declared in the render, other security features: nonce field. It checks that the form has been submitted from the current page, avoids cross-site scripting vulnerabilities
         // Cross-site scripting (XSS) is a security vulnerability that allows an attacker to inject malicious client code into a website.
-        echo '<input type="hidden" name="' . $this->id . '_nonce" value="' . wp_create_nonce($this->id) . '">';
+        echo '<input type="hidden" name="' . esc_attr($this->id) . '_nonce" value="' . esc_attr(wp_create_nonce($this->id)) . '">';
     }
 
     /**
