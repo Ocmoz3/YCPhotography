@@ -117,7 +117,7 @@ $i = 1;
                             // Checks if the page content starts with a gallery shortcode.
                             if(str_starts_with($page->post_content, '[gallery')):
                             ?>
-                                <option value="<?php echo esc_attr($page->post_title); ?>"><?php echo esc_attr($page->post_title); ?></option>
+                                <option value="<?php echo esc_attr($page->post_title); ?>"><?php echo esc_html($page->post_title); ?></option>
                             <?php 
                             endif;
                         endforeach; 

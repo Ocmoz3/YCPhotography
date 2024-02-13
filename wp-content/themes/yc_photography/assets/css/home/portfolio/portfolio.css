@@ -2,6 +2,9 @@
  * Style of portfolio template part displayed on front-page
  */
 
+.nav_portfolio {
+width: 100%;
+}
 .ul_portfolio_nav {
     display: flex;
     flex-flow: row wrap;
@@ -54,6 +57,7 @@
     align-items: center;
     justify-content: center;
 }
+/* RESPONSIVE */
 @media screen and (max-width: 1050px) {
     .li_portfolio_nav .span_portfolio {
         font-size: 4.8rem;

@@ -2,13 +2,16 @@
 /**
  * Displays the contact template part on front-page
  */
+
+$contact_title = get_post_meta(get_the_ID(), 'yc_contact_title', true);
+$contact_form = get_post_meta(get_the_ID(), 'yc_contact_form', true);
 ?>
 
-<section id="contact" style="background-color: black; width: 100%; max-width: unset;">
-    <div class="div_around_contact" style="position: relative;">
-        <h1 style="color: white;"><?php echo get_post_meta(get_the_ID(), 'yc_contact_title', true); ?></h1>
+<section id="contact">
+    <div class="div_around_contact">
+        <h1><?php echo esc_html($contact_title); ?></h1>
         <?php
-        echo do_shortcode(get_post_meta(get_the_ID(), 'yc_contact_form', true));
+        echo do_shortcode(wp_kses_post($contact_form));
         // include('svg/insta-svg.php');
         dynamic_sidebar('social-network-widget');
         ?>

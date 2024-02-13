@@ -4,10 +4,12 @@
 
 #exhibitions .exhibitions_container {
     column-count: 3;
+    padding-bottom: 2rem;
 }
 #exhibitions .exhibitions_container div {
     padding: .5rem;
     /* break-inside: avoid; */
+    display: inline;
 }
 #exhibitions .exhibitions_container div p:first-child {
     color: #8B0000;
@@ -25,5 +27,6 @@
 @media screen and (max-width: 480px) {
     #exhibitions .exhibitions_container {
         column-count: 1;
+        padding-bottom: 1rem;
     }
 }

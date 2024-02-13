@@ -150,9 +150,6 @@
 }
 /* RESPONSIVE */
 @media (max-width: 900px) {
-    main {
-        margin-top: 0;
-    }
     .a_nav:not(.second_level) {
         padding: 2.5rem 2.5rem;
     }
