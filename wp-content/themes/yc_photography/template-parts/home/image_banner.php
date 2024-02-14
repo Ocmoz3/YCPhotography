@@ -6,6 +6,6 @@
 $img_src = get_post_meta(get_the_ID(), 'yc_frontpage_image', true);
 ?>
 
-<div id="home" class="site_max_width">
+<section id="home" class="site_max_width" style="padding: 0;">
     <img src="<?php echo esc_url($img_src); ?>" alt="">
-</div>
+</section>

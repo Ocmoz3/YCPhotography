@@ -2,6 +2,9 @@
  * Style of footer
  */
 
+footer {
+    width: 100%;
+}
 .div_site_credits {
     display: flex;
     justify-content: center;

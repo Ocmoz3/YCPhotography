@@ -6,24 +6,24 @@
 /**
  * Displays header dropdown menu only on touch devices, so on click.
  */ 
-if(window.matchMedia("(pointer: coarse)").matches) {
-    // touchscreen
-    let dropd = document.querySelector('li.dropdown a');
-    dropd.addEventListener('click', function(event) {
-        event.preventDefault();
-        let drop = document.querySelector('li.dropdown');
-        drop.classList.add('color_nav_hover');
-        let dc = document.querySelector('ul.dropdown-content');
-        if (window.matchMedia('(min-width: 900px)').matches) {
-            dc.style.display = 'block';
-        }
-    }, true);
-} 
+// if(window.matchMedia("(pointer: coarse)").matches) {
+//     // touchscreen
+//     let dropd = document.querySelector('li.dropdown a');
+//     dropd.addEventListener('click', function(event) {
+//         event.preventDefault();
+//         let drop = document.querySelector('li.dropdown');
+//         drop.classList.add('color_nav_hover');
+//         let dc = document.querySelector('ul.dropdown-content');
+        // if (window.matchMedia('(min-width: 900px)').matches) {
+        //     dc.style.display = 'block';
+        // }
+//     }, true);
+// } 
 /**
  * Displays dropdown menu on desktop devices on hover.
  * If click on title, go directly to the page.
  */ 
-else {
+// else {
     // main li
     let lis = document.querySelectorAll('#block_header li.menu-item');
     for(let li of lis) {
@@ -44,7 +44,7 @@ else {
             }
         });
     }
-}
+// }
 /**
  * Closes dropdown menu.
  */
@@ -94,21 +94,20 @@ link_burger.addEventListener('click', function(e) {
 // jquery
 (function($) {
     $(document).ready(function () {
-        // Adjusts anchor to header height (-70px).
-        // topMenuHeight = -70;
         if($('a.a_nav[href*="#"]').length) {
             $('a.a_nav[href*="#"]').click(function() {
-                substractHeight = 70;
+                // Adjusts anchor to header height (-70px).
+                // topMenuHeight = -70;
+                substractHeight = 0;
+                // console.log(substractHeight);
                 // Menu burger 
                 // Detects whether user is on a touch screen.
                 if(window.matchMedia("(pointer: coarse)").matches) {
                     // Changes the height of the anchor point according to screen size.
-                    if (window.matchMedia('(min-width: 900px)').matches) {
-                        substractHeight = 70;
-                    }
-                    else {
+                    if (window.matchMedia('(max-width: 900px)').matches) {
                         substractHeight = 0;
                     }
+                    // console.log(substractHeight);
                 }
                 // Closes the burger menu if the user clicks on a navigation link.
                 $('#ul_burger').removeClass('open');

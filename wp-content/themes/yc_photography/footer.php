@@ -6,7 +6,7 @@
  */
 ?>
 
-            <footer style="width: 100%;">
+            <footer>
                 <div class="div_site_credits">
                     <p class="site_credits">&copy; 2021 - yann cielat</p>
                 </div>

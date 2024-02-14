@@ -22,6 +22,38 @@ add_action('after_switch_theme', 'flush_rewrite_rules');
 // Each time you change theme.
 add_action('switch_theme', 'flush_rewrite_rules');
 
+// CONTACT FORM 7
+/**
+ * Removes <br/>, <p> and <span> from user form contact.
+ */
+add_filter('wpcf7_form_elements', function($content) {
+    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
+    $content = str_replace('<br />', '', $content);
+    $content = str_replace('<p>', '', $content);
+    $content = str_replace('</p>', '', $content);
+    $content = str_replace('<span>', '', $content);
+    $content = str_replace('</span>', '', $content);
+    return $content;
+});
+
+/**
+ * Replaces all accents with their unaccented equivalents.
+*/
+function yc_photography_turns_into_slug($str){
+    $unwanted_array = array(
+        'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+        'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+        'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+        'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y',
+        ' ' => '-'
+    );
+    $str = strtr( $str, $unwanted_array );
+    return $str;
+}
+
+// ADMIN SECTION
+
 /**
  * Moves WordPress Admin Bar to the bottom.
  * 
@@ -71,24 +103,6 @@ function move_admin_bar() {
     endif;
 }
 add_action( 'wp_head', 'move_admin_bar' );
-
-
-// CONTACT FORM 7
-/**
- * Removes <br/>, <p> and <span> from user form contact.
- */
-add_filter('wpcf7_form_elements', function($content) {
-    $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
-    $content = str_replace('<br />', '', $content);
-    $content = str_replace('<p>', '', $content);
-    $content = str_replace('</p>', '', $content);
-    $content = str_replace('<span>', '', $content);
-    $content = str_replace('</span>', '', $content);
-    return $content;
-});
-
-
-// ADMIN SECTION
 
 /**
  * Prints scripts or data before the default footer scripts.

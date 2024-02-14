@@ -60,13 +60,16 @@ main {
 section {
     max-width: 980px;
     width: 100%;
-    padding: 1rem;
+    /* Important for anchor position */
+    padding-top: 60px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 h1 {
     padding: 1rem;
+    /* Important for anchor position */
+    padding-top: 0;
     text-align: center;
     font-family: 'Imbue', serif;
     font-weight: 100;
@@ -86,11 +89,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
     transition: background-color 0s 600000s, color 0s 600000s !important;
 }
-/* Class inutile, déjà géré sur le style de <section> */
-/* .wrap_max_width {
-    max-width: 980px;
-    width: 100%;
-} */
 /* RESPONSIVE */
 @media screen and (max-width: 1800px) {
     h1 {
