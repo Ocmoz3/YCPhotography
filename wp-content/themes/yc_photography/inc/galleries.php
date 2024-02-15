@@ -11,6 +11,7 @@
  */
 add_filter('post_gallery', 'custom_gallery_html', 10, 3);
 function custom_gallery_html($output, $attr, $instance) { 
+
     // Retrieves the images from the gallery.
     $ids = explode(',', $attr['ids']);
 

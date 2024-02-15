@@ -123,13 +123,16 @@ link_burger.addEventListener('click', function(e) {
             const navSwitch = $(switchName);
             // console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
-            const deductHeight = 72;
+            // const deductHeight = 72;
+            const deductHeight = 2;
             let navArr = [];
             // Triggers function only if user is on home page.
             if($('body.home').length) {
                 navSwitch.each(function(i) {
                     let navSwitchHref = $(this).attr('href');
+                    // console.log(navSwitchHref);
                     let tgtOff = $(navSwitchHref).offset().top - deductHeight;
+                    // console.log(tgtOff);
                     navArr.push([]);
                     navArr[i].switch = $(this);
                     navArr[i].tgtOff = tgtOff;

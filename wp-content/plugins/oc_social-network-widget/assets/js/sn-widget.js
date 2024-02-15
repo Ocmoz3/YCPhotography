@@ -1,4 +1,4 @@
-console.log('Hello sn widget');
+// console.log('Hello sn widget');
 
 // (function($) {
 //     icons = $('i[class*="fa-brand"]');
