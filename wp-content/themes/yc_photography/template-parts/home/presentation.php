@@ -10,6 +10,6 @@ $presentation_test = get_post_meta(get_the_ID(), 'yc_presentation_text', true);
 <section id="presentation">
     <h1><?php echo esc_html($presentation_title); ?></h1>
     <div class="div_presentation">
-        <?php echo wp_kses_post($presentation_test); ?>
+        <?php echo wpautop(wp_kses_post($presentation_test)); ?>
     </div>
 </section>

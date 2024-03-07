@@ -138,7 +138,7 @@ function showSlides(n) {
     // LIKES
     $('.heart').click(function() {
         // Selects the counter span tag that follows THIS span.heart.
-        counter = $(this).next();
+        counter = $(this).parent().next().children('span');
         // Gets value of THIS span.heart_counter and transforms it into an integer.
         counterGetNumber = parseInt(counter.html());
         // Sets 'liked' class to THIS heart span tag.
@@ -198,7 +198,7 @@ function showSlides(n) {
         // Gets id attribute of THIS span.heart_counter and sets it to a variable.
         counterId = '#' + $(this).attr('id');
         // Selects span.heart placed before THIS span.heart_counter.
-        heart = $(this).prev();
+        heart = $(this).parent().prev().children();
         // Attributes 'already_liked' class to THIS span.heart only if number of likes bigger than zero.
         if(counterNumber > 0) {
             heart.addClass(' already_liked');

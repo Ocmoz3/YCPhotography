@@ -11,7 +11,7 @@ $exhibitions_list = get_post_meta(get_the_ID(), 'yc_exhibitions_list', true);
     <h1><?php echo esc_html($exhibitions_title); ?></h1>
     <div class="exhibitions_container">
         <?php 
-        echo wp_kses_post($exhibitions_list);
+        echo wpautop(wp_kses_post($exhibitions_list));
         ?>
     </div>
 </section>

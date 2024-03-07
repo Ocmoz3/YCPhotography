@@ -5,7 +5,7 @@
 #modal_social_sharing {
     z-index: 999999999;
     display: none;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     position: fixed;
     left: 0;
     top: 0;

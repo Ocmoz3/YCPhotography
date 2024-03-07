@@ -151,11 +151,23 @@ function custom_gallery_html($output, $attr, $instance) {
 
                 $setInputValue = setInputValue($id);
                 $image_src = wp_get_attachment_image_src($id, $size)[0];
+                $image_srcset = wp_get_attachment_image_srcset($id, $size);
                 
+                $srcset_str = $image_srcset;
+                $pattern_webp = '/.jpg/';
+                $image_srcset_webp = preg_replace($pattern_webp, '.webp', $srcset_str);
+
+                // $src_str = $image_src;
+                // $src_webp = '/.jpg/';
+                // $image_src_webp = preg_replace($src_webp, '.webp', $src_str);
+                $image_file = wp_get_upload_dir()['path'] . '/' . $photo_name . '.webp';
+
                 $j++;
 
                 set_query_var('n_slider', $j);
                 $n_slider = get_query_var('n_slider');
+
+                // debug(file_exists(wp_get_upload_dir()['path'] . '/' . $photoname));
 
                 // DIV IMG
                 $output .= 
@@ -163,42 +175,66 @@ function custom_gallery_html($output, $attr, $instance) {
                 <div id="div' . $id . '" class="div_modal_img">  <!-- ouverture div image -->';
 
                     // IMG
-                    $output .= 
-                    '<img class="mySlides heart_counter' . $id . '" src="' . $image_src . '">';
+                    $output .= '
+                    <picture style="margin: 0 auto;">';
+                        
+                        if(file_exists($image_file)):
+                            $output .= '
+                            <source srcset="' . $image_srcset_webp . '" type="image/webp">';
+                        endif;
 
-                    // SHARE BUTTON
-                    $output .= 
-                    '<!-- share button -->
-                    <span id="share" class="share" onclick="displayModalShare(this)" data-sharingUrl="' . $photoname . '" data-nslider="' . $n_slider . '">
-                        <svg fill="#000000" height="18px" width="18px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                        viewBox="0 0 512 512" xml:space="preserve">
-                            <g>
-                                <g>
-                                    <path d="M512,241.7L273.643,3.343v156.152c-71.41,3.744-138.015,33.337-188.958,84.28C30.075,298.384,0,370.991,0,448.222v60.436
-                                        l29.069-52.985c45.354-82.671,132.173-134.027,226.573-134.027c5.986,0,12.004,0.212,18.001,0.632v157.779L512,241.7z
-                                        M255.642,290.666c-84.543,0-163.661,36.792-217.939,98.885c26.634-114.177,129.256-199.483,251.429-199.483h15.489V78.131
-                                        l163.568,163.568L304.621,405.267V294.531l-13.585-1.683C279.347,291.401,267.439,290.666,255.642,290.666z"/>
-                                </g>
-                            </g>
-                        </svg>
-                    </span>';
+                        $output .= '
+                        <source srcset="' . $image_srcset . '" type="image/jpeg">
+                        <img class="mySlides heart_counter' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="" decoding="async" loading="lazy" sizes="' . $image_sizes . '">
+                    </picture>
+                    ';
+                    // <img class="mySlides heart_counter' . $id . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="">
+                    // srcset="' . $image_srcset . '"
 
-                    // HEART BUTTON & COUNTER
-                    $output .= 
-                    '<!-- heart button -->
-                    <span id="heart" class="heart">
-                        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="-18.02 -18.02 636.86 636.86" xml:space="preserve" stroke="#000000" stroke-width="18.02472">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                            <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M300.413,579.295l-3.838-2.256c-0.417-0.244-42.267-24.99-93.594-66.887C155.53,471.42,89.913,409.596,46.783,335.031 C15.751,281.351,0.011,227.687,0,175.529c-0.002-22.647,4.062-43.951,12.079-63.319c7.697-18.593,18.843-34.986,33.129-48.724 c28.135-27.056,66.771-41.957,108.79-41.957c25.468,0,48.491,4.055,68.428,12.051c19.008,7.624,35.286,18.838,48.382,33.333 c13.457,14.893,23.404,33.046,29.605,53.767c6.201-20.723,16.148-38.872,29.607-53.767c13.098-14.494,29.377-25.709,48.385-33.332 c19.939-7.997,42.965-12.051,68.434-12.051c42.016,0,80.648,14.901,108.783,41.957c14.287,13.738,25.434,30.132,33.131,48.725 c8.016,19.368,12.078,40.672,12.072,63.319c-0.01,52.166-15.752,105.83-46.795,159.502c-19.068,32.977-44.084,66.23-74.354,98.834 c-24.145,26.008-51.676,51.676-81.828,76.289c-51.328,41.896-93.182,66.641-93.598,66.887L300.413,579.295z M153.998,36.672 c-38.085,0-72.993,13.399-98.293,37.729c-26.54,25.522-40.566,60.49-40.561,101.125c0.01,49.464,15.066,100.579,44.75,151.925 c23.146,40.018,68.384,102.131,152.449,170.795c41.561,33.947,76.727,56.404,88.071,63.408 c11.345-7.002,46.513-29.461,88.074-63.408c46.4-37.898,110.512-98.295,152.436-170.795 c29.691-51.34,44.752-102.455,44.76-151.926c0.012-40.634-14.014-75.602-40.555-101.125 c-25.301-24.329-60.207-37.729-98.287-37.729c-45.842,0-81.363,13.59-105.584,40.393c-21.766,24.088-33.271,58.135-33.271,98.461 h-15.143c0-40.325-11.505-74.373-33.27-98.461C235.353,50.263,199.833,36.672,153.998,36.672z"/> </g> </g> </g>
-                        </svg>
-                    </span>
-                    <!-- heart counter -->
-                    <span id="heart_counter' . $id . '" class="heart_counter">'.$setInputValue.'</span>
-                    <input type="hidden" class="input_storage heart_counter_' . $id . '" id="dname" name="dname" value="'.$setInputValue.'">
-                    <input type="hidden" class="input_storage_att_id" id="att_id" name="att_id" value="' . $id . '">
+                        $output .= '<div class="heart_share_container">';
 
-                </div> <!-- fermeture div image -->';
+                            // SHARE BUTTON
+                            $output .= 
+                            '<!-- share button -->
+                            <div>
+                                <span id="share" class="share" onclick="displayModalShare(this)" data-sharingUrl="' . $photoname . '" data-nslider="' . $n_slider . '">
+                                    <svg fill="#000000" height="18px" width="18px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                    viewBox="0 0 512 512" xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <path d="M512,241.7L273.643,3.343v156.152c-71.41,3.744-138.015,33.337-188.958,84.28C30.075,298.384,0,370.991,0,448.222v60.436
+                                                    l29.069-52.985c45.354-82.671,132.173-134.027,226.573-134.027c5.986,0,12.004,0.212,18.001,0.632v157.779L512,241.7z
+                                                    M255.642,290.666c-84.543,0-163.661,36.792-217.939,98.885c26.634-114.177,129.256-199.483,251.429-199.483h15.489V78.131
+                                                    l163.568,163.568L304.621,405.267V294.531l-13.585-1.683C279.347,291.401,267.439,290.666,255.642,290.666z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>';
+
+                            // HEART BUTTON & COUNTER
+                            $output .= '<div class="heart_btn_counter">';
+                                $output .= 
+                                '<!-- heart button -->
+                                <div>
+                                    <span id="heart" class="heart">
+                                        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="-18.02 -18.02 636.86 636.86" xml:space="preserve" stroke="#000000" stroke-width="18.02472">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <g id="SVGRepo_iconCarrier"> <g> <g> <path d="M300.413,579.295l-3.838-2.256c-0.417-0.244-42.267-24.99-93.594-66.887C155.53,471.42,89.913,409.596,46.783,335.031 C15.751,281.351,0.011,227.687,0,175.529c-0.002-22.647,4.062-43.951,12.079-63.319c7.697-18.593,18.843-34.986,33.129-48.724 c28.135-27.056,66.771-41.957,108.79-41.957c25.468,0,48.491,4.055,68.428,12.051c19.008,7.624,35.286,18.838,48.382,33.333 c13.457,14.893,23.404,33.046,29.605,53.767c6.201-20.723,16.148-38.872,29.607-53.767c13.098-14.494,29.377-25.709,48.385-33.332 c19.939-7.997,42.965-12.051,68.434-12.051c42.016,0,80.648,14.901,108.783,41.957c14.287,13.738,25.434,30.132,33.131,48.725 c8.016,19.368,12.078,40.672,12.072,63.319c-0.01,52.166-15.752,105.83-46.795,159.502c-19.068,32.977-44.084,66.23-74.354,98.834 c-24.145,26.008-51.676,51.676-81.828,76.289c-51.328,41.896-93.182,66.641-93.598,66.887L300.413,579.295z M153.998,36.672 c-38.085,0-72.993,13.399-98.293,37.729c-26.54,25.522-40.566,60.49-40.561,101.125c0.01,49.464,15.066,100.579,44.75,151.925 c23.146,40.018,68.384,102.131,152.449,170.795c41.561,33.947,76.727,56.404,88.071,63.408 c11.345-7.002,46.513-29.461,88.074-63.408c46.4-37.898,110.512-98.295,152.436-170.795 c29.691-51.34,44.752-102.455,44.76-151.926c0.012-40.634-14.014-75.602-40.555-101.125 c-25.301-24.329-60.207-37.729-98.287-37.729c-45.842,0-81.363,13.59-105.584,40.393c-21.766,24.088-33.271,58.135-33.271,98.461 h-15.143c0-40.325-11.505-74.373-33.27-98.461C235.353,50.263,199.833,36.672,153.998,36.672z"/> </g> </g> </g>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div>
+                                    <!-- heart counter -->
+                                    <span id="heart_counter' . $id . '" class="heart_counter">'.$setInputValue.'</span>
+                                    <input type="hidden" class="input_storage heart_counter_' . $id . '" id="dname" name="dname" value="'.$setInputValue.'">
+                                    <input type="hidden" class="input_storage_att_id" id="att_id" name="att_id" value="' . $id . '">
+                                </div>';
+                            $output .= '</div>';
+                        $output .= '</div>';
+
+                    $output .= '</div> <!-- fermeture div image -->';
                 // END DIV IMG
             }
 

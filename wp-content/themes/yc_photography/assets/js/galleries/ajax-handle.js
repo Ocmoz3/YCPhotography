@@ -5,7 +5,7 @@
     // If click on one of them.
     $(hearts).click(function() {
         // Selects the span corresponding to THIS heart and that displays the likes counter.
-        var spanCounter = $(this).next();
+        var spanCounter = $(this).parent().next().children('span');
         // Selects the input tag corresponding to THIS heart and that stores the value of the likes counter.
         var inputStorage = spanCounter.next();
         // Retrieves the value of this input.

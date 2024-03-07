@@ -15,6 +15,60 @@ require_once('inc/metaboxes/LikesMetabox.php');
 require_once('inc/galleries.php');
 
 /**
+ * Replaces jpg, jpeg, png occurences with "webp" expression.
+ * 
+ * @param string $url The string to be transformed.
+ * 
+ * @return string
+ */
+function yc_photography_webp_replacements($url) {
+    $attachment_webp_src = preg_replace(array('/jpg/', '/jpeg/', '/png/'), 'webp', $url);
+    return $attachment_webp_src;
+}
+/**
+ * Checks whether a file in jpg format also exists in webp format.
+ * 
+ * @param string $url The url used to check if file also exists in webp format.
+ * 
+ * @return bool
+ */
+function yc_photography_check_webp_src($url) {
+    $file_exists = false;
+    $attachment_array = explode('/', $url);
+    $attanchment_name = end($attachment_array);
+    yc_photography_webp_replacements($attanchment_name);
+    $image_file = wp_get_upload_dir()['path'] . '/' . $attanchment_name;
+    if(file_exists($image_file)):
+        $file_exists = true;
+    endif;
+    return $file_exists;
+}
+/**
+ * Retrieves the srcset of an attached file from its url.
+ * 
+ * @param string $url The url used to find the correct srcset.
+ * 
+ * @return string
+ */
+function yc_photography_get_srcset($url) {
+    $attachment_id = attachment_url_to_postid($url);
+    $attachment_srcset = wp_get_attachment_image_srcset($attachment_id);
+    return $attachment_srcset;
+}
+/**
+ * Retrieves the srcset of an attached file from its url and replaces the existing extension with ".webp".
+ * 
+ * @param string $url The url used to find the correct srcset.
+ * 
+ * @return string
+ */
+function yc_photography_get_webp_srcset($url) {
+    $webp_srcset = yc_photography_get_srcset($url);
+    $webp_srcset = yc_photography_webp_replacements($webp_srcset);
+    return $webp_srcset;
+}
+
+/**
  * Cleans up writing rules every time you change theme
  */
 // When loading the theme.
@@ -111,23 +165,9 @@ add_action( 'wp_head', 'move_admin_bar' );
  * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
  */
 function yc_photography_admin_head_style() {
-    if(isset($_GET['post']) && $_GET['post'] != 6):
+    if((!isset($_GET['post_type']) && isset($_GET['post']) && $_GET['post'] == 6)): 
         ?>
         <!-- Cancels metabox display on pages other than the home page -->
-        <style>
-            #frontpage_metabox_image,
-            #frontpage_metabox_presentation,
-            #frontpage_metabox_portfolio,
-            #frontpage_metabox_exhibitions,
-            #frontpage_metabox_contact {
-                display: none;
-            }
-        </style>
-    <?php
-    else:
-    ?>
-    
-        <!-- Cancels base WYSIWYG display on front page and displays front page meta boxes -->
         <style>
             #frontpage_metabox_image,
             #frontpage_metabox_presentation,
@@ -140,7 +180,19 @@ function yc_photography_admin_head_style() {
                 display: none !important;
             }
         </style>
-    <?php
+        <?php
+    else: 
+        ?>
+        <style>
+            #frontpage_metabox_image,
+            #frontpage_metabox_presentation,
+            #frontpage_metabox_portfolio,
+            #frontpage_metabox_exhibitions,
+            #frontpage_metabox_contact {
+                display: none;
+            }
+        </style>
+        <?php
     endif;
 }
 add_action('admin_head', 'yc_photography_admin_head_style');
