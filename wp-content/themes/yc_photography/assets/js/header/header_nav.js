@@ -40,7 +40,11 @@
             let ul_drops = dropdown.querySelectorAll('ul.dropdown-content');
             // let ul_drop = dropdown.querySelector('ul.dropdown-content');
             for(let ul_drop of ul_drops) {
-                ul_drop.style.display = 'block';
+                if (window.matchMedia('(max-width: 900px)').matches) {
+                    dc.style.display = 'none';
+                } else {
+                    ul_drop.style.display = 'block';
+                }
             }
         });
     }
@@ -76,7 +80,7 @@ for(let li_drop_close of lis_drop_close) {
  * Handles "burger" menu for medium and small screens.
  */
 // Menu burger
-let link_burger = document.getElementById('link_burger');
+let link_burger = document.getElementById('div_link_burger');
 let burger      = document.getElementById('burger');
 let ul          = document.getElementById('ul_burger');
 let div_link_burger  = document.getElementById('div_link_burger')

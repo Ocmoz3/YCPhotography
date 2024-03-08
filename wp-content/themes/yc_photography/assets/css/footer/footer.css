@@ -1,5 +1,5 @@
 /**
- * Style of footer
+ * Style of footer section
  */
 
 footer {
@@ -7,11 +7,47 @@ footer {
 }
 .div_site_credits {
     display: flex;
-    justify-content: center;
+    flex-flow: row wrap;
+    justify-content: space-between;
     background-color: black;
     padding: 1rem;
 }
+.site_credits,
+.legal_nav_link {
+    font: var(--body-font);
+    font-size: .9rem;
+    text-align: center;
+}
 .site_credits {
-    color: grey;
-    font: var(--contact-font);
+    color: rgba(255, 255, 255, .5);
+}
+.site_credits span {
+    color: rgba(255, 255, 255, .3);
+}
+.footer_legals_ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: .5rem;
+}
+.legal_nav_link {
+    color: rgba(255, 255, 255, .7);
+    transition: color .5s;
+}
+.legal_nav_link:hover {
+    color: rgba(255, 255, 255, .85);
+}
+@media screen and (max-width: 700px) {
+    .div_site_credits {
+        flex-direction: column-reverse;
+        gap: .5rem;
+    }
+    .site_credits,
+    .footer_legals_container,
+    .footer_legals_li  {
+        width: 100%;
+    }
+    .footer_legals_ul {
+        gap: 0;
+    }
 }

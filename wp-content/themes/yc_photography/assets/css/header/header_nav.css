@@ -80,6 +80,7 @@
 }
 /* MENU BURGER */
 .div_link_burger {
+    cursor: pointer;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -94,14 +95,14 @@
     backdrop-filter: blur(3px);
     background-color: rgb(165 162 162 / 35%);
     z-index: 999999;
-    /* border-radius: 50%;
-    padding: 1.7rem; */
     display: none;
 }
 #link_burger {
     display: none;
 }
-/* Menu burger */
+#ul_burger .a_nav:hover {
+    box-shadow: none;
+}
 .dropdown_separator {
     background-color: rgb(190, 190, 190);
     width: 30%;
@@ -203,6 +204,10 @@
     }
 }
 @media (max-width: 480px) {
+    .div_link_burger {
+        height: 35px;
+        width: 35px;
+    }
     .a_nav {
         font-size: 1.1rem;
     }
