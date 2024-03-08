@@ -11,7 +11,7 @@ if(!empty($img_src)):
     <section id="home" class="site_max_width">
         <picture>
             <?php 
-            yc_photography_get_src_tags($img_src);
+            echo yc_photography_get_src_tags($img_src);
             ?>
             <img src="<?php echo esc_url($img_src); ?>" alt="">
         </picture>

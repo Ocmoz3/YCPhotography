@@ -26,7 +26,7 @@ if(!empty($get_custom_repeater_metas)):
                         <a class="a_portfolio" href="<?php echo $href_item2; ?>">
                             <picture>
                                 <?php 
-                                yc_photography_get_src_tags($get_item1);
+                                echo yc_photography_get_src_tags($get_item1);
                                 ?>
                                 <img src="<?php echo esc_url($get_item1); ?>" alt="" class="img_portfolio">
                             </picture>

@@ -33,8 +33,11 @@ function yc_photography_webp_replacements($url) {
  * @return bool
  */
 function yc_photography_get_src_tags($url) {
-    if(pathinfo($url) != 'webp'):
-        $file_exists = false;
+    
+    $source_tag = yc_photography_get_origin_src_tag($url);
+
+    if(pathinfo($url)['extension'] !== 'webp'):
+        
         $attachment_array = explode('/', $url);
         
         $attachment_month = array_key_last($attachment_array) - 1;
@@ -46,17 +49,16 @@ function yc_photography_get_src_tags($url) {
         $attanchment_name = end($attachment_array);
         $attanchment_name = yc_photography_webp_replacements($attanchment_name);
         $image_file = wp_get_upload_dir()['basedir'] . '/' .$attachment_year . '/' .$attachment_month . '/' . $attanchment_name;
-        if(file_exists($image_file)): 
-            $file_exists = true;
-        endif;
 
-        if($file_exists == true) {
-            echo '<source srcset="' .  yc_photography_webp_replacements(yc_photography_get_srcset($url)) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/webp">';
-        }
-        yc_photography_get_origin_src_tag($url);
-    else: 
-        yc_photography_get_origin_src_tag($url);
+        if(file_exists($image_file)):
+            $source_tag = '<source srcset="' .  yc_photography_webp_replacements(yc_photography_get_srcset($url)) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/webp">';
+            $source_tag .= yc_photography_get_origin_src_tag($url);
+        endif;
+        
     endif;
+
+    return $source_tag;
+
 }
 /**
  * Retrieves the srcset of an attached file from its url.
@@ -95,7 +97,8 @@ function yc_photography_get_origin_src_tag($url) {
     if(pathinfo($url)['extension'] == 'jpg' || pathinfo($url)['extension'] == 'jpeg'):
         $file_ext = 'jpeg';
     endif;
-    echo '<source srcset="' . yc_photography_get_srcset($url) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/' . $file_ext . '">';
+    $source_tag = '<source srcset="' . yc_photography_get_srcset($url) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/' . $file_ext . '">';
+    return $source_tag;
 }
 
 /**

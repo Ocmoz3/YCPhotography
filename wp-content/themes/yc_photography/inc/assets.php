@@ -19,6 +19,7 @@ function yc_photography_register_styles() {
         wp_enqueue_style('footer_stylesheet', get_template_directory_uri() . '/assets/css/footer/footer.css');
         // HOME
         if(is_front_page()):
+            wp_enqueue_style('home_image_banner_stylesheet', get_template_directory_uri() . '/assets/css/home/image_banner/image_banner.css');
             wp_enqueue_style('home_presentation_stylesheet', get_template_directory_uri() . '/assets/css/home/presentation/presentation.css');
             wp_enqueue_style('home_portfolio_stylesheet', get_template_directory_uri() . '/assets/css/home/portfolio/portfolio.css');
             wp_enqueue_style('home_exhibitions_stylesheet', get_template_directory_uri() . '/assets/css/home/exhibitions/exhibitions.css');

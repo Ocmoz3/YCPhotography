@@ -49,9 +49,14 @@ function custom_gallery_html($output, $attr, $instance) {
             
             set_query_var('n_slider', $i);
             $n_slider = get_query_var('n_slider');
-
+            
             // IMG
-            $output .= '<img id="photo-' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="" decoding="async" loading="lazy" srcset="' . $image_srcset . '" sizes="' . $image_sizes . '" onclick="currentSlide(' . $i . ')" data-orderslide="' . $i . '">';
+            $output .=
+            '<picture>';
+                $output .= yc_photography_get_src_tags($image_src);
+                $output .=
+                '<img  id="photo-' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="" decoding="async" loading="lazy" onclick="currentSlide(' . $i . ')" data-orderslide="' . $i . '">
+            </picture>';
     
         $output .= 
         '</div>';

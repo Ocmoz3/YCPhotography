@@ -1,0 +1,11 @@
+/**
+ * Style of image banner template part displayed on front-page
+ */
+
+ /* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    section#home {
+        padding: 0;
+        padding-top: 0 !important;
+    }
+}
