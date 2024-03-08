@@ -157,22 +157,11 @@ function custom_gallery_html($output, $attr, $instance) {
                 $setInputValue = setInputValue($id);
                 $image_src = wp_get_attachment_image_src($id, $size)[0];
                 $image_srcset = wp_get_attachment_image_srcset($id, $size);
-                
-                $srcset_str = $image_srcset;
-                $pattern_webp = '/.jpg/';
-                $image_srcset_webp = preg_replace($pattern_webp, '.webp', $srcset_str);
-
-                // $src_str = $image_src;
-                // $src_webp = '/.jpg/';
-                // $image_src_webp = preg_replace($src_webp, '.webp', $src_str);
-                $image_file = wp_get_upload_dir()['path'] . '/' . $photo_name . '.webp';
 
                 $j++;
 
                 set_query_var('n_slider', $j);
                 $n_slider = get_query_var('n_slider');
-
-                // debug(file_exists(wp_get_upload_dir()['path'] . '/' . $photoname));
 
                 // DIV IMG
                 $output .= 
@@ -182,19 +171,11 @@ function custom_gallery_html($output, $attr, $instance) {
                     // IMG
                     $output .= '
                     <picture style="margin: 0 auto;">';
-                        
-                        if(file_exists($image_file)):
-                            $output .= '
-                            <source srcset="' . $image_srcset_webp . '" type="image/webp">';
-                        endif;
-
+                        $output .= yc_photography_get_src_tags($image_src);
                         $output .= '
-                        <source srcset="' . $image_srcset . '" type="image/jpeg">
-                        <img class="mySlides heart_counter' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="" decoding="async" loading="lazy" sizes="' . $image_sizes . '">
-                    </picture>
-                    ';
-                    // <img class="mySlides heart_counter' . $id . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="">
-                    // srcset="' . $image_srcset . '"
+                        <img class="mySlides heart_counter' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" alt="" decoding="async" loading="lazy">';
+                    $output .= 
+                    '</picture>';
 
                         $output .= '<div class="heart_share_container">';
 

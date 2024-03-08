@@ -4,8 +4,8 @@
 
 .heart_share_container {
     position: absolute;
-    top: -25px;
     top: 0;
+    top: -8px;
     left: 25px;
     z-index: 999;
     display: flex;
