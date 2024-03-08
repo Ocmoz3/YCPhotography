@@ -26,12 +26,8 @@ if(!empty($get_custom_repeater_metas)):
                         <a class="a_portfolio" href="<?php echo $href_item2; ?>">
                             <picture>
                                 <?php 
-                                // Checks if this image exists with the .webp extension.
-                                // If true, displays source webp tag.
-                                if(yc_photography_check_webp_src($get_item1)): ?>
-                                    <source srcset="<?php echo yc_photography_get_webp_srcset($get_item1) ?>" type="image/webp">
-                                <?php endif; ?>
-                                <source srcset="<?php echo yc_photography_get_srcset($get_item1) ?>" type="image/jpeg">
+                                yc_photography_get_src_tags($get_item1);
+                                ?>
                                 <img src="<?php echo esc_url($get_item1); ?>" alt="" class="img_portfolio">
                             </picture>
                             <span class="span_portfolio"><?php echo esc_html($get_item2); ?></span>

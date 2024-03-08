@@ -3,7 +3,8 @@
  */
 
 .nav_portfolio {
-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
 }
 .ul_portfolio_nav {
     display: flex;
