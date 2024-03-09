@@ -10,7 +10,6 @@ function yc_photography_register_menus() {
     // add_theme_support('menus');
     register_nav_menus([
         'header' => 'Menu header',
-        'portfolio_nav' => 'Menu portfolio',
         'footer_legals' => 'Liens légaux'
     ]);
 }
@@ -57,9 +56,9 @@ function yc_photography_menu_item_classes($classes, $menu_item, $args) {
             endif;
         endforeach;
     endif;
-    // Adds class 'foot_hover' to footer menus in order to manage color hover
+    // Adds class 'footer_legals_li' to footer menus items
     if($args->theme_location === 'footer_legals'):
-        $classes[] = 'foot_hover';
+        $classes[] = 'footer_legals_li';
     endif;
     return $classes;
 }
@@ -76,14 +75,14 @@ add_action('nav_menu_css_class', 'yc_photography_menu_item_classes', 10, 3);
  * @return array
  */
 function yc_photography_menu_link_class($atts, $menu_item, $args) {
-    // In case user is not on front-page, adds home path before the anchor
-    // Only on first-level links
-    if($menu_item->menu_item_parent == 0 && !is_front_page()):
-        $atts['href'] = home_url('/') . $atts['href'];
-    endif;
     // Gets menu-items classes
     $classes = $menu_item->classes;
     if(!empty($args->theme_location) && $args->theme_location === 'header'):
+        // In case user is not on front-page, adds home path before the anchor
+        // Only on first-level links
+        if($menu_item->menu_item_parent == 0 && !is_front_page()):
+            $atts['href'] = home_url('/') . $atts['href'];
+        endif;
         // Adds class 'a_nav' to all links menu
         $atts['class'] = 'a_nav';
         // Adds class 'js-curnav-switch' to all first-level links menu
@@ -105,6 +104,9 @@ function yc_photography_menu_link_class($atts, $menu_item, $args) {
                 $atts['class'] .= ' dropbtn';
             endif;
         endforeach;
+    elseif(!empty($args->theme_location) && $args->theme_location === 'footer_legals'):
+        // Adds class 'legal_nav_link' to legals links menu
+        $atts['class'] = 'legal_nav_link';
     endif;
     return $atts;
 }

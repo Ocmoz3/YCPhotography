@@ -1,0 +1,69 @@
+/**
+ * Style of legals navigation
+ */
+
+.legals_page {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 6rem 2rem 2rem;
+    /* text-align: justify; */
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 1050px;
+}
+.legals_page h1 {
+    font-size: 3.5rem;
+}
+.legals_page h2 {
+    padding: 1rem 0;
+}
+.legals_page ul {
+    padding: .5rem;
+}
+.legals_page a {
+    display: inline;
+}
+.legals_page hr {
+    color: var(--main-green);
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+.legals_page p {
+    padding: .5rem 0;
+}
+.legals_page li:before {
+    content: "\f00c"; /* Add content: */
+    font-family: 'FontAwesome';
+    color: var(--main-green); /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 2rem; /* Also needed for space (tweak if needed) */
+    /* margin-left: 1rem; Also needed for space (tweak if needed) */
+    font-size: .6rem;
+    width: 1.2rem;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+    .legals_page h1 {
+        font-size: 3rem;
+    }
+    .legals_page li,
+    .legals_page p {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    /* .legals_page h1 {
+        font-size: 2.5rem;
+    } */
+    .legals_page h2 {
+        font-size: 1.4rem;
+    }
+}
+@media screen and (max-width: 300px) {
+    .legals_page {
+        padding: 5rem 1.2rem 1rem;
+    }
+}

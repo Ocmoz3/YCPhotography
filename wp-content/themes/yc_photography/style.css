@@ -66,7 +66,7 @@ section {
     align-items: center;
 }
 h1 {
-    padding: 1.5rem;
+    padding: 0 0 1.5rem;
     /* Important for anchor position */
     padding-top: 0;
     text-align: center;
@@ -74,6 +74,10 @@ h1 {
     font-weight: 100;
     font-size: 3rem;
     letter-spacing: 3px;
+}
+h2 {
+    font-weight: 600;
+    font-size: 1.7rem;
 }
 .site_max_width {
     max-width: 1600px;
@@ -95,16 +99,18 @@ input:-webkit-autofill:focus {
     }
 }
 @media screen and (max-width: 900px) {
+    main {
+        margin-top: 0;
+    }
     h1 {
         font-size: 2.5rem;
     }
+    h2 {
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
     section {
         padding: .5rem 1rem;
-    }
-}
-@media screen and (max-width: 900px) {
-    main {
-        margin-top: 0;
     }
 }
 @media screen and (max-width: 480px) {
