@@ -116,6 +116,9 @@ form {
     }
 }
 @media screen and (max-width: 480px) {
+    #contact {
+        padding: .5rem;
+    }
     .contact_form input::placeholder,
     .contact_form textarea::placeholder,
     .contact_form input,

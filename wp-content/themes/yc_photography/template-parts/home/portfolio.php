@@ -28,7 +28,7 @@ if(!empty($get_custom_repeater_metas)):
                                 <?php 
                                 echo yc_photography_get_src_tags($get_item1);
                                 ?>
-                                <img src="<?php echo esc_url($get_item1); ?>" alt="" class="img_portfolio">
+                                <img src="<?php echo esc_url($get_item1); ?>" alt="<?php echo esc_attr(yc_photography_get_file_name($img_src)); ?>" class="img_portfolio" decoding="async" loading="lazy">
                             </picture>
                             <span class="span_portfolio"><?php echo esc_html($get_item2); ?></span>
                             <p class="p_portfolio_hover"><?php echo esc_html($get_item2); ?></p>

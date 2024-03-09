@@ -4,7 +4,7 @@
 
 .div_around_social_network {
     position: absolute;
-    top: 10%;
+    top: 5%;
     right: 0;
     display: flex;
     gap: .2rem;
@@ -20,25 +20,22 @@
 }
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {
-    .div_around_social_network {
-        top: 8%;
-    }
     .div_element_social i {
         font-size: 1.7rem;
     }
 }
 @media screen and (max-width: 480px) {
+    /* .div_element_social i {
+        font-size: 1.5rem;
+    } */
+}
+@media screen and (max-width: 380px) {
     .div_element_social i {
         font-size: 1.5rem;
     }
 }
-@media screen and (max-width: 380px) {
-    .div_element_social i {
-        font-size: 1.2rem;
-    }
-}
 @media screen and (max-width: 280px) {
     .div_element_social i {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }

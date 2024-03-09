@@ -96,6 +96,11 @@
         font-size: 3.2rem;
     }
 }
+@media screen and (max-width: 480px) {
+    .nav_portfolio {
+        padding: 0;
+    }
+}
 @media screen and (max-width: 350px) {
     .li_portfolio_nav .span_portfolio {
         font-size: 3.2rem;

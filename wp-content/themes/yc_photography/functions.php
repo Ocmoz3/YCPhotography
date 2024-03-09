@@ -61,6 +61,18 @@ function yc_photography_get_src_tags($url) {
 
 }
 /**
+ * Retrieves the file name of an attached file from its url.
+ * 
+ * @param string $url The url used to find the correct file name.
+ * 
+ * @return string
+ */
+function yc_photography_get_file_name($url) {
+    $img_id = attachment_url_to_postid($url);;
+    $img_file = end(explode('/', wp_get_attachment_metadata($img_id)['file']));
+    return $img_file;
+}
+/**
  * Retrieves the srcset of an attached file from its url.
  * 
  * @param string $url The url used to find the correct srcset.

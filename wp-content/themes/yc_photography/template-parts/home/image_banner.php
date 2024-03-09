@@ -13,7 +13,7 @@ if(!empty($img_src)):
             <?php 
             echo yc_photography_get_src_tags($img_src);
             ?>
-            <img src="<?php echo esc_url($img_src); ?>" alt="">
+            <img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr(yc_photography_get_file_name($img_src)); ?>" decoding="async" loading="lazy">
         </picture>
     </section>
 
