@@ -27,6 +27,9 @@ class YC_FrontPage_Metabox {
         add_action('admin_enqueue_scripts', function() {
             wp_register_script('uploaderjs', get_template_directory_uri() . '/assets/admin/js/metaboxes/uploader.js', ['jquery'], '', true);
             wp_enqueue_script('uploaderjs');
+
+            wp_register_script( 'my-custom-yoast-fields', get_template_directory_uri() . '/assets/admin/js/customFieldsYoast/customFieldsYoast.js', [], '1.', true );
+            wp_enqueue_script('my-custom-yoast-fields');
         });
     }
 
@@ -51,7 +54,16 @@ class YC_FrontPage_Metabox {
         $this->id = $id;
         $this->title = $title;
         $this->post_type = $post_type;
+
+        // Yoast
+        // add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_yoast_scripts' ] );
     }
+    /** 
+     * Enqueues the plugin file.
+     */
+    // public function enqueue_yoast_scripts() {
+        // wp_enqueue_script( 'my-custom-yoast-fields', get_template_directory_uri() . '/assets/admin/js/customFieldsYoast.js', [], '1.', true );
+    // }
 
     /**
      * Creates the metabox.
@@ -165,6 +177,17 @@ class YC_FrontPage_Metabox {
         endforeach;
     }
 }
+/** 
+ * Loads the plugin.
+ */
+// function loadMyCustomPlugin() {
+//     new YC_FrontPage_Metabox('frontpage_metabox_presentation', 'Présentation', 'page');
+// }
+
+// if ( ! wp_installing() ) {
+//     add_action( 'plugins_loaded', 'loadMyCustomPlugin', 20 );
+//     // add_action( 'plugins_loaded', 'loadMyCustomPlugin', 20 );
+// }
 
 /**
  * Loads javascript for the 'uploader' field type.

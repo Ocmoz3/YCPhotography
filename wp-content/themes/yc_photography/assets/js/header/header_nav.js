@@ -4,33 +4,9 @@
  */
 
 /**
- * Displays header dropdown menu only on touch devices, so on click.
- */ 
-// if(window.matchMedia("(pointer: coarse)").matches) {
-//     // touchscreen
-//     let dropd = document.querySelector('li.dropdown a');
-//     dropd.addEventListener('click', function(event) {
-//         event.preventDefault();
-//         let drop = document.querySelector('li.dropdown');
-//         drop.classList.add('color_nav_hover');
-//         let dc = document.querySelector('ul.dropdown-content');
-        // if (window.matchMedia('(min-width: 900px)').matches) {
-        //     dc.style.display = 'block';
-        // }
-//     }, true);
-// } 
-/**
  * Displays dropdown menu on desktop devices on hover.
  * If click on title, go directly to the page.
  */ 
-// else {
-    // main li
-    let lis = document.querySelectorAll('#block_header li.menu-item');
-    for(let li of lis) {
-        li.addEventListener('mouseover', function(e) {
-            this.classList.add('color_nav_hover');
-        });
-    }
     // li dropdown
     let drops = document.querySelectorAll('li.dropdown');
     for(let dropdown of drops) {
@@ -57,13 +33,6 @@ let ul_drops_close = document.querySelectorAll('ul.dropdown-content');
 for(let ul_drop_close of ul_drops_close) {
     ul_drop_close.addEventListener('mouseleave', function(e) {
         this.style.display = 'none';
-    });
-}
-// main li
-let lis_close = document.querySelectorAll('li.menu-item');
-for(let li_close of lis_close) {
-    li_close.addEventListener('mouseleave', function(e) {
-        this.classList.remove('color_nav_hover');
     });
 }
 // li dropdown
@@ -128,7 +97,7 @@ link_burger.addEventListener('click', function(e) {
             // console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
             // const deductHeight = 72;
-            const deductHeight = 22;
+            const deductHeight = 32;
             let navArr = [];
             // Triggers function only if user is on home page.
             if($('body.home').length) {

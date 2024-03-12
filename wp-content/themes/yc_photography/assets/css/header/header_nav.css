@@ -100,9 +100,6 @@
 #link_burger {
     display: none;
 }
-#ul_burger .a_nav:hover {
-    box-shadow: none;
-}
 .dropdown_separator {
     background-color: rgb(190, 190, 190);
     width: 30%;
@@ -151,6 +148,12 @@
 }
 /* RESPONSIVE */
 @media (max-width: 900px) {
+    #ul_burger .a_nav:hover {
+        box-shadow: none;
+    }
+    #ul_burger .a_nav.is-current {
+        box-shadow: none;
+    }
     .a_nav:not(.second_level) {
         padding: 2.5rem 2.5rem;
     }

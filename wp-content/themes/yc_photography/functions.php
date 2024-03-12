@@ -61,18 +61,6 @@ function yc_photography_get_src_tags($url) {
 
 }
 /**
- * Retrieves the file name of an attached file from its url.
- * 
- * @param string $url The url used to find the correct file name.
- * 
- * @return string
- */
-function yc_photography_get_file_name($url) {
-    $img_id = attachment_url_to_postid($url);;
-    $img_file = end(explode('/', wp_get_attachment_metadata($img_id)['file']));
-    return $img_file;
-}
-/**
  * Retrieves the srcset of an attached file from its url.
  * 
  * @param string $url The url used to find the correct srcset.
@@ -210,7 +198,7 @@ add_action( 'wp_head', 'move_admin_bar' );
  * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
  */
 function yc_photography_admin_head_style() {
-    if((!isset($_GET['post_type']) && isset($_GET['post']) && $_GET['post'] == 6)): 
+    if((!isset($_GET['post_type']) && isset($_GET['post']) && $_GET['post'] == 8)): 
         ?>
         <!-- Cancels metabox display on pages other than the home page -->
         <style>
@@ -257,7 +245,7 @@ function yc_photography_admin_footer_script() {
             getValue = thisValNext.val(thisVal.val());
         }
         <?php
-        if(isset($_GET['post']) && $_GET['post'] == 6):
+        if(isset($_GET['post']) && $_GET['post'] == 8):
         ?>
             // Script that deletes or adds a metabox ('repeater', portfolio type)
             // Loads only on edit post for front page.
