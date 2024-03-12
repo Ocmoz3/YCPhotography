@@ -2,7 +2,7 @@
  * Style of navigation menu displayed on header
  */
 
-.site_nav {
+ .site_nav {
     width: fit-content;
 }
 .site_nav_ul {
@@ -155,7 +155,7 @@
         box-shadow: none;
     }
     .a_nav:not(.second_level) {
-        padding: 2.5rem 2.5rem;
+        padding: 1.5rem;
     }
     .a_nav {
         font-size: 1.2rem;
@@ -188,7 +188,7 @@
         width: 100%;
         left: 0;
         top: 0;
-        padding-top: 10px;
+        /* padding-top: 10px; */
         transform: scaleY(0);
         transform-origin: center top;
         transition:all 0.3s ease;

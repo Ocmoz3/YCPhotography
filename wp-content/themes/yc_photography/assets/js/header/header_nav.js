@@ -18,6 +18,9 @@
             for(let ul_drop of ul_drops) {
                 if (window.matchMedia('(max-width: 900px)').matches) {
                     dc.style.display = 'none';
+                }
+                else if(window.matchMedia("(pointer: coarse)").matches) {
+                    ul_drop.style.display = 'none';
                 } else {
                     ul_drop.style.display = 'block';
                 }
@@ -97,7 +100,7 @@ link_burger.addEventListener('click', function(e) {
             // console.log(navSwitch);
             // Height must be a little superior compared to html, body animate, else when click on a nav tab, the previous nav tab is colored.
             // const deductHeight = 72;
-            const deductHeight = 32;
+            const deductHeight = 70;
             let navArr = [];
             // Triggers function only if user is on home page.
             if($('body.home').length) {

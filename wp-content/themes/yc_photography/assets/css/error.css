@@ -3,23 +3,34 @@
  */
 
 .div_error {
-    padding: 2rem;
-    min-height: 94vh;
+    padding: 100px 0 145px;
+    padding: 125px 0;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .div_around_error_content {
+    width: 100%;
     display: flex;
-    min-height: 70vh;
 }
 .div_error_content {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 1rem;
     flex-flow: row wrap;
+    min-height: 80vh;
 }
 .logo {
-    max-width: 400px;
+    max-width: 300px;
+    max-height: 300px;
     width: 50%;
+}
+.logo img {
+    object-fit: contain;
+    object-position: top;
 }
 .div_error_text {
     padding: 2rem;
@@ -42,13 +53,14 @@
     text-underline-offset: 4px;
 }
 /* RESPONSIVE */
-@media screen and (max-width: 750px) {
-    .div_error_content {
-        align-content: center;
+@media screen and (max-width: 900px) {
+    .div_error {
+        padding: 3rem 0 3rem;
     }
+}
+@media screen and (max-width: 750px) {
     .logo {
-        max-width: 580px;
-        padding: 2rem 1rem;
+        padding: 2rem;
     }
     .logo,
     .div_error_text {
@@ -68,19 +80,19 @@
 }
 @media screen and (max-width: 480px) {
     .div_error {
-        padding: 1rem 0;
+        padding: 3rem 0 1rem;
+    }
+    .div_error {
+        min-height: 90vh;
     }
     .logo {
-        padding: 1rem;
+        padding: 1.5rem;
     }
     .p_error {
         font-size: 1.5rem;
     }
 }
 @media screen and (max-width: 380px) {
-    .div_error {
-        padding: .5rem;
-    }
     .p_error {
         font-size: 1.2rem;
     }
@@ -90,9 +102,6 @@
     }
 }
 @media screen and (max-width: 280px) {
-    .div_error {
-        padding: .2rem;
-    }
     .p_error {
         font-size: 1rem;
     }

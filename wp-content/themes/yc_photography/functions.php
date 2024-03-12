@@ -61,6 +61,20 @@ function yc_photography_get_src_tags($url) {
 
 }
 /**
+ * Retrieves the file name of an attached file from its url.
+ * 
+ * @param string $url The url used to find the correct file name.
+ * 
+ * @return string
+ */
+function yc_photography_get_file_name($url) {
+    $img_file = attachment_url_to_postid($url);
+    $img_file = wp_get_attachment_metadata($img_file)['file'];
+    $img_file = explode('/', $img_file);
+    $img_file = $img_file[2];
+    return $img_file;
+}
+/**
  * Retrieves the srcset of an attached file from its url.
  * 
  * @param string $url The url used to find the correct srcset.
@@ -157,8 +171,8 @@ function move_admin_bar() {
             // echo 'body{margin-top: -46px; padding-bottom: 0}';
         endif;
         //   else {
+        // margin-top: -46px;
         echo 'body {
-            margin-top: -46px;
             padding-bottom: 20px;
         }
         body.admin-bar #wphead {

@@ -15,13 +15,12 @@ get_header();
     <div class="div_around_error_content">
         <div class="div_error_content">
             <div class="logo">
-                <img src="<?php echo esc_url(get_template_directory_uri() .'/assets/img/beyond-the-walls2.jpg'); ?>" alt="">
                 <?php 
-                // if(function_exists('the_custom_logo')):
-                //     if(has_custom_logo()):
-                //         the_custom_logo();
-                //     endif;
-                // endif; ?>
+                if(function_exists('the_custom_logo')):
+                    if(has_custom_logo()):
+                        the_custom_logo();
+                    endif;
+                endif; ?>
             </div>
             <div class="div_error_text">
                 <div class="div_p_error">
