@@ -1,8 +1,8 @@
 /**
  * Style of custom repeater fields in front page metabox
-  */
+ */
   
-.wp-editor-wrap {
+ .wp-editor-wrap {
     width: 100%;
 }
 .custom_repeater_item_a {
@@ -31,32 +31,28 @@
 .cxc-hide-tr { 
     display: none; 
 }
-
-/* RESPONSIVE */
-/* @media screen and (max-width: 700px) { */
-    .cxc-item-table tbody {
-        display: table-cell;
-    }
-    .cxc-sub-row {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin: 1.5rem 0;
-    }
-    .meta-box-item-content {
-        display: flex;
-        flex-direction: column;
-    }
-    .custom_repeater_item_a {
-        width: 100% !important;
-    }
-    .meta-box-item-content select {
-        width: 100%;
-    }
-    .btn_uploader {
-        align-self: flex-start;
-    }
-/* } */
+.cxc-item-table tbody {
+    display: table-cell;
+}
+.cxc-sub-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+.meta-box-item-content {
+    display: flex;
+    flex-direction: column;
+}
+.custom_repeater_item_a {
+    width: 100% !important;
+}
+.meta-box-item-content select {
+    width: 100%;
+}
+.btn_uploader {
+    align-self: flex-start;
+}
 /* RESPONSIVE */
 @media screen and (max-width: 900px) {
     .metabox_title {

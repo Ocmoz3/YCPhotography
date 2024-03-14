@@ -6,10 +6,8 @@ function getThisBtn(e, elem) {
     e.preventDefault()
     // Declares variable corresponding to the element clicked on.
     var $this = jQuery(elem);
-    // console.log($this);
     // Déclare variable qui récupère l'attribut data-multiple dans le champ
-    var multiple = $this.data('multiple')
-    // console.log(multiple);
+    var multiple = $this.data('multiple');
     // Declares variable that will be a reference to the media uploader.
     var uploader = wp.media({
         // Initializes the media uploader with various parameters.
@@ -17,8 +15,8 @@ function getThisBtn(e, elem) {
         button: {
             text: 'Sélectionnez un fichier'
         },
-        // accepte les éléments multiples
-        // ne fonctionne pas ???
+        // Accepts multiple elements.
+        // Doesn't work ???
         // multiple: multiple
         multiple: true
     })
@@ -26,15 +24,14 @@ function getThisBtn(e, elem) {
     uploader.on('select', function() {
         // Recovers the image and its state ('selected').
         var selection = uploader.state().get('selection')
-        // je récupère ensuite la liste des urls en créant le tableau 'sélection'
-        // map() me permet de parcourir chaque élément et de récupérer l'item
+        // Retrieves the list of urls by creating the 'selection' table.
+        // map() allows me to browse each element and retrieve the item.
         var urls = selection.map(function(item) {
-            // et je retourne l'url de l'item et je le transforme en objet
-            // je récupère un tableau des urls
+            // Returns the element's url and transforms it into a object.
+            // Retrieves an array of urls.
             return item.toJSON().url
         });
         // Selects this metabox input tag.
-        // inputDataIdPrev = jQuery($this).prev();
         inputPrev = jQuery($this).prev().val(urls);
         changedSrc = jQuery(inputPrev).val();
         // Selects this metabox image tag.
