@@ -2,20 +2,19 @@
  * Style of likes and share buttons
  */
 
-.heart_share_container {
+ .heart_share_container {
     position: absolute;
     top: 0;
-    top: -8px;
-    left: 25px;
+    top: 0vh;
+    left: 4vw;
     z-index: 999;
     display: flex;
 }
 /* FULL SCREEN */
 .fullscreen_div_img .heart_share_container {
-    top: 35px;
-    left: 90px;
+    top: 2vh;
+    left: 10vw;
 }
-
 .heart_btn_counter {
     position: relative;
 }
@@ -34,6 +33,7 @@
 }
 .heart_counter {
     position: absolute;
+    padding: 9px;
 }
 .share {
     left: 10px;
@@ -42,9 +42,7 @@
     left: 50px;
 }
 .heart_counter {
-    /* top: 20px; */
     bottom: 8px;
-    /* left: 85px; */
     right: -10px;
     height: 18px;
     width: 18px;
@@ -59,47 +57,73 @@
         width: 15px;
         height: 15px;
     }
+    .heart_counter {
+        font-size: 1rem;
+    }
 }
-/* @media screen and (max-width: 750px) {
-    .share {
-        left: 90px;
+@media screen and (max-width: 750px) {
+    .share svg,
+    .heart svg {
+        width: 12px;
+        height: 12px;
     }
+    .heart_share_container {
+        top: 1vh;
+    }
+    .share,
     .heart {
-        left: 125px;
+        padding: 7px;
     }
     .heart_counter {
-        left: 155px;
+        right: -12px;
+        bottom: 2px;
+        font-size: .9rem;
     }
-} */
+}
 @media screen and (max-width: 480px) {
-    #share,
-    #heart {
-        padding: 8px;
+    .heart_share_container {
+        left: 6vw;
     }
-    /* #share {
-        left: 80px;
+    .fullscreen_div_img .heart_share_container {
+        top: 2.5vh;
+        left: 14vw;
     }
-    #heart {
-        left: 110px;
-    }
-    .heart_counter {
-        top: 41px;
-        left: 135px;
-    } */
 }
 @media screen and (max-width: 380px) {
-    #share,
-    #heart {
+    .share svg,
+    .heart svg {
+        width: 10px;
+        height: 10px;
+    }
+    .heart_share_container {
+        left: 8vw;
+    }
+    .fullscreen_div_img .heart_share_container {
+        left: 18vw;
+    }
+    .heart_counter {
+        font-size: .8rem;
+        right: -14px;
+    }
+}
+@media screen and (max-width: 300px) {
+    .heart_share_container {
+        left: 9vw;
+    }
+    .share,
+    .heart {
         padding: 6px;
     }
-    #share {
-        left: 60px;
+    .heart_counter {
+        font-size: .8rem;
+        right: -14px;
     }
-    #heart {
-        left: 90px;
+    .share {
+        left: 12px;
     }
-    /* .heart_counter {
-        top: 39px;
-        left: 115px;
-    } */
+}
+@media screen and (max-width: 280px) {
+    .heart_share_container {
+        left: 12vw;
+    }
 }

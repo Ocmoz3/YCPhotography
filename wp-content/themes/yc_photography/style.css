@@ -1,5 +1,5 @@
 /*
-Theme Name: YC Photography
+Theme Name: Yann Cielat Photographie
 Author: Orianne Cielat
 Description: A theme for photographers
 Tested up to: 6.4.2
@@ -60,8 +60,7 @@ section {
     max-width: 980px;
     width: 100%;
     /* Important for anchor position */
-    /* padding-top: 60px !important; */
-    padding-top: 70px !important;
+    padding-top: 35px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,20 +102,17 @@ input:-webkit-autofill:focus {
     main {
         margin-top: 0;
     }
-    h1 {
-        font-size: 2.5rem;
-    }
     h2 {
         font-weight: 600;
         font-size: 1.5rem;
     }
     section {
-        padding: 0 1rem;
+        padding: 0 .5rem;
         padding-top: 30px !important;
     }
 }
 @media screen and (max-width: 480px) {
     h1 {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
     }
 }

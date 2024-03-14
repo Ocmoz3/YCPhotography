@@ -2,9 +2,9 @@
  * Style of portfolio template part displayed on front-page
  */
 
-.nav_portfolio {
+ .nav_portfolio {
     width: 100%;
-    padding: 0 1rem;
+    padding: 2rem 0;
 }
 .ul_portfolio_nav {
     display: flex;
@@ -15,7 +15,7 @@
 }
 .li_portfolio_nav {
     height: 485px;
-    width: 48%;
+    width: 45%;
     position: relative;
     z-index: 0;
 }
@@ -64,7 +64,15 @@
         font-size: 4.8rem;
     }
 }
+@media screen and (max-width: 950px) {
+    .li_portfolio_nav {
+        width: 47%;
+    }
+}
 @media screen and (max-width: 900px) {
+    .li_portfolio_nav {
+        width: 47%;
+    }
     .li_portfolio_nav .span_portfolio {
         font-size: 4.2rem;
         padding: .8rem;
@@ -77,18 +85,22 @@
     }   
 }
 @media screen and (max-width: 680px) {
+    .li_portfolio_nav {
+        width: 48%;
+    }
+    .li_portfolio_nav,
+    .li_portfolio_nav .a_portfolio {
+        height: 375px;
+    }  
     .li_portfolio_nav .span_portfolio {
         font-size: 3.8rem;
         padding: .5rem;
     }
 }
 @media screen and (max-width: 620px) {
-    .li_portfolio_nav {
-        width: 100%;
-    }
     .li_portfolio_nav,
     .li_portfolio_nav .a_portfolio {
-        height: 450px;
+        height: 350px;
     } 
 }
 @media screen and (max-width: 580px) {
@@ -96,7 +108,20 @@
         font-size: 3.2rem;
     }
 }
+@media screen and (max-width: 550px) {
+    .li_portfolio_nav,
+    .li_portfolio_nav .a_portfolio {
+        height: 320px;
+    } 
+}
 @media screen and (max-width: 480px) {
+    .li_portfolio_nav {
+        width: 95%;
+    }
+    .li_portfolio_nav,
+    .li_portfolio_nav .a_portfolio {
+        height: 420px;
+    } 
     .nav_portfolio {
         padding: 0;
     }

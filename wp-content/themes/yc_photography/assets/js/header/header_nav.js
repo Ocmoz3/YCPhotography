@@ -72,10 +72,8 @@ link_burger.addEventListener('click', function(e) {
     $(document).ready(function () {
         if($('a.a_nav[href*="#"]').length) {
             $('a.a_nav[href*="#"]').click(function() {
-                // Adjusts anchor to header height (-70px).
-                // topMenuHeight = -70;
-                substractHeight = 0;
-                // console.log(substractHeight);
+                // Adjusts anchor to header height (35px = header nav height).
+                substractHeight = 35;
                 // Menu burger 
                 // Detects whether user is on a touch screen.
                 if(window.matchMedia("(pointer: coarse)").matches) {

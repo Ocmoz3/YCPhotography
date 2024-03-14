@@ -2,11 +2,10 @@
  * Style of modal slider
  */
 
-.div_modal_img {
+ .div_modal_img {
     margin: auto;
-    /* min-height: 82vh; */
-    max-height: 84vh;
-    max-width: 80vw;
+    max-height: 96vh;
+    max-width: 85vw;
     width: 100%;
     overflow: hidden;
     position: absolute;
@@ -15,6 +14,9 @@
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
+}
+.div_modal_img.height {
+    height: 100%;
 }
 .div_modal_img picture {
     margin: 0 auto;
@@ -68,27 +70,12 @@
     }
 }
 /* RESPONSIVE */
-@media screen and (max-width: 1100px) {
-    /* .img-modal-content {
-        max-width: 550px;
-    } */
-}
-@media screen and (max-width: 550px) {
-    /* .img-modal-content {
-        width: 300px;
-    } */
-}
 @media screen and (max-width: 480px) {
     .img-modal-content {
         margin: auto;
-        /* width: 100%; */
     }
     .img-modal-content.fullscreen_modal {
         margin: 0;
         width: 100%;
     }
-    /* .img-modal img {
-        height: -webkit-fill-available; */
-        /* width: 80%; */
-    /* } */
 }

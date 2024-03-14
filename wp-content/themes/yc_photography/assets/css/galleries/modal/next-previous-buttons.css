@@ -2,65 +2,64 @@
  * Style of next and previous buttons
  */
 
-.prev,
-.next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    font-size: 20px;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    -webkit-user-select: none;
-    background-color: white;
-    opacity: .9;
-    display: flex;
-    padding: 10px;
-    border-radius: 50%;
-    z-index: 999999;
-    align-items: center;
-    justify-content: center;
-}
-.prev {
-    left: 30px;
-    padding-right: 12px;
-}
-.next {
-    right: 30px;
-    padding-left: 12px;
-}
-/* RESPONSIVE */
-@media screen and (max-width: 900px) {
-    .prev svg,
-    .next svg {
-        width: 25px;
-        height: 25px;
-    }
-}
-@media screen and (max-width: 750px) {
-    .prev svg,
-    .next svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-@media screen and (max-width: 480px) {
-    .prev {
-        left: 10px;
-    }
-    .next {
-        right: 10px;
-    }
-    .prev svg,
-    .next svg {
-        width: 15px;
-        height: 15px;
-    }
-}
-@media screen and (max-width: 380px) {
-    .prev svg,
-    .next svg {
-        width: 10px;
-        height: 10px;
-    }
-}
+ .prev,
+ .next {
+     width: 35px;
+     height: 35px;
+     cursor: pointer;
+     position: absolute;
+     top: 50%;
+     border-radius: 0 3px 3px 0;
+     user-select: none;
+     -webkit-user-select: none;
+     background-color: white;
+     opacity: .9;
+     display: flex;
+     padding: 10px;
+     border-radius: 50%;
+     z-index: 999999;
+     align-items: center;
+     justify-content: center;
+ }
+ .prev {
+     left: 30px;
+ }
+ .next {
+     right: 30px;
+ }
+ /* RESPONSIVE */
+ @media screen and (max-width: 900px) {
+     .prev svg,
+     .next svg {
+         width: 25px;
+         height: 25px;
+     }
+ }
+ @media screen and (max-width: 750px) {
+     .prev svg,
+     .next svg {
+         width: 20px;
+         height: 20px;
+     }
+ }
+ @media screen and (max-width: 480px) {
+     .prev {
+         left: 10px;
+     }
+     .next {
+         right: 10px;
+     }
+     .prev svg,
+     .next svg {
+         width: 15px;
+         height: 15px;
+     }
+ }
+ @media screen and (max-width: 380px) {
+     .prev {
+         padding-right: 10px;
+     }
+     .next {
+         padding-left: 10px;
+     }
+ }

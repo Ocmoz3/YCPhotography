@@ -6,8 +6,8 @@
 .maximize_icon,
 .minimize_icon {
     position: absolute;
-    left: 30px;
-    top: 30px;
+    left: 1.5vw;
+    top: 1.5vh;
     cursor: pointer;
     background-color: white;
     opacity: .9;
@@ -25,13 +25,6 @@
 @media screen and (max-width: 900px) {
     .maximize_icon svg,
     .minimize_icon svg {
-        width: 25px;
-        height: 25px;
-    }
-}
-@media screen and (max-width: 750px) {
-    .maximize_icon svg,
-    .minimize_icon svg {
         width: 20px;
         height: 20px;
     }
@@ -40,13 +33,17 @@
     .maximize_icon,
     .minimize_icon {
         left: 10px;
-        padding: 12px;
+        padding: 10px;
+    }
+    .maximize_icon svg,
+    .minimize_icon svg {
+        width: 17px;
+        height: 17px;
     }
 }
 @media screen and (max-width: 380px) {
-    .maximize_icon svg,
-    .minimize_icon svg {
-        width: 15px;
-        height: 15px;
+    .img-close-button svg {
+        width: 12px;
+        height: 12px;
     }
 }

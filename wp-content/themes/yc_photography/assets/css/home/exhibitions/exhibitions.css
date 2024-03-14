@@ -2,14 +2,14 @@
  * Style of exhibitions template part displayed on front-page
  */
 
-#exhibitions .exhibitions_container {
+ #exhibitions .exhibitions_container {
     column-count: 3;
+    padding: 1rem 2rem;
     padding-bottom: 2rem;
 }
 #exhibitions .exhibitions_container div {
     padding: .5rem;
-    /* break-inside: avoid; */
-    display: inline;
+    break-inside: avoid;
 }
 #exhibitions .exhibitions_container div p:first-child {
     color: #8B0000;
@@ -19,12 +19,17 @@
     font-size: 1rem;
     overflow-wrap: break-word;
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 950px) {
+    #exhibitions .exhibitions_container {
+        padding: 1rem;
+    }
+}
+@media screen and (max-width: 750px) {
     #exhibitions .exhibitions_container {
         column-count: 2;
     }
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 550px) {
     #exhibitions .exhibitions_container {
         column-count: 1;
         padding-bottom: 1rem;

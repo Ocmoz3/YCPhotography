@@ -2,7 +2,7 @@
  * Style of contact template part displayed on front-page
  */
 
-#contact {
+ #contact {
     background-color: black;
     width: 100%;
     max-width: unset;
@@ -13,11 +13,6 @@
 }
 #contact h1 {
     color: white;
-}
-form {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
 }
 .contact_form {
     display: flex;

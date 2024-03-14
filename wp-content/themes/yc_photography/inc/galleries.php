@@ -117,7 +117,7 @@ function custom_gallery_html($output, $attr, $instance) {
         $output .= 
         '<!-- Next and previous buttons -->
         <a class="prev" onclick="plusSlides(-1)">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="none" width="30" height="30" viewBox="0 0 15 27">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="none" width="25px" height="25px" viewBox="0 0 15 27">
                 <g fill-rule="evenodd">
                     <path fill-rule="nonzero" d="M14.258 1.53L13.198.47-.061 13.728l13.259 13.258 1.06-1.06L2.061 13.728z"></path>
                 </g>
@@ -125,7 +125,7 @@ function custom_gallery_html($output, $attr, $instance) {
         </a>
 
         <a class="next" onclick="plusSlides(1)">
-            <svg fill="#000000" stroke="none" width="30" height="30" viewBox="0 0 15 27">
+            <svg fill="#000000" stroke="none" width="25px" height="25px" viewBox="0 0 15 27">
                 <g fill-rule="evenodd">
                     <path fill-rule="nonzero" d="M.198 25.926l1.06 1.06 13.259-13.258L1.258.47.198 1.53l12.197 12.198z"></path>
                 </g>

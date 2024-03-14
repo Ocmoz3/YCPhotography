@@ -3,20 +3,28 @@
  */
 
 .div_presentation {
-    padding: 1rem 0;
-    max-width: 845px;
+    padding: 2rem 2.5rem;
 }
+.div_presentation,
 .div_presentation p {
     text-align: justify;
     hyphens: auto;
     font: var(--body-font);
 }
+@media screen and (max-width: 950px) {
+    .div_presentation {
+        padding: 1rem 1.5rem;
+    }
+}
 @media screen and (max-width: 900px) {
+    .div_presentation {
+        padding: 1rem 1.2rem;
+    }
+}
+@media screen and (max-width: 680px) {
     .div_presentation {
         padding: .5rem;
     }
-}
-@media screen and (max-width: 480px) {
     .div_presentation p {
         font-size: 1rem;
     }

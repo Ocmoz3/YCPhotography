@@ -194,6 +194,11 @@ function move_admin_bar() {
             top: 0;
         }';
         echo '/* RESPONSIVE */
+        @media screen and (max-width: 900px) {
+            html {
+                margin-top: -0 !important;
+            }
+        }
         @media screen and (max-width: 600px) {
             #wpadminbar {
                 position: fixed;
@@ -212,7 +217,7 @@ add_action( 'wp_head', 'move_admin_bar' );
  * Displays WYSIWYG text editor on edit post ONLY for Gallery page in admin part
  */
 function yc_photography_admin_head_style() {
-    if((!isset($_GET['post_type']) && isset($_GET['post']) && $_GET['post'] == 8)): 
+    if((!isset($_GET['post_type']) && isset($_GET['post']) && $_GET['post'] == 6)): 
         ?>
         <!-- Cancels metabox display on pages other than the home page -->
         <style>

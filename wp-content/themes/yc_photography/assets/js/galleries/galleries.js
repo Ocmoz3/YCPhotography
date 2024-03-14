@@ -102,7 +102,10 @@ function showSlides(n) {
     sharesIcons[slideIndex-1].style.display = 'block';
     // sharesLink
     // Displays only the current share link.
-    counterID = heartCounters[slideIndex-1].getAttribute('id');
+    // counterID = heartCounters[slideIndex-1].getAttribute('id');
+
+    // Adds the "height" class to set the height to 100% only on the div in display : block.
+    divHeight[slideIndex-1].classList.add('height');
 }
 
 // jquery
