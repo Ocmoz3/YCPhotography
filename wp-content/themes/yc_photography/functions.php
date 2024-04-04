@@ -26,15 +26,31 @@ function yc_photography_webp_replacements($url) {
     return $url;
 }
 /**
+ * Retrieves the srcset of an attached file from its url.
+ * 
+ * @param string $url The url used to find the correct srcset.
+ * 
+ * @return string
+ */
+function yc_photography_get_srcset($id) {
+    // debug($id);
+    // $attachment_id = attachment_url_to_postid(esc_url($url));
+    // debug($attachment_id);
+    // $attachment_srcset = wp_get_attachment_image_srcset($attachment_id);
+    $attachment_srcset = wp_get_attachment_image_srcset($id);
+    // debug($attachment_srcset);
+    return $attachment_srcset;
+}
+/**
  * Checks image file extension and displays source tags accordingly.
  * 
  * @param string $url The url used to check if file also exists in webp format.
  * 
  * @return bool
  */
-function yc_photography_get_src_tags($url) {
+function yc_photography_get_src_tags($url, $id) {
     
-    $source_tag = yc_photography_get_origin_src_tag($url);
+    $source_tag = yc_photography_get_origin_src_tag($url, $id);
 
     if(pathinfo($url)['extension'] !== 'webp'):
         
@@ -51,8 +67,8 @@ function yc_photography_get_src_tags($url) {
         $image_file = wp_get_upload_dir()['basedir'] . '/' .$attachment_year . '/' .$attachment_month . '/' . $attanchment_name;
 
         if(file_exists($image_file)):
-            $source_tag = '<source srcset="' .  yc_photography_webp_replacements(yc_photography_get_srcset($url)) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/webp">';
-            $source_tag .= yc_photography_get_origin_src_tag($url);
+            $source_tag = '<source srcset="' .  yc_photography_webp_replacements(yc_photography_get_srcset($id)) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/webp">';
+            $source_tag .= yc_photography_get_origin_src_tag($url, $id);
         endif;
         
     endif;
@@ -69,22 +85,12 @@ function yc_photography_get_src_tags($url) {
  */
 function yc_photography_get_file_name($url) {
     $img_file = attachment_url_to_postid($url);
-    $img_file = wp_get_attachment_metadata($img_file)['file'];
-    $img_file = explode('/', $img_file);
-    $img_file = $img_file[2];
+    if($img_file):
+        $img_file = wp_get_attachment_metadata($img_file)['file'];
+        $img_file = explode('/', $img_file);
+        $img_file = $img_file[2];
+    endif;
     return $img_file;
-}
-/**
- * Retrieves the srcset of an attached file from its url.
- * 
- * @param string $url The url used to find the correct srcset.
- * 
- * @return string
- */
-function yc_photography_get_srcset($url) {
-    $attachment_id = attachment_url_to_postid($url);
-    $attachment_srcset = wp_get_attachment_image_srcset($attachment_id);
-    return $attachment_srcset;
 }
 /**
  * Retrieves the correct sizes of an attached file from its url.
@@ -106,12 +112,12 @@ function yc_photography_get_sizes($url) {
  * 
  * @return bool
  */
-function yc_photography_get_origin_src_tag($url) {
+function yc_photography_get_origin_src_tag($url, $id) {
     $file_ext = pathinfo($url)['extension'];
     if(pathinfo($url)['extension'] == 'jpg' || pathinfo($url)['extension'] == 'jpeg'):
         $file_ext = 'jpeg';
     endif;
-    $source_tag = '<source srcset="' . yc_photography_get_srcset($url) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/' . $file_ext . '">';
+    $source_tag = '<source srcset="' . yc_photography_get_srcset($id) . '" sizes="' . yc_photography_get_sizes($url) . '" type="image/' . $file_ext . '">';
     return $source_tag;
 }
 

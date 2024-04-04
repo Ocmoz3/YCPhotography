@@ -8,7 +8,7 @@ get_header();
 
 <!-- TEMPLATE -->
 <?php
-if($gallery = get_post_gallery(get_the_ID(), false)) :
+if($gallery = get_post_gallery(get_the_ID(), false)):
     // echo do_shortcode(get_the_content(get_the_ID()));
     echo do_shortcode(get_the_content());
 else:
