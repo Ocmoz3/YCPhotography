@@ -53,7 +53,7 @@ function custom_gallery_html($output, $attr, $instance) {
             // IMG
             $output .=
             '<picture>';
-                $output .= yc_photography_get_src_tags($image_src);
+                $output .= yc_photography_get_src_tags($image_src, $id);
                 $output .=
                 '<img  id="photo-' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" class="attachment-' . $size . ' size-' . $size . ' img-hover-opacity photos" alt="' . esc_attr($photo_get_name) . '" decoding="async" loading="lazy" onclick="currentSlide(' . $i . ')" data-orderslide="' . $i . '">
             </picture>';
@@ -171,7 +171,7 @@ function custom_gallery_html($output, $attr, $instance) {
                     // IMG
                     $output .= '
                     <picture style="margin: 0 auto;">';
-                        $output .= yc_photography_get_src_tags($image_src);
+                        $output .= yc_photography_get_src_tags($image_src, $id);
                         $output .= '
                         <img class="mySlides heart_counter' . $id . '" width="' . $image_width . '" height="' . $image_height . '" src="' . $image_src . '" alt="' . esc_attr($photo_get_name) . '" decoding="async" loading="lazy">';
                     $output .= 
